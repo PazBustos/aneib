@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1">
+	<title>Aneib2</title>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= csrf_meta_tags %>
+</head>
+<body>
+	<div id="wrapper">
+		<!-- Sidebar -->
+		<div id="sidebar-wrapper">
+			<ul class="sidebar-nav">
+				<li class="sidebar-brand">
+					<%= link_to(image_tag("logo.png", id: "logo"),root_path) %>
+				</li>
+				<%= render "partials/navigation"%>
+			</ul>
+		</div>
+
+		<div id="page-content-wrapper">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12">
+						<div>
+							<div class="menu">
+								<button type="button" class="btn btn-default" href="#menu-toggle" id="menu-toggle">Menú</button>		
+							</div>
+							<div class="breadcrumbs">
+								<%= render_breadcrumbs("", { class: '', item_class: '', divider_class: '', active_class: 'active' }) %>
+							</div>
+						</div>
+						<%= bootstrap_flash %>
+						<%=yield%>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="footer">
+			<!--Pie de página-->
+			ANEIB - Asociación Nacional de Estudiantes de Ingeniería en Biotecnología<br>
+			Contacto: directorio@aneib.cl
+		</div>
+	</div>
+
+</body>
+
+
+<script>
+	$("#menu-toggle").click(function(e) {
+		e.preventDefault();
+	$("#wrapper").toggleClass("toggled");
+	});
+</script>
+
+</html>

@@ -1,0 +1,14 @@
+<h1>Estatuto ANEIB</h1>
+
+
+<% @portals.each do |portal| %>
+	<div  class="panel panel-default panel-aneib">
+		<div class="panel-heading">
+			<%=	portal.title %> 
+		</div>
+		<div class="panel-body">
+			<p><%=raw portal.body %></p>
+		</div>
+	</div>
+
+<%end%>

@@ -1,0 +1,46 @@
+<h1>Eventos <button type="button" class="btn btn-default" id:"btnEvent" data-trigger="focus" data-container="body" data-toggle="btnEvent"> ? </button></h1>
+
+<% if user_signed_in? && current_user.category == 1  %>
+  <%= link_to 'Nuevo evento', new_event_path, :class => 'btn btn-default'%>
+<% end %>
+<br><br>
+
+<div  class="panel panel-default panel-aneib">
+  <div class="panel-heading ">
+    Calendario de eventos
+  </div>
+  <div class="panel-body" id = "calendar">
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#calendar').fullCalendar({
+      buttonText: {
+        today: 'Fecha actual',
+        day: 'Día',
+        week:'Semana',
+        month:'Mes'
+      },
+      eventSources:[{
+        url: '/events.json',
+        color: '#2B81F2',
+      }],
+      timeFormat: 'H(:mm)',     
+      monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+      dayNamesShort: ['Domingo','Lunes','Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']
+
+    })
+  });
+  $(function () {
+    $('[data-toggle="btnEvent"]').popover(
+      {
+        title: 'Eventos',
+        html: 'true', 
+        content: '<p>Los <strong>Eventos</strong> son  actividades, reuniones y talleres a los que la red invita.</p><p>Solo aparecerán en el calendario los eventos disponibles.</p>',
+        template: '<div class="popover popover-rease"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>'
+      }
+    )
+  })
+</script>
+

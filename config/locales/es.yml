@@ -1,0 +1,289 @@
+---
+es:
+  will_paginate:
+    previous_label: "anterior "
+    next_label: " siguiente"
+    truncate: "..."
+  activerecord:
+      attributes:
+        area:
+          name: "Nombre"
+          description: "Descripción"
+        bulletin:
+          title: "Título"
+          description: "Descripción"
+          start_date: "Fecha"
+        comment:
+          body: "Contenido"
+        comment_offering:
+          body: "Contenido"
+        comment_request:
+          body: "Contenido"
+        contact:
+          name: "Nombre"
+          email: "Correo electrónico"
+          body: "Contenido"
+        event:
+          title: "Título"
+          description: "Descripción"
+          address: "Dirección"
+          start_time: "Fecha de inicio"
+          end_time: "Fecha de término"
+        experience:
+          title: "Título"
+          description: "Descripción"
+          faculty: "Facultad"
+          department: "Departamento/Carrera"
+          course_name: "Nombre de la asignatura/curso"
+          course_type: "Tipo de curso"
+          course_type_other: "Otro tipo de curso"
+          period: "Periodo del curso" 
+          professor_phone: "Teléfono profesor responsable"
+          professor_degree: "Grado académico del profesor responsable" 
+          learning_objectives: "Objetivos de aprendizaje y/o Competencias asociadas" 
+          service_objectives: "Objetivos de servicio" 
+          institutional_support: "Respaldo institucional"
+          frequency: "Frecuencia"
+          weekly_hours: "Horas cronológicas semanale"
+          participants: "Número estudiantes participantes" 
+          students_level: "Nivel de la carrera de los Estudiantes" 
+          organization_type: "Tipo de organización comunitaria" 
+          benefit: "Número de beneficiados" 
+          results: "Resultados de aprendizaje" 
+          tools: "Herramientas de medición" 
+          reflection_moments: "Mencione las instancias de reflexión"
+        institution:
+          name: "Nombre"
+          web: "Página web"
+        interest_link:
+          name: "Nombre"
+          url: "link o página"
+          description: "Descripción"
+        resource:
+          name: "Nombre"
+          date: "Fecha"
+        offering:
+          title: "Título"
+          description: "Descripción"
+          status: "Estado"
+          start_time: "Fecha de inicio"
+          end_time: "Fecha de término"
+          resume: "Resumen"
+        request:
+          title: "Título"
+          description: "Descripción"
+          status: "Estado"
+          start_time: "Fecha de inicio"
+          end_time: "Fecha de término"
+          resume: "Resumen"
+        service:
+          title: "Título"
+          status: "Estado"
+          description: "Descripción"
+          resume: "Resumen"
+          objectives: "Objetivos"
+        section:
+          title: "Título"
+          description: "Descripción"
+          module: "Módulo"
+        user:
+          email: "Correo electrónico"
+          name: "Nombre"
+          nickname: "Nickname o apodo"
+          password: "Contraseña"
+          category: "Tipo de usuario"
+          autorization_level: "Rol de usuario"
+          current_password: "Contraseña actual" 
+
+
+  date:
+    abbr_day_names:
+    - dom
+    - lun
+    - mar
+    - mié
+    - jue
+    - vie
+    - sáb
+    abbr_month_names:
+    -
+    - ene
+    - feb
+    - mar
+    - abr
+    - may
+    - jun
+    - jul
+    - ago
+    - sep
+    - oct
+    - nov
+    - dic
+    day_names:
+    - domingo
+    - lunes
+    - martes
+    - miércoles
+    - jueves
+    - viernes
+    - sábado
+    formats:
+      default: "%d/%m/%Y"
+      long: "%d de %B de %Y"
+      short: "%d de %b"
+    month_names:
+    -
+    - enero
+    - febrero
+    - marzo
+    - abril
+    - mayo
+    - junio
+    - julio
+    - agosto
+    - septiembre
+    - octubre
+    - noviembre
+    - diciembre
+    order:
+    - :day
+    - :month
+    - :year
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: alrededor de 1 hora
+        other: alrededor de %{count} horas
+      about_x_months:
+        one: alrededor de 1 mes
+        other: alrededor de %{count} meses
+      about_x_years:
+        one: alrededor de 1 año
+        other: alrededor de %{count} años
+      almost_x_years:
+        one: casi 1 año
+        other: casi %{count} años
+      half_a_resource: medio minuto
+      less_than_x_resources:
+        one: menos de 1 minuto
+        other: menos de %{count} minutos
+      less_than_x_seconds:
+        one: menos de 1 segundo
+        other: menos de %{count} segundos
+      over_x_years:
+        one: más de 1 año
+        other: más de %{count} años
+      x_days:
+        one: 1 día
+        other: "%{count} días"
+      x_resources:
+        one: 1 minuto
+        other: "%{count} minutos"
+      x_months:
+        one: 1 mes
+        other: "%{count} meses"
+      x_seconds:
+        one: 1 segundo
+        other: "%{count} segundos"
+    prompts:
+      day: Día
+      hour: Hora
+      resource: Minutos
+      month: Mes
+      second: Segundos
+      year: Año
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      accepted: debe ser aceptado
+      blank: no puede estar en blanco
+      confirmation: no coincide
+      empty: no puede estar vacío
+      equal_to: debe ser igual a %{count}
+      even: debe ser par
+      exclusion: está reservado
+      greater_than: debe ser mayor que %{count}
+      greater_than_or_equal_to: debe ser mayor que o igual a %{count}
+      inclusion: no está incluido en la lista
+      invalid: no es válido
+      less_than: debe ser menor que %{count}
+      less_than_or_equal_to: debe ser menor que o igual a %{count}
+      not_a_number: no es un número
+      not_an_integer: debe ser un entero
+      odd: debe ser impar
+      record_invalid: 'La validación falló: %{errors}'
+      taken: ya está en uso
+      too_long: es demasiado largo (%{count} caracteres máximo)
+      too_short: es demasiado corto (%{count} caracteres mínimo)
+      wrong_length: no tiene la longitud correcta (%{count} caracteres exactos)
+    template:
+      body: 'Se encontraron problemas con los siguientes campos:'
+      header:
+        one: No se pudo guardar este/a %{model} porque se encontró 1 error
+        other: No se pudo guardar este/a %{model} porque se encontraron %{count} errores
+  helpers:
+    select:
+      prompt: Por favor seleccione
+    submit:
+      create: Crear %{model}
+      submit: Guardar %{model}
+      update: Actualizar %{model}
+  number:
+    currency:
+      format:
+        delimiter: "."
+        format: "%n %u"
+        precision: 2
+        separator: ","
+        significant: false
+        strip_insignificant_zeros: false
+        unit: "€"
+    format:
+      delimiter: "."
+      precision: 3
+      separator: ","
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: mil millones
+          million: millón
+          quadrillion: mil billones
+          thousand: mil
+          trillion: billón
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 1
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage:
+      format:
+        delimiter: ''
+    precision:
+      format:
+        delimiter: ''
+  support:
+    array:
+      last_word_connector: ", y "
+      two_words_connector: " y "
+      words_connector: ", "
+  time:
+    am: am
+    formats:
+      default: "%A, %d de %B de %Y %H:%M"
+      long: "%d de %B de %Y %H:%M"
+      short: "%d de %b %H:%M"
+    pm: pm

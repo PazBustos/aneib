@@ -1,0 +1,17 @@
+<h1>Administración Organización congreso</h1>
+<%= link_to "Nueva seccion de Organización del congreso", new_organization_path, class:"btn btn-default btn-admin"%>
+<div class="panel panel-default panel-aneib">
+	<div class="panel-heading">
+		Listado de Cuentas claras
+	</div>
+	<div class="panel-body">
+		<% @organizations.each do |org| %>
+			<p>
+			<%=	org.title %>  - 
+			<%=	link_to "Ver", org %>  -				
+			<%= link_to "Editar", edit_organization_path(org)%> - 
+			<%= link_to 'Eliminar', org, method: :delete, data: { confirm: '¿Está seguro de eliminar esta cuenta?' } %>
+			</p>
+		<%end%>
+	</div>
+</div>

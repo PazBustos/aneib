@@ -1,0 +1,49 @@
+.fc-event-inner, .fc-event-time, .fc-event-title
+{
+	background: #2B81F2;
+}
+.fc-header-title, .fc-header-center,.fc-header-right,.fc-header-left
+{
+	background: white;
+}
+.fc-event-title, .fc-event-time
+{
+	color:white;
+}
+
+.fc-day-header
+{
+	background: #2B81F2;
+}
+.fc-button, #calendarAside .fc-event,  #calendar .fc-button-today
+{
+	background: #2B81F2;
+	color:white;
+	background-image: -webkit-linear-gradient(top, #2B81F2, #91BBF2);
+	background-image: -moz-linear-gradient(top, #2B81F2, #91BBF2);
+	background-image: -ms-linear-gradient(top, #2B81F2, #91BBF2);
+	background-image: -o-linear-gradient(top, #2B81F2, #91BBF2);
+	background-image: linear-gradient(to bottom, #2B81F2, #91BBF2);
+
+
+	-webkit-border-radius: 6;
+	-moz-border-radius: 6;
+	border-radius: 6px;
+	-webkit-box-shadow: 3px 2px 5px #666666;
+	-moz-box-shadow: 3px 2px 5px #666666;
+	box-shadow: 3px 2px 5px #666666;
+}
+.fc-button:hover, #calendarAside .fc-event:hover, #calendar .fc-button-today:hover
+{
+	background: #2B81F2;
+	background-image: -webkit-linear-gradient(top, #2B81F2, #6215F2);
+	background-image: -moz-linear-gradient(top, ##2B81F2, #6215F2);
+	background-image: -ms-linear-gradient(top, ##2B81F2, #6215F2);
+	background-image: -o-linear-gradient(top, ##2B81F2, #6215F2);
+	background-image: linear-gradient(to bottom, ##2B81F2, #6215F2);
+}
+
+#calendar th
+{
+	color: white;
+}

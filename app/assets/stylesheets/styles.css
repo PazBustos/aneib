@@ -1,0 +1,56 @@
+/* Labels */
+h1,h2,h3,h4
+{
+	color: #2B81F2;
+
+}
+p
+{
+	color: black;
+}
+
+/*** Class ****/
+.panelCalendar
+{
+	background: white;
+}
+.panel
+{
+	background: white;
+}
+
+#logo
+{
+	max-width: 80%;
+}
+/*#81F404 -- verde
+#5B6AA4 -- azul
+
+*/
+.panel-aneib
+{
+	background: white;
+	border-color: #2B81F2;
+	border-radius: 10px;
+}
+.panel-aneib .panel-heading
+{
+	border-radius: 10px 10px 0 0;
+	background: white;
+	color: #2B81F2;
+	font-weight: bold;
+	border-color: #2B81F2;
+	font-size: 14px;
+
+}
+.menu
+{
+	float: left;
+	display: inline;
+	min-width: 6%;
+}
+.breadcrumbs
+{
+	display: inline-block;
+	min-width: 94%;
+}

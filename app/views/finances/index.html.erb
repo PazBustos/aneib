@@ -1,0 +1,18 @@
+<h1>Cuentas claras</h1>
+
+<% @finances.each do |finance| %>
+  <div  class="panel panel-default panel-aneib">
+    <div class="panel-heading">
+      <%if finance.classification == 1 %>
+        Ingreso:  
+      <%else%>
+        Egreso:
+      <%end%>
+      <%= finance.title %>
+    </div>
+    <div class="panel-body">
+      <p><%=raw finance.description %> - <%= link_to 'Ver cuenta', finance %>  </p>
+    </div>
+  </div>
+
+<%end%>

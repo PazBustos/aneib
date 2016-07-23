@@ -1,0 +1,24 @@
+.btn, .btn-default
+{
+	border-radius: 10px;
+}
+.btn-form
+{
+	min-width: 150px;
+}
+.btn:visited
+{
+	color: #2B81F2;
+}
+.btn-admin
+{
+	min-width: 250px;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+.btn-admin:hover
+{
+	font-weight: bold;
+}

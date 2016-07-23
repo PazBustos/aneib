@@ -1,0 +1,66 @@
+<%seccion ||= 1%>
+<%accion ||= "Crear" %>
+
+<%= form_for(@portal) do |f| %>
+	<% if @portal.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@portal.errors.count, "error") %> prohibited this portal from being saved:</h2>
+
+			<ul>
+				<% @portal.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<div class="panel panel-default panel-aneib">
+		<div class="panel-heading">
+			Administración de una sección de 
+			<%if seccion == 1%>
+				Noticias
+			<%elsif seccion == 2%>
+				¿Quiénes somos?
+			<%elsif seccion == 3%>
+				¿Qué es ANEIB?
+			<%else%>
+				Estatuto
+			<%end%>
+		</div>
+		<div class="panel-body">
+			<div class="field">
+					<%= f.label :title, "Título" %><br>
+					<%= f.text_field :title, class:"form-control" %>
+				</div>
+				<div class="field">
+					<%= f.label :body, "Cuerpo" %><br>
+					<%= f.text_area :body, class:"form-control"  %>
+				</div>
+
+				<%if accion == "Nuevo"%>
+					<% if seccion == 1 %>
+						<%= f.label :section, "Sección: "%>
+						<%= f.select(:section, [['Noticia', 1]], {:include_blank => '— Seleccione una sección —',:selected => seccion }, { :class => 'form-control', :required => true }) %>
+					<% elsif seccion == 2 %>
+						<%= f.label :section, "Sección: "%>
+						<%= f.select(:section, [['¿Quiénes somos?', 2]], {:include_blank => '— Seleccione una sección —',:selected => seccion }, { :class => 'form-control', :required => true }) %>
+					<% elsif seccion == 3 %>
+						<%= f.label :section, "Sección: "%>
+						<%= f.select(:section, [['¿Qué es CONEIB?', 3]], {:include_blank => '— Seleccione una sección —',:selected => seccion }, { :class => 'form-control', :required => true }) %>
+					<%else%>
+						<%= f.label :section, "Sección: "%>
+						<%= f.select(:section, [['Estatuto', 4]], {:include_blank => '— Seleccione una sección —',:selected => seccion }, { :class => 'form-control', :required => true }) %>
+					<%end%>
+				<%else%>
+					<div class="field"><p>
+						<%= f.label :section, "Sección: "%>
+						<%= f.select(:section, [['Noticia', 1],['¿Quiénes somos?', 2],['¿Qué es CONEIB?', 3],['Estatuto', 4]], {:include_blank => '— Seleccione una sección —'}, { :class => 'form-control', :required => true }) %>
+					</p></div>
+				<%end%>
+				<br>
+				<div class="actions">
+					<%= f.submit "aceptar",:class=>"btn btn-default btn-form" %>
+				</div>				
+		</div>
+	</div>
+<% end %>

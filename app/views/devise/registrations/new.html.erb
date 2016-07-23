@@ -1,0 +1,91 @@
+<h1>Hazte socio</h1>
+<h3>¿Por qué ser parte de ANEIB?</h3>
+ 
+<p>Somos la más grande red de estudiantes de Ing. en Biotecnología de Chile, y nuestra intención es convertirnos en mediano plazo en la principal plataforma de apoyo a los alumnos de pregrado, entregándoles diferentes herramientas para potenciar sus proyectos.</p>
+ 
+<h4>Ser socio de ANEIB hoy te confiere los siguientes beneficios:</h4>
+ 
+<li> Ser parte de una red de mas de 300 alumnos en todo el país.</li>
+<li> Acceso a ventas preferenciales y descuentos en la inscripción en el CONEIB de cada año.</li>
+<li> Entradas gratis limitadas y un 10% de descuento en tu entrada para los #BiotechTonic organizados por REDBIONOVA.</li>
+<li> Participar gratis de la fiesta de bienvenida de los socios organizada por la asociación cada año. </li>
+<li> Recibir constantemente ofertas de tesis y prácticas profesionales en el sector público y privado.</li>
+ 
+<h4>¿Cómo me convierto en socio?</h4>
+ 
+<p>Para ser parte de ANEIB debes acercarte al delegado de tu universidad (para conocer a tu delegado, revisa este enlace) y cancelar $5.000 en el caso que seas socio nuevo y $2.000 si estás renovando tu membresia ANUAL. </p>
+
+<p><%= devise_error_messages! %></p>
+
+<h3>Ingrese sus datos para poder registrarse</h3>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+	<div class="panel panel-default panel-aneib" >
+	    <div class="panel-heading">Datos personales</div>
+	    <div class="panel-body">
+
+			<div class="field"><p>
+				<%= f.label :nickname, "Apodo: "%>
+				<%= f.text_field :nickname, :placeholder => "Ingrese su apodo o nick",:class => 'form-control', :required => true  %>
+			</p></div>	
+			<div class="field"><p>
+				<%= f.label :name, "Nombres: "%>
+				<%= f.text_field :name, :placeholder => "Nombres",:class => 'form-control', :required => true  %>
+			</p></div>
+			<div class="field"><p>
+					<%= f.label :email, "Correo electrónico: "%>
+					<%= f.email_field :email, :placeholder => "Correo electrónico",:class => 'form-control', :required => true %>
+			</p></div>
+			<div class="field"> <!--aun no sé como agregar el valor de minimo al placeholder-->
+					<% if @validatable %> 
+						<% minimo = @minimum_password_length %> 
+					<% end %>
+				<div class="field"><p>
+					<%= f.label :password, "Contraseña: "%>
+					<%= f.password_field :password, :placeholder => "Crear contraseña (6 caracteres como mínimo)", :class => 'form-control', autocomplete: "off", :required => true %>
+				</p></div>
+
+				<div class="field"><p>
+					<%= f.label :password_confirmation, "Confirme su contraseña: "%>
+					<%= f.password_field :password_confirmation, :placeholder => "Debe ser la misma que la anterior",:class => 'form-control', autocomplete: "off", :required => true %>
+				</p></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="panel panel-default panel-aneib" >
+		<div class="panel-heading">Identificación dentro de la asociación </div>
+		<div class="panel-body">
+
+			<div class="field">
+				<p><%= f.label :category, "Tipo de usuario" %>
+				<button type="button" class="btn btn-default" data-trigger="focus" data-container="body" data-toggle="btnRolUsuario"> ? </button></p>
+
+				<%= f.select(:category, [['Delegado', 2],['Bioamigo', 3],['Biosocio', 4]], {:include_blank => '-- Seleccione una Opción --' }, { :class => 'form-control', :required => true }) %>
+			</div>
+			<br><br>
+			<div class="actions">
+				<%= f.submit "Enviar Fomulario", :class => 'btn btn-default btn-form'%>
+				<%= link_to "Cancelar", root_path, :class => 'btn btn-default btn-form'%>
+			</div>
+
+		</div>
+	</div>					
+
+<% end %>
+
+<!--desactivar btnes del indice, para que no aparezcan-->
+<script type="text/javascript">
+$(function () {
+  $('[data-toggle="btnRolUsuario"]').popover(
+  {
+  	title: 'Tipo de usuario',
+  	html: 'true', 
+    content: '<p><strong>Delegado:</strong> Es un represantes por casa de estudio adherida a la asociación.</p><p><strong>Bioamigo:</strong> Estudiante de biotecnología adherido a la asociación.</p><p><strong>Biosocio: </strong> Empresas o privados adheridos a la asociación.</p>'
+
+  }
+  	)
+})
+
+</script>

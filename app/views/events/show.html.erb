@@ -1,0 +1,44 @@
+<h1>Detalles del evento</h1>
+
+<% if user_signed_in? && current_user.category == 1 %>
+  <% if @event.user.id == current_user.id %>
+    <%= link_to 'Editar evento', edit_event_path(@event), :class => "btn btn-default btn-form" %>
+    <%= link_to 'Eliminar evento', @event, method: :delete, data: { confirm: '¿Está seguro de eliminar el evento?' }, :class => "btn btn-form" %>
+  <% end %>
+<% end %>
+
+<%= link_to 'Volver', events_path, :class => "btn btn-default btn-form" %>
+<br><br>
+
+<div class="panel panel-default panel-aneib" >
+  <div class="panel-heading">
+    <%= @event.title %>
+  </div>
+  
+  <div class="panel-body">
+
+    <h2>Descripción</h2>
+     <p><%=raw @event.description %></p>
+
+    <h2> Información </h2>
+    <p><strong>Dirección: </strong><%= @event.address %></p>
+    <p><strong>Estado: </strong>
+    <% if @event.status == 1%>
+      Disponible
+    <%end%>
+    <% if @event.status == 2%>
+      Realizado
+    <%end%>
+    <% if @event.status == 3%>
+      Cancelado
+    <%end%>
+    <% if @event.status == 4%>
+      Caducado
+    <%end%>
+    </p>
+    
+    <p><strong>Fecha y hora de inicio: </strong><%=l @event.start_time %></p>
+
+    <p><strong>Fecha y hora de término: </strong><%=l @event.end_time %></p>
+  </div>
+</div>

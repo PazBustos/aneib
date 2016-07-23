@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<div class="panel panel-default panel-aneib">
+	<div class="panel-heading">
+		Nombre: <%= @resource.name %>
+	</div>
+
+	<div class="panel-body">
+		<p>
+			<strong>Descripción:</strong>
+			<%= @resource.description %>
+		</p>
+
+		<p>
+			<strong>Categoría:</strong>
+			<%= @resource.category %>
+		</p>
+
+		<p>
+			<strong>Fecha de subida:</strong>
+			<%= @resource.date %>
+		</p>
+	</div>
+</div>
+
+
+
+<%= link_to 'Editar', edit_resource_path(@resource) %> |
+<%= link_to 'Volver', resources_path %>
