@@ -41,13 +41,13 @@ gem 'wysiwyg-rails'
 gem "breadcrumbs_on_rails"
 gem 'paperclip'
 gem 'mailgun_rails'
+gem "font-awesome-rails"
 
 gem 'omniauth'
 gem 'omniauth-facebook'
 
 gem 'will_paginate'
 gem 'prawn'
-gem 'rails-gallery'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
