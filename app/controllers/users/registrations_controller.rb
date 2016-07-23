@@ -2,9 +2,12 @@
   # before_filter :configure_sign_up_params, only: [:create]
   # before_filter :configure_account_update_params, only: [:update]
     before_filter :configure_permitted_parameters
+    before_action :set_portals
 
     add_breadcrumb "Inicio", :root_path
     add_breadcrumb "Hazte socio"
+   
+
     protected
     def configure_permitted_parameters
       devise_parameter_sanitizer.for(:sign_up).push(:name, :nickname, :category)
@@ -13,10 +16,9 @@
     
     private
     
-    # def estatuto
-    #   @sections = Section.all
-    #   @institutions = Institution.all
-    # end
+    def set_portals
+        @portals = Portal.where("section = ?", 5)
+    end
 
     # GET /resource/sign_up
     # def new

@@ -1,29 +1,11 @@
-<p id="notice"><%= notice %></p>
+  <div  class="panel panel-default panel-aneib">
+    <div class="panel-heading">
+      <%= @portal.title %> 
+    </div>
+    <div class="panel-body">
+      <p><%=raw @portal.body %></p>
+    </div>
+  </div>
 
-<p>
-  <strong>User:</strong>
-  <%= @portal.user %>
-</p>
+<%= link_to 'Editar', edit_portal_path(@portal) %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @portal.title %>
-</p>
-
-<p>
-  <strong>Body:</strong>
-  <%= @portal.body %>
-</p>
-
-<p>
-  <strong>Priority:</strong>
-  <%= @portal.priority %>
-</p>
-
-<p>
-  <strong>Section:</strong>
-  <%= @portal.section %>
-</p>
-
-<%= link_to 'Edit', edit_portal_path(@portal) %> |
-<%= link_to 'Back', portals_path %>

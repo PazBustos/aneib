@@ -1,19 +1,15 @@
 <h1>Hazte socio</h1>
-<h3>¿Por qué ser parte de ANEIB?</h3>
- 
-<p>Somos la más grande red de estudiantes de Ing. en Biotecnología de Chile, y nuestra intención es convertirnos en mediano plazo en la principal plataforma de apoyo a los alumnos de pregrado, entregándoles diferentes herramientas para potenciar sus proyectos.</p>
- 
-<h4>Ser socio de ANEIB hoy te confiere los siguientes beneficios:</h4>
- 
-<li> Ser parte de una red de mas de 300 alumnos en todo el país.</li>
-<li> Acceso a ventas preferenciales y descuentos en la inscripción en el CONEIB de cada año.</li>
-<li> Entradas gratis limitadas y un 10% de descuento en tu entrada para los #BiotechTonic organizados por REDBIONOVA.</li>
-<li> Participar gratis de la fiesta de bienvenida de los socios organizada por la asociación cada año. </li>
-<li> Recibir constantemente ofertas de tesis y prácticas profesionales en el sector público y privado.</li>
- 
-<h4>¿Cómo me convierto en socio?</h4>
- 
-<p>Para ser parte de ANEIB debes acercarte al delegado de tu universidad (para conocer a tu delegado, revisa este enlace) y cancelar $5.000 en el caso que seas socio nuevo y $2.000 si estás renovando tu membresia ANUAL. </p>
+
+<% @portals.each do |portal| %>
+	<div  class="panel panel-default panel-aneib">
+		<div class="panel-heading">
+			<%=	portal.title %> 
+		</div>
+		<div class="panel-body">
+			<p><%=raw portal.body %></p>
+		</div>
+	</div>
+<%end%>
 
 <p><%= devise_error_messages! %></p>
 

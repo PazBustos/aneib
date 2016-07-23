@@ -23,6 +23,10 @@ class AdministrationController < ApplicationController
 		add_breadcrumb "Estatuto", :administration_estatuto_path
 		@portals = Portal.where("section = ?", 4)
 	end
+	def socio
+		add_breadcrumb "HazteSocio", :administration_socio_path
+		@portals = Portal.where("section = ?", 5)
+	end
 	def galerian
 		add_breadcrumb "Galería", :administration_galeria_path
 	end

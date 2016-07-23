@@ -36,8 +36,10 @@ class PortalsController < ApplicationController
           format.html { redirect_to administration_somos_path, notice: 'Se ha creado correctamente.' }
         elsif @portal.section == 3
           format.html { redirect_to administration_coneib_path, notice: 'Se ha creado correctamente.' }
-        else
+        elsif @portal.section == 4
           format.html { redirect_to administration_estatuto_path, notice: 'Se ha creado correctamente.' }
+        else
+          format.html { redirect_to administration_socio_path, notice: 'Se ha creado correctamente.' }
         end
         format.json { render administration_index_path, status: :created, location: @portal }
       else
@@ -58,8 +60,10 @@ class PortalsController < ApplicationController
           format.html { redirect_to administration_somos_path, notice: 'Se ha actualizado correctamente.' }
         elsif @portal.section == 3
           format.html { redirect_to administration_coneib_path, notice: 'Se ha actualizado correctamente.' }
-        else
+        elsif @portal.section == 4
           format.html { redirect_to administration_estatuto_path, notice: 'Se ha actualizado correctamente.' }
+        else
+          format.html { redirect_to administration_socio_path, notice: 'Se ha actualizado correctamente.' }
         end
         format.json { render administration_index_path, status: :ok, location: @portal }
       else
@@ -107,6 +111,13 @@ class PortalsController < ApplicationController
     @portal = Portal.new
   end
 
+  def newSocio
+    add_breadcrumb "Administración", :administration_index_path
+    add_breadcrumb "Hazte Socio", :administration_somos_path
+    add_breadcrumb "Nuevo encabezado"
+    @portal = Portal.new
+  end
+  
   def admin
   end
 
@@ -123,6 +134,11 @@ class PortalsController < ApplicationController
   def estatuto
     add_breadcrumb "Estatuto", :portals_estatuto_path
     @portals = Portal.order("title ASC").where("section = ?", 4)
+  end
+
+  def socio
+    add_breadcrumb "Estatuto", :portals_socio_path
+    @portals = Portal.where("section = ?", 5)
   end
 
 

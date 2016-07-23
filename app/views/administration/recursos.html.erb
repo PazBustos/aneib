@@ -2,20 +2,18 @@
 <%= link_to "Nuevo recurso", new_resource_path, class:"btn btn-default btn-admin"%>
 
 <ul class="nav nav-tabs tabRease nav-justified">
-	<li id="res1" onclick="res1()"><a>tipo 1</a></li>
-	<li id="res2" onclick="res2()"><a>tipo 2</a></li>
-	<li id="res3" onclick="res3()"><a>tipo 3</a></li>
-	<li id="res4" onclick="res4()"><a>tipo 4</a></li>
-	<li id="res5" onclick="res5()"><a>Otros</a></li>
+	<li id="res1" onclick="res1()"><a>Actas</a></li>
+	<li id="res2" onclick="res2()"><a>Planillas</a></li>
+	<li id="res3" onclick="res3()"><a>Extras</a></li>
 </ul>
-<div id="tipo1">
+<div id="actas">
 	<div class="panel panel-default panel-aneib">
 		<div class="panel-heading">
-			tipo1 disponibles
+			actas disponibles
 		</div>
 		<div class="panel-body">
-			<%if @tipo1.present?%>
-				<% @tipo1.each do |resource| %>
+			<%if @actas.present?%>
+				<% @actas.each do |resource| %>
 					<p> <%=resource.name%>: <%=l resource.date%> - 
 					<%= link_to 'Ver recurso', resource.archive.url, :target => "_blank" %> -
 					<%= link_to 'Detalle', resource %> -
@@ -23,20 +21,20 @@
 					</p>
 				<%end%>
 			<%else%>
-				<p>No hay tipo1 de reuniones disponibles</p>
+				<p>No hay actas de reuniones disponibles</p>
 			<%end%>
 		</div>
 	</div>
 </div>
 
-<div id="tipo2">
+<div id="planillas">
 	<div class="panel panel-default panel-aneib">
 		<div class="panel-heading">
-			tipo2 disponibles
+			planillas disponibles
 		</div>
 		<div class="panel-body">
-		<%if @tipo2.present?%>
-			<% @tipo2.each do |resource| %>
+		<%if @planillas.present?%>
+			<% @planillas.each do |resource| %>
 				<p> <%=resource.name%>: <%=l resource.date%> - 
 				<%= link_to 'Ver recurso', resource.archive.url,:target => "_blank" %> -
 				<%= link_to 'Detalle', resource %> -
@@ -44,20 +42,20 @@
 				</p>
 			<%end%>
 		<%else%>
-			No hay tipo2 de recursos disponibles
+			No hay planillas de recursos disponibles
 		<%end%>
 		</div>
 	</div>
 </div>
 
-<div id="tipo3">
+<div id="extras">
 	<div class="panel panel-default panel-aneib">
 		<div class="panel-heading">
-			tipo3 disponibles
+			extras disponibles
 		</div>
 		<div class="panel-body">
-			<%if @tipo3.present?%>
-				<% @tipo3.each do |resource| %>
+			<%if @extras.present?%>
+				<% @extras.each do |resource| %>
 					<p> <%=resource.name%>: <%=l resource.date%> - 
 					<%= link_to 'Ver recurso', resource.archive.url,:target => "_blank" %> -
 					<%= link_to 'Detalle', resource %> -
@@ -65,120 +63,41 @@
 					</p>
 				<%end%>
 			<%else%>
-				No hay recursos tipo3 disponibles
-			<%end%>
-		</div>
-	</div>
-</div>
-
-<div id="tipo4">
-	<div class="panel panel-default panel-aneib">
-		<div class="panel-heading">
-			tipo4 útiles disponibles
-		</div>
-			<div class="panel-body">
-				<%if @tipo4.present?%>
-					<% @tipo4.each do |resource| %>
-					<p> <%=resource.name%>: <%=l resource.date%> - 
-					<%= link_to 'Ver recurso', resource.archive.url,:target => "_blank" %> -
-					<%= link_to 'Detalle', resource %> -
-					<%= link_to 'eliminar recurso', resource, method: :delete, data: { confirm: '¿Seguro que desea eliminar esta acta?' } %>
-					</p>
-				<%end%>
-			<%else%>
-				No hay tipo4 útiles disponibles
-			<%end%>
-		</div>
-	</div>
-</div>
-
-<div id="Otros">
-	<div class="panel panel-default panel-aneib">
-		<div class="panel-heading">
-			Otro recursos disponibles
-		</div>
-		<div class="panel-body">
-			<%if @otros.present?%>
-				<% @otros.each do |resource| %>
-				<p> <%=resource.name%>: <%=l resource.date%> - 
-				<%= link_to 'Ver recurso', resource.archive.url,:target => "_blank" %> -
-				<%= link_to 'Detalle', resource %> -
-				<%= link_to 'eliminar recurso', resource, method: :delete, data: { confirm: '¿Seguro que desea eliminar esta acta?' } %>
-				</p>
-			<%end%>
-			<%else%>
-				No hay otros recursos disponibles
+				No hay recursos extras disponibles
 			<%end%>
 		</div>
 	</div>
 </div>
 
 <script type="text/javascript">
-	document.getElementById('tipo1').style.display='block'; 
+	document.getElementById('actas').style.display='block'; 
 	document.getElementById("res1").className = "active"; 
-	document.getElementById('tipo2').style.display='none';
-	document.getElementById('tipo3').style.display='none';
-	document.getElementById('tipo4').style.display='none';
-	document.getElementById('Otros').style.display='none';
+	document.getElementById('planillas').style.display='none';
+	document.getElementById('extras').style.display='none';
 	
 	function res1(){
-		document.getElementById('tipo1').style.display='block'; 
-		document.getElementById('tipo2').style.display='none';
-		document.getElementById('tipo3').style.display='none';
-		document.getElementById('tipo4').style.display='none';
-		document.getElementById('Otros').style.display='none';
+		document.getElementById('actas').style.display='block'; 
+		document.getElementById('planillas').style.display='none';
+		document.getElementById('extras').style.display='none';
 		document.getElementById("res1").className = "active";
 		document.getElementById("res2").className = "";
 		document.getElementById("res3").className = "";
-		document.getElementById("res4").className = "";
-		document.getElementById("res5").className = "";
 	}
 	function res2(){
-		document.getElementById('tipo1').style.display='none';  
-		document.getElementById('tipo2').style.display='block';
-		document.getElementById('tipo3').style.display='none';
-		document.getElementById('tipo4').style.display='none';
-		document.getElementById('Otros').style.display='none';
+		document.getElementById('actas').style.display='none';  
+		document.getElementById('planillas').style.display='block';
+		document.getElementById('extras').style.display='none';
 		document.getElementById("res1").className = "";
 		document.getElementById("res2").className = "active";
 		document.getElementById("res3").className = "";
-		document.getElementById("res4").className = "";   
-		document.getElementById("res5").className = "";
+
 	}
 	function res3(){
-		document.getElementById('tipo1').style.display='none';    
-		document.getElementById('tipo2').style.display='none';
-		document.getElementById('tipo3').style.display='block';
-		document.getElementById('tipo4').style.display='none';
-		document.getElementById('Otros').style.display='none';
+		document.getElementById('actas').style.display='none';    
+		document.getElementById('planillas').style.display='none';
+		document.getElementById('extras').style.display='block';
 		document.getElementById("res1").className = "";
 		document.getElementById("res2").className = "";
 		document.getElementById("res3").className = "active";
-		document.getElementById("res4").className = "";
-		document.getElementById("res5").className = "";
-	}
-	function res4(){
-		document.getElementById('tipo1').style.display='none';    
-		document.getElementById('tipo2').style.display='none';
-		document.getElementById('tipo3').style.display='none';
-		document.getElementById('tipo4').style.display='block';
-		document.getElementById('Otros').style.display='none';
-		document.getElementById("res1").className = "";
-		document.getElementById("res2").className = "";
-		document.getElementById("res3").className = "";
-		document.getElementById("res4").className = "active";
-		document.getElementById("res5").className = "";
-	}
-	function res5(){
-		document.getElementById('tipo1').style.display='none';    
-		document.getElementById('tipo2').style.display='none';
-		document.getElementById('tipo3').style.display='none';
-		document.getElementById('tipo4').style.display='none';
-		document.getElementById('Otros').style.display='block';
-		document.getElementById("res1").className = "";
-		document.getElementById("res2").className = "";
-		document.getElementById("res3").className = "";
-		document.getElementById("res4").className = "";
-		document.getElementById("res5").className = "active";
 	}
 </script>

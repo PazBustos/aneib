@@ -1,0 +1,17 @@
+<h1>Administración de Hazte Socio</h1>
+<%= link_to "Nuevo encabezado de Hazte Socio", portals_newSocio_path, class:"btn btn-default btn-admin"%>
+<div class="panel panel-default panel-aneib">
+	<div class="panel-heading">
+		Listado de encabezados de Hazte Socio
+	</div>
+	<div class="panel-body">
+		<% @portals.each do |portal| %>
+			<p>
+			<%=	portal.title %>  - 
+			<%=	link_to "Ver", portal %>  -				
+			<%= link_to "Editar", edit_portal_path(portal)%> - 
+			<%= link_to 'Eliminar', portal, method: :delete, data: { confirm: '¿Está seguro de eliminar esta sección?' } %>
+			</p>
+		<%end%>
+	</div>
+</div>

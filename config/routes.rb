@@ -4,14 +4,18 @@ Rails.application.routes.draw do
   get 'portals/somos'
   get 'portals/coneib'
   get 'portals/estatuto'
+  get 'portals/socio'
   get 'portals/newSomos'
   get 'portals/newConeib'
   get 'portals/newNotice'
   get 'portals/newEstatuto'
+  get 'portals/newSocio'
+
 
   get 'administration/somos'
   get 'administration/coneib'
   get 'administration/estatuto'
+  get 'administration/socio'
   get 'administration/noticias'
   get 'administration/galeria'
   get 'administration/cuentas'
