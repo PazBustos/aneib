@@ -26,7 +26,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'mysql2'
 gem 'devise'
 gem 'fullcalendar-rails', '~> 2.0.2.0'
-gem 'mailgun_rails'
+gem 'mailgun_rails'	
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -40,7 +40,6 @@ gem "therubyracer"
 gem 'wysiwyg-rails'
 gem "breadcrumbs_on_rails"
 gem 'paperclip'
-gem 'mailgun_rails'
 
 gem 'omniauth'
 gem 'omniauth-facebook'

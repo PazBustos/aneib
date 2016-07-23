@@ -1,5 +1,6 @@
 class ResourcesController < ApplicationController
   before_action :set_resource, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
     
     add_breadcrumb "Inicio", :root_path
     add_breadcrumb "Recursos", :resources_path

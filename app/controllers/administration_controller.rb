@@ -1,6 +1,8 @@
 class AdministrationController < ApplicationController
+	before_action :authenticate_user!
+	before_action :validate_category, except: [:show]
 	
-  add_breadcrumb "Administración", :administration_index_path
+ 	add_breadcrumb "Administración", :administration_index_path
 
 	def index
 		#No es necesario hacer llamados
@@ -40,4 +42,14 @@ class AdministrationController < ApplicationController
 		@tipo4 = Resource.where(category: 4).order("created_at DESC")
 		@otros = Resource.where(category: 5).order("created_at DESC")
 	end
+
+
+private #acciones privadas del controlador
+
+	def validate_category
+		if current_user.category != 1
+		redirect_to root_path, alert: "Sólo un administrador puede editar el portal."
+		end   
+	end
+
 end

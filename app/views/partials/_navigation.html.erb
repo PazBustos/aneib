@@ -42,6 +42,9 @@
 	<li class="<%= 'active' if current_page?(events_path) %>">
 		<%= link_to '<i class="glyphicon glyphicon-leaf"></i> Eventos'.html_safe, events_path %>
 	</li>
+	<li class="<%= 'active' if current_page?(topics_path) %>">
+		<%= link_to '<i class="glyphicon glyphicon-leaf"></i> Foro'.html_safe, topics_path %>
+	</li>
 	<!-- Poner solo si es administrador -->
 	<%if current_user.category == 1%>
 		<li class="<%= 'active' if current_page?(administration_index_path) %>">
