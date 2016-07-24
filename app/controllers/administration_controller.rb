@@ -1,6 +1,7 @@
 class AdministrationController < ApplicationController
 	before_action :authenticate_user!
-	before_action :validate_category, except: [:show]
+	before_action :validate_3
+ 
 	
  	add_breadcrumb "Administración", :administration_index_path
 
@@ -50,10 +51,10 @@ class AdministrationController < ApplicationController
 
 private #acciones privadas del controlador
 
-	def validate_category
-		if current_user.category != 1
-		redirect_to root_path, alert: "Sólo un administrador puede editar el portal."
-		end   
-	end
+	def validate_3
+      if current_user.category == 3
+        redirect_to root_path, alert: "Su categoría no le permite ésta acción."
+      end 
+    end
 
 end

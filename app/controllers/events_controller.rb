@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :validate_category, except: [:index, :show]
+  before_action :validate_3, except: [:index, :show]
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   add_breadcrumb "Inicio", :root_path
@@ -69,11 +69,6 @@ class EventsController < ApplicationController
   end
 
   private
-    def validate_category
-      if current_user.category != 1
-        redirect_to root_path, alert: "Sólo un administrador puede trabajar los eventos."
-      end 
-    end
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
@@ -82,5 +77,11 @@ class EventsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
       params.require(:event).permit(:user_id, :title, :address, :status, :description, :start_time, :end_time)
+    end
+
+    def validate_3
+      if current_user.category == 3
+        redirect_to root_path, alert: "Su categoría no le permite ésta acción."
+      end 
     end
 end

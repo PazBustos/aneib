@@ -1,6 +1,8 @@
 class FinancesController < ApplicationController
   before_action :set_finance, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :validate_1, except: [:show, :index]
+  before_action :validate_4
 
   add_breadcrumb "Inicio", :root_path
   add_breadcrumb "Cuentas claras", :finances_path
@@ -76,5 +78,17 @@ class FinancesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def finance_params
       params.require(:finance).permit(:user_id, :title, :description, :classification)
+    end
+
+    def validate_1
+      if current_user.category != 1
+        redirect_to root_path, alert: "Su categoría no le permite ésta acción."
+      end 
+    end
+
+    def validate_4
+      if current_user.category == 4
+        redirect_to root_path, alert: "Su categoría no le permite ésta acción."
+      end 
     end
 end

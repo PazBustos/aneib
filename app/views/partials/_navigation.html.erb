@@ -24,9 +24,11 @@
 	<li class="<%= 'active' if current_page?(portals_somos_path) %>">
 		<%= link_to '<i class="glyphicon glyphicon-leaf"></i> Mi cuenta'.html_safe, portals_somos_path %>
 	</li>
-	<li class="disabled">
-		<%= link_to '<i class="glyphicon glyphicon-leaf"></i> Cuentas claras'.html_safe, finances_path %>
-	</li>
+	<%if current_user.category != 4%>
+		<li class="disabled">
+			<%= link_to '<i class="glyphicon glyphicon-leaf"></i> Cuentas claras'.html_safe, finances_path %>
+		</li>
+	<%end%>
 	<li class="<%= 'active' if current_page?(new_user_session_path) %>">
 		<%= link_to '<i class="glyphicon glyphicon-leaf"></i> Estatuto'.html_safe, portals_estatuto_path %>
 	</li>
@@ -46,7 +48,7 @@
 		<%= link_to '<i class="glyphicon glyphicon-leaf"></i> Foro'.html_safe, topics_path %>
 	</li>
 	<!-- Poner solo si es administrador -->
-	<%if current_user.category == 1%>
+	<%if current_user.category != 3%>
 		<li class="<%= 'active' if current_page?(administration_index_path) %>">
 			<%= link_to '<i class="glyphicon glyphicon-leaf"></i> Administrar Portal Web'.html_safe, administration_index_path %>
 		</li>

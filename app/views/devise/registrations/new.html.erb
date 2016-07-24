@@ -58,7 +58,7 @@
 				<p><%= f.label :category, "Tipo de usuario" %>
 				<button type="button" class="btn btn-default" data-trigger="focus" data-container="body" data-toggle="btnRolUsuario"> ? </button></p>
 
-				<%= f.select(:category, [['Delegado', 2],['Bioamigo', 3],['Biosocio', 4]], {:include_blank => '-- Seleccione una Opción --' }, { :class => 'form-control', :required => true }) %>
+				<%= f.select(:category, [['Delegado', 2],['Socio', 3],['MediaPartner', 4]], {:include_blank => '-- Seleccione una opción --' }, { :class => 'form-control', :required => true }) %>
 			</div>
 			<br><br>
 			<div class="actions">
@@ -78,7 +78,7 @@ $(function () {
   {
   	title: 'Tipo de usuario',
   	html: 'true', 
-    content: '<p><strong>Delegado:</strong> Es un represantes por casa de estudio adherida a la asociación.</p><p><strong>Bioamigo:</strong> Estudiante de biotecnología adherido a la asociación.</p><p><strong>Biosocio: </strong> Empresas o privados adheridos a la asociación.</p>'
+    content: '<p><strong>Delegado:</strong> Es un represantes por casa de estudio adherida a la asociación.</p><p><strong>Socio:</strong> Estudiante de biotecnología adherido a la asociación.</p><p><strong>MediaPartner: </strong> Empresas o privados adheridos a la asociación.</p>'
 
   }
   	)

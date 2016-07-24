@@ -1,14 +1,30 @@
-<h1>Administración del sitio </h1>
+<h1>Administración del sitio </h1> 
+
+<p class="note">Usted solo podrá ver las opciones que su categoría de usuario le permite.</p>
 
 <h2>Portal web</h2>
-<%= link_to "Administrar Galería", administration_galeria_path, class:"btn btn-default btn-admin disabled"%>
-<%= link_to "Administrar Hazte socio", administration_socio_path, class:"btn btn-default btn-admin"%>
-<%= link_to "Administrar Noticias", administration_noticias_path, class:"btn btn-default btn-admin"%>
-<%= link_to "Administrar ¿Qué es CONEIB?", administration_coneib_path, class:"btn btn-default btn-admin"%>
-<%= link_to "Administrar ¿Quiénes somos?", administration_somos_path, class:"btn btn-default btn-admin"%>
 
-<h2>Intranet</h2>
-<%= link_to "Administrar Cuentas claras", administration_cuentas_path, class:"btn btn-default btn-admin"%>
-<%= link_to "Administrar Estatuto", administration_estatuto_path, class:"btn btn-default btn-admin"%>
-<%= link_to "Administrar Organización CONEIB", administration_organizacion_path, class:"btn btn-default btn-admin"%>
-<%= link_to "Administrar Recursos", administration_recursos_path, class:"btn btn-default btn-admin"%>
+	<%= link_to "Administrar Noticias", administration_noticias_path, class:"btn btn-default btn-admin"%>
+
+	<%if current_user.category != 4%>
+		<%= link_to "Administrar Galería", administration_galeria_path, class:"btn btn-default btn-admin disabled"%>
+	<%end%>
+
+	<%if current_user.category == 1%>
+		<%= link_to "Administrar Hazte socio", administration_socio_path, class:"btn btn-default btn-admin"%>
+		<%= link_to "Administrar ¿Qué es CONEIB?", administration_coneib_path, class:"btn btn-default btn-admin"%>
+		<%= link_to "Administrar ¿Quiénes somos?", administration_somos_path, class:"btn btn-default btn-admin"%>
+	<%end%>
+
+<%if current_user.category != 4%>
+
+	<h2>Intranet</h2>
+	<%if current_user.category == 1%>
+		<%= link_to "Administrar Cuentas claras", administration_cuentas_path, class:"btn btn-default btn-admin"%>
+		<%= link_to "Administrar Estatuto", administration_estatuto_path, class:"btn btn-default btn-admin"%>
+		<%= link_to "Administrar Organización CONEIB", administration_organizacion_path, class:"btn btn-default btn-admin"%>
+	<%end%>
+
+		<%= link_to "Administrar Recursos", administration_recursos_path, class:"btn btn-default btn-admin"%>
+<%end%>
+
