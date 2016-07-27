@@ -2,7 +2,6 @@
 
 <p> <%=raw @topic.description %> </p>
 
-<%=link_to 'Postear', new_article_path, :class=>'btn btn-default btn-form'%>
 <table id="post_dt">
 	<thead>
 		<tr>
@@ -26,7 +25,7 @@
 		<% end %>
 	</tbody>
 </table>
-
+<%=link_to 'Postear', new_article_path, :class=>'btn btn-default btn-form'%>
 <%if current_user.category == 1%>
 	<%= link_to 'Editar Topico', edit_topic_path(@topic), :class=>"btn btn-default btn-form"%>
 	<p class="note">Acá podrás cerrar o cambiar el nombre a un tópico</p>

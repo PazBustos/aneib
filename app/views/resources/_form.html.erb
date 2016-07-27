@@ -42,17 +42,8 @@
 			</div>
 			<div class="actions"><br>
 				<%= f.submit "aceptar", :class=>"btn btn-default btn-form" %>
+				<%= link_to 'Volver', administration_recursos_path,:class=>'btn btn-default btn-form' %>
 			</div>
 		</div>
 	</div>
 <% end %>
-
-<script>
-	$('#eg-basic').froalaEditor({
-		language: 'es',
-		toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'fontFamily', 'fontSize', '|', 'color', 'emoticons', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', '-', 'insertLink', 'insertImage', 'insertVideo', 'insertTable', '|', 'quote', 'insertHR', 'undo', 'redo', 'clearFormatting', 'selectAll', 'html'],
-		imageResizeWithPercent: true,
-		imageDefaultWidth: 70,
-		imageInsertButtons: ['imageByURL'],
-	});
-</script>

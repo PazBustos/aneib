@@ -5,6 +5,6 @@ class ApplicationController < ActionController::Base
 	before_action :set_topics
 	private
 		def set_topics
-			@topics = Topic.all  		
+			@topics = Topic.where(status: 1)  		
 		end
 end

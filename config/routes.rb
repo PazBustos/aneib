@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get 'administration/cuentas'
   get 'administration/organizacion'
   get 'administration/recursos'
+  get 'administration/topicos'
 
   resources :resources
   resources :organizations

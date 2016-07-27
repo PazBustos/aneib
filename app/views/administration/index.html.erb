@@ -20,9 +20,10 @@
 
 	<h2>Intranet</h2>
 	<%if current_user.category == 1%>
-		<%= link_to "Administrar Cuentas claras", administration_cuentas_path, class:"btn btn-default btn-admin"%>
+		<%= link_to "Administrar cuentas claras", administration_cuentas_path, class:"btn btn-default btn-admin"%>
 		<%= link_to "Administrar Estatuto", administration_estatuto_path, class:"btn btn-default btn-admin"%>
 		<%= link_to "Administrar Organización CONEIB", administration_organizacion_path, class:"btn btn-default btn-admin"%>
+		<%= link_to "Administrar temas del foro", administration_topicos_path, class:"btn btn-default btn-admin"%>
 	<%end%>
 
 		<%= link_to "Administrar Recursos", administration_recursos_path, class:"btn btn-default btn-admin"%>

@@ -51,21 +51,22 @@
 		<span class="caret"></span></a>
 		<ul class="dropdown-menu" role="navigation">
 			<li class="dropdown-header"> Temas</li>
-			<% @topics.each do |topic|%>
+			<% @topics.last(5).each do |topic|%>
 				<li>
-					<%=link_to topic.title, topic%>
+					<%=link_to topic.title.truncate(25), topic%>
 				</li>
 			<%end%>
+			<li><%=link_to "Ver todos", topics_path%></li>
 		</ul>
 	</li>
 
 	<!-- Poner solo si es administrador -->
 	<%if current_user.category != 3%>
 		<li class="<%= 'active' if current_page?(administration_index_path) %>">
-			<%= link_to '<i class="glyphicon glyphicon-leaf"></i> Administrar Portal Web'.html_safe, administration_index_path %>
+			<%= link_to '<i class="glyphicon glyphicon-cog"></i> Administrar sitio'.html_safe, administration_index_path %>
 		</li>
 	<%end%>
 	<li class="<%= 'active' if current_page?(destroy_user_session_path) %>">
-		<%= link_to '<i class="glyphicon glyphicon-leaf"></i> Cerrar sesión'.html_safe, destroy_user_session_path, method: :delete %>
+		<%= link_to '<i class="glyphicon glyphicon-off"></i> Cerrar sesión'.html_safe, destroy_user_session_path, method: :delete %>
 	</li>
 <%end%>

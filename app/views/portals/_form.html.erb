@@ -32,10 +32,10 @@
 					<%= f.label :title, "Título" %><br>
 					<%= f.text_field :title, class:"form-control" %>
 				</div>
-				<div class="field">
-					<%= f.label :body, "Cuerpo" %><br>
-					<%= f.text_area :body, :placeholder=> "Escribir aquí.", :id=>"eg-basic",:required=>true %>
-				</div>
+			<div class="field">
+				<%= f.label :body, "Descripción" %><br>
+				<%= f.text_area :body, :placeholder=> "Escribir aquí.", :id=>"eg-basic",:required=>true %>
+			</div>
 
 				<%if accion == "Nuevo"%>
 					<% if seccion == 1 %>
@@ -62,18 +62,9 @@
 				<%end%>
 				<br>
 				<div class="actions">
-					<%= f.submit "aceptar",:class=>"btn btn-default btn-form" %>
+					<%= f.submit "Aceptar",:class=>"btn btn-default btn-form" %>
+					<%= link_to 'Volver', :back,:class=>'btn btn-default btn-form' %>
 				</div>				
 		</div>
 	</div>
 <% end %>
-<script>
-$('#eg-basic').froalaEditor({
-			language: 'es',
-            toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'fontFamily', 'fontSize', '|', 'color', 'emoticons', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', '-', 'insertLink', 'insertImage', 'insertVideo', 'insertTable', '|', 'quote', 'insertHR', 'undo', 'redo', 'clearFormatting', 'selectAll', 'html'],
-            imageResizeWithPercent: true,
-            imageDefaultWidth: 70,
-            imageInsertButtons: ['imageByURL'],
-            language: 'es'
-});
-</script>

@@ -4,6 +4,7 @@
 }
 .btn-form
 {
+	margin: 20px 20px 20px 0px;
 	min-width: 150px;
 }
 .btn, .btn:visited, .btn:hover, .btn:focus

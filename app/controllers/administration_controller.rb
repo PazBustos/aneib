@@ -47,6 +47,9 @@ class AdministrationController < ApplicationController
 		@tipo4 = Resource.where(category: 4).order("created_at DESC")
 		@otros = Resource.where(category: 5).order("created_at DESC")
 	end
+	def topicos
+		@topics = Topic.all
+	end
 
 
 private #acciones privadas del controlador
