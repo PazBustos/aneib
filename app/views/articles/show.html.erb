@@ -1,36 +1,29 @@
-<p>
-  <strong>User:</strong>
-  <%= @article.user.name %>
-</p>
-
-<p>
-  <strong>Topic:</strong>
-  <%= @article.topic.title %>
-</p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @article.description %>
-</p>
-
-<h3> Comentarios </h3>
+<h1><%=@article.topic.title%></h1>
+<div class="panel panel-default panel-aneib">
+	<div class="panel-heading">
+		<%= @article.title %>
+	</div>
+	<div class="panel-body">
+		<p><strong><%= @article.user.nickname %></strong> dijo:</p>
+		<%=raw @article.description %>
+	</div>
+</div>
+<div class="panel panel-default panel-aneib">
+	<div class="panel-heading">
+		 Comentarios
+	</div>
+	<div class="panel-body">
 	<%= render "comments/form" %>
-	<ul>
-		<% @article.comments.order("created_at DESC").each do |comment| %>
-		<li>
-			<%= comment.body %> - <%= comment.user.name %> - <p> Publicado: <%= time_ago_in_words(comment.created_at)%> atrás </p>
-		</li>
-		<%end%>
+		<ul>
+			<% @article.comments.order("created_at DESC").each do |comment| %>
+			<p>
+				<strong><%= comment.user.nickname %>:</strong> <%= comment.body %> 
+				<p class="note">
+					Publicado: <%= time_ago_in_words(comment.created_at)%> atrás
+				</p> 
+			<p>
+			<%end%>
 
-	</ul>
-
-
-
-
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
+		</ul>
+	</div>
+</div>

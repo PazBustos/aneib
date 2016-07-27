@@ -12,11 +12,10 @@
   <% end %>
   
   <div class="field">
-    <%= f.label :body %><br>
-    <%= f.text_area :body %>
+    <%= f.text_area :body, :class=>'form-control' %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Comentar", :class=>'btn btn-default btn-form' %>
   </div>
 <% end %>
 
