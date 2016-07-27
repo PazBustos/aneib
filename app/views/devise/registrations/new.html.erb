@@ -22,6 +22,14 @@
           <%= f.label :email, "Correo electrónico: "%>
           <%= f.email_field :email, :placeholder => "Correo electrónico",:class => 'form-control', :required => true %>
       </p></div>
+      <div class="field"><p>
+        <%= f.label :institution, "Institución: "%>
+        <%= f.text_field :institution, :placeholder => "Nombre de la institución en la que estudia",:class => 'form-control', :required => true%>
+      </p></div>
+      <div class="field"><p>
+        <%= f.label :profession, "Carrera: "%>
+        <%= f.text_field :profession, :placeholder => "Nombre de la carrera que estudia",:class => 'form-control', :required => true%>
+      </p></div>
       <div class="field"> <!--aun no sé como agregar el valor de minimo al placeholder-->
           <% if @validatable %> 
             <% minimo = @minimum_password_length %> 

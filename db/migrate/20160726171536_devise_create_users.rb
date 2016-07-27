@@ -34,6 +34,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :name
       t.string :nickname
       t.integer :category
+      t.string :institution
+      t.string :profession
 
       t.timestamps null: false
     end
