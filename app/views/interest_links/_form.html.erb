@@ -1,0 +1,41 @@
+<%= form_for(@interest_link) do |f| %>
+	<% if @interest_link.errors.any? %>
+		<div id="error_explanation">
+			<h2>
+				<%= pluralize(@interest_link.errors.count, "error") %> prohibited this interest_link from being saved:
+			</h2>
+
+			<ul>
+				<% @interest_link.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<div class="field">
+		<%= f.label :name, "Nombre" %><br>
+		<%= f.text_field :name, :class=>'form-control',:placeholder => 'Nombre del sitio' %>
+	</div>
+	<div class="field">
+		<%= f.label :url, "Dirección web" %><br>
+		<%= f.text_field :url, :class=>'form-control',:placeholder => 'Página web. Ejemplo: http://www.ejemplo.com' %>
+	</div>
+	<div class="field">
+		<%=f.label :description, "Descripción"%>
+		<%= f.text_area :description, :id=>"eg-basic",:required=>true %>
+	</div>    
+	<div class="actions">
+		<%= f.submit 'Aceptar', :class=>'btn btn-default btn-form' %>
+	</div>
+<% end %>
+
+<script>
+  $('#eg-basic').froalaEditor({
+    language: 'es',
+    toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'fontFamily', 'fontSize', '|', 'color', 'emoticons', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', '-', 'insertLink', 'insertImage', 'insertVideo', 'insertTable', '|', 'quote', 'insertHR', 'undo', 'redo', 'clearFormatting', 'selectAll', 'html'],
+    imageResizeWithPercent: true,
+    imageDefaultWidth: 70,
+    imageInsertButtons: ['imageByURL'],
+  });
+</script>
