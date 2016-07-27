@@ -14,8 +14,6 @@ class ResourcesController < ApplicationController
     @tipo1 = Resource.where(category: 1).order("created_at DESC")
     @tipo2 = Resource.where(category: 2).order("created_at DESC")
     @tipo3 = Resource.where(category: 3).order("created_at DESC")
-    @tipo4 = Resource.where(category: 4).order("created_at DESC")
-    @otros = Resource.where(category: 5).order("created_at DESC")
   end
 
   # GET /resources/1

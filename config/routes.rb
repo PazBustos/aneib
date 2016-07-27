@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   get 'portals/somos'
   get 'portals/coneib'
   get 'portals/estatuto'
@@ -10,7 +9,6 @@ Rails.application.routes.draw do
   get 'portals/newNotice'
   get 'portals/newEstatuto'
   get 'portals/newSocio'
-
 
   get 'administration/somos'
   get 'administration/coneib'
@@ -23,23 +21,19 @@ Rails.application.routes.draw do
   get 'administration/recursos'
 
   resources :resources
-  resources :administration, only: [:index]
   resources :organizations
   resources :finances
   resources :events
   resources :contacts, only: [:index, :create]
   resources :portals
-  resources :topics
+  resources :topics do
+    resources :articles
+  end
+  resources :administration, only: [:index]
   resources :articles do
     resources :comments
   end
 
-
-
-  resources :articles do 
-      resources :comments
-  end
-  resources :photos
   devise_for :users, :controllers => { :registrations => "users/registrations"}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -76,7 +70,8 @@ Rails.application.routes.draw do
 
   # Example resource route with more complex sub-resources:
   #   resources :products do
-  #     #     resources :sales do
+  #     resources :comments
+  #     resources :sales do
   #       get 'recent', on: :collection
   #     end
   #   end

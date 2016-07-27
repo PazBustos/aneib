@@ -10,34 +10,39 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-#= require jquery
-#= require jquery_ujs
-//= require fullcalendar
-
-//= require twitter/bootstrap
+//= require jquery
+//= require jquery_ujs
+//= require dataTables/jquery.dataTables
+//= require dataTables/extras/dataTables.responsive
+//= require dataTables/jquery.dataTables
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+//= require dataTables/jquery.dataTables
 //= require turbolinks
 //= require_tree .
+//= require bootstrap-sprockets
+//= require moment 
+//= require fullcalendar
 
 //= require froala_editor.min.js
-//= require plugins/block_styles.min.js
-//= require plugins/colors.min.js
-//= require plugins/media_manager.min.js
-//= require plugins/tables.min.js
-//= require plugins/video.min.js
-//= require plugins/font_family.min.js
-//= require plugins/font_size.min.js
-//= require plugins/file_upload.min.js
-//= require plugins/lists.min.js
-//= require plugins/char_counter.min.js
-//= require plugins/fullscreen.min.js
-//= require plugins/urls.min.js
-//= require plugins/inline_styles.min.js
+//= require languages/es.js
+//= require plugins/align.min.js
+//= require plugins/code_beautifier.min.js
+//= require plugins/code_view.min.js
+//= require plugins/draggable.min.js
 //= require plugins/entities.min.js
-
-
-#= require twitter/bootstrap/transition
-#= require twitter/bootstrap/alert
-#= require twitter/bootstrap/modal
-#= require twitter/bootstrap/button
-#= require twitter/bootstrap/collapse
-
+//= require plugins/file.min.js
+//= require plugins/font_size.min.js
+//= require plugins/font_family.min.js
+//= require plugins/image.min.js
+//= require plugins/image_manager.min.js
+//= require plugins/inline_style.min.js
+//= require plugins/line_breaker.min.js
+//= require plugins/link.min.js
+//= require plugins/lists.min.js
+//= require plugins/paragraph_format.min.js
+//= require plugins/paragraph_style.min.js
+//= require plugins/quick_insert.min.js
+//= require plugins/table.min.js
+//= require plugins/video.min.js
+//= require plugins/colors.min.js
+//= require plugins/quote.min.js

@@ -1,9 +1,5 @@
 class Users::SessionsController < Devise::SessionsController
-
-  add_breadcrumb "Inicio", :root_path
-  add_breadcrumb "Ingreso intranet"
-  
-# before_filter :configure_sign_in_params, only: [:create]
+# before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
   # def new
@@ -22,8 +18,8 @@ class Users::SessionsController < Devise::SessionsController
 
   # protected
 
-  # You can put the params you want to permit in the empty array.
+  # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params
-  #   devise_parameter_sanitizer.for(:sign_in) << :attribute
-  #end
+  #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
+  # end
 end

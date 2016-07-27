@@ -2,9 +2,9 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.2'
-# Use sqlite3 as the database for Active Record
-#gem 'sqlite3'
+gem 'rails', '4.2.6'
+# Use mysql as the database for Active Record
+gem 'mysql2', '>= 0.3.13', '< 0.5'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -23,38 +23,35 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'mysql2'
-gem 'devise'
-gem 'fullcalendar-rails', '~> 2.0.2.0'
-gem 'mailgun_rails'	
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use Unicorn as the app server
- gem 'unicorn'
-
-# Gemas agregadas donde el tío Pedro
-gem "twitter-bootstrap-rails"
-gem "therubyracer"
-gem 'wysiwyg-rails'
-gem "breadcrumbs_on_rails"
-gem 'paperclip'
-gem "font-awesome-rails"
-
-
-gem 'omniauth'
-gem 'omniauth-facebook'
-
-gem 'will_paginate'
-gem 'prawn'
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+#Gemas agregadas manualmente
+	#autenticación de usuario
+	gem 'devise' 
+	#bootstrap
+	gem 'bootstrap-sass', '~> 3.3.6'
+	#calendario de eventos
+	gem 'fullcalendar-rails', '~> 2.0.2.0'
+	gem 'momentjs-rails'
+	#página de contacto y registro de usuario
+	gem 'mailgun_rails'	
+	#Froala what you see is what you get
+	gem 'wysiwyg-rails'
+	#Letras para Froala
+	gem "font-awesome-rails"
+	#Subir archivos
+	gem 'paperclip'
+	#Generar breadcrums
+	gem "breadcrumbs_on_rails"
+	#lenguajes
+	gem 'rails-i18n'
+	#Datatables
+	gem 'jquery-datatables-rails', '~> 3.3.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+end
 
+group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 

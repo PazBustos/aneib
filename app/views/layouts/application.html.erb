@@ -15,7 +15,7 @@
 				<li class="sidebar-brand">
 					<%= link_to(image_tag("logo.png", id: "logo"),root_path) %>
 				</li>
-				<%= render "partials/navigation"%>
+				<%= render "layouts/navigation"%>
 			</ul>
 		</div>
 
@@ -25,13 +25,13 @@
 					<div class="col-lg-12">
 						<div>
 							<div class="menu">
-								<button type="button" class="btn btn-default" href="#menu-toggle" id="menu-toggle">Menú</button>		
+								<button type="button" class="btn btn-default" href="#menu-toggle" id="menu-toggle"><i class="glyphicon glyphicon-menu-hamburger"></i></button>	<br>	
 							</div>
 							<div class="breadcrumbs">
-								<%= render_breadcrumbs("", { class: '', item_class: '', divider_class: '', active_class: 'active' }) %>
+								<!--%= render_breadcrumbs("", { class: '', item_class: '', divider_class: '', active_class: 'active' }) %-->
 							</div>
 						</div>
-						<%= bootstrap_flash %>
+							<%= render 'layouts/messages' %>		
 						<%=yield%>
 					</div>
 				</div>

@@ -11,6 +11,7 @@ class TopicsController < ApplicationController
   # GET /topics/1
   # GET /topics/1.json
   def show
+    @articles = @topic.articles.all
   end
 
   # GET /topics/new
@@ -25,7 +26,7 @@ class TopicsController < ApplicationController
   # POST /topics
   # POST /topics.json
   def create
-    @topic = Topic.new(topic_params)
+    @topic = current_user.topics.new(topic_params)
 
     respond_to do |format|
       if @topic.save

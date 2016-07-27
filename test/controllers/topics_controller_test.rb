@@ -18,7 +18,7 @@ class TopicsControllerTest < ActionController::TestCase
 
   test "should create topic" do
     assert_difference('Topic.count') do
-      post :create, topic: { article_id: @topic.article_id, description: @topic.description, title: @topic.title, user_id: @topic.user_id }
+      post :create, topic: { description: @topic.description, status: @topic.status, title: @topic.title }
     end
 
     assert_redirected_to topic_path(assigns(:topic))
@@ -35,7 +35,7 @@ class TopicsControllerTest < ActionController::TestCase
   end
 
   test "should update topic" do
-    patch :update, id: @topic, topic: { article_id: @topic.article_id, description: @topic.description, title: @topic.title, user_id: @topic.user_id }
+    patch :update, id: @topic, topic: { description: @topic.description, status: @topic.status, title: @topic.title }
     assert_redirected_to topic_path(assigns(:topic))
   end
 

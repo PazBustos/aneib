@@ -1,4 +1,4 @@
 class Topic < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :article
+	belongs_to :user
+	has_many :articles
 end

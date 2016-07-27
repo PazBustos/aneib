@@ -1,19 +1,54 @@
-<p id="notice"><%= notice %></p>
+<h1>Bienvenido al tópico de <%=@topic.title%></h1>
 
-<p>
-  <strong>User:</strong>
-  <%= @topic.user %>
-</p>
+<p> <%=raw @topic.description %> </p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @topic.title %>
-</p>
+<%=link_to 'Postear', new_article_path, :class=>'btn btn-default btn-form'%>
+<table id="post_dt">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Título del post</th>
+			<th>Autor</th>
+			<th>Publicado</th>
+			<th>Comentarios</th>
+		</tr>
+	</thead>
 
-<p>
-  <strong>Description:</strong>
-  <%= @topic.description %>
-</p>
+	<tbody>
+		<%@articles.each do |post|%>
+			<tr>
+				<td><%=link_to post.id, post %></td>
+				<td><%=link_to post.title,post %></td>
+				<td><%= post.user.nickname%></td>
+				<td><%= time_ago_in_words(post.created_at)%></td>
+				<td><%= post.comments.count%></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
 
-<%= link_to 'Edit', edit_topic_path(@topic) %> |
-<%= link_to 'Back', topics_path %>
+<%if current_user.category == 1%>
+	<%= link_to 'Editar Topico', edit_topic_path(@topic), :class=>"btn btn-default btn-form"%>
+	<p class="note">Acá podrás cerrar o cambiar el nombre a un tópico</p>
+<%end%>
+
+
+<script>
+	$(document).ready(function() {
+		$('#post_dt').DataTable({
+			"language": {
+				"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+			},
+			"scrollCollapse": true,
+			"paging": false,
+			"columns": [
+				{ "width": "5%" },
+				{ "width": "50%" },
+				{ "width": "20%" },
+				{ "width": "20%" },
+				{ "width": "5%" }
+			],
+			"order": [[ 1, "desc" ]]
+		});
+	} );
+</script>

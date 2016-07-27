@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160723203359) do
+ActiveRecord::Schema.define(version: 20160726181137) do
 
   create_table "articles", force: :cascade do |t|
     t.integer  "user_id",     limit: 4
@@ -77,18 +77,6 @@ ActiveRecord::Schema.define(version: 20160723203359) do
     t.datetime "updated_at",                null: false
   end
 
-  create_table "photos", force: :cascade do |t|
-    t.integer  "user_id",     limit: 4
-    t.string   "tittle",      limit: 255
-    t.text     "description", limit: 65535
-    t.string   "picture",     limit: 255
-    t.date     "date"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-  end
-
-  add_index "photos", ["user_id"], name: "index_photos_on_user_id", using: :btree
-
   create_table "portals", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
     t.string   "title",      limit: 255
@@ -105,7 +93,7 @@ ActiveRecord::Schema.define(version: 20160723203359) do
     t.string   "name",                 limit: 255
     t.text     "description",          limit: 65535
     t.integer  "category",             limit: 4
-    t.date     "date"
+    t.datetime "date"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
     t.string   "archive_file_name",    limit: 255
@@ -115,11 +103,12 @@ ActiveRecord::Schema.define(version: 20160723203359) do
   end
 
   create_table "topics", force: :cascade do |t|
-    t.integer  "user_id",     limit: 4
     t.string   "title",       limit: 255
-    t.text     "description", limit: 65535
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "description", limit: 255
+    t.integer  "status",      limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "user_id",     limit: 4
   end
 
   add_index "topics", ["user_id"], name: "index_topics_on_user_id", using: :btree
@@ -138,8 +127,8 @@ ActiveRecord::Schema.define(version: 20160723203359) do
     t.string   "name",                   limit: 255
     t.string   "nickname",               limit: 255
     t.integer  "category",               limit: 4
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -151,7 +140,6 @@ ActiveRecord::Schema.define(version: 20160723203359) do
   add_foreign_key "comments", "users"
   add_foreign_key "events", "users"
   add_foreign_key "finances", "users"
-  add_foreign_key "photos", "users"
   add_foreign_key "portals", "users"
   add_foreign_key "topics", "users"
 end

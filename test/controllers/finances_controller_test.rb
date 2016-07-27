@@ -18,7 +18,7 @@ class FinancesControllerTest < ActionController::TestCase
 
   test "should create finance" do
     assert_difference('Finance.count') do
-      post :create, finance: { description: @finance.description, title: @finance.title, type: @finance.type, user_id: @finance.user_id }
+      post :create, finance: { classification: @finance.classification, description: @finance.description, title: @finance.title, user_id: @finance.user_id }
     end
 
     assert_redirected_to finance_path(assigns(:finance))
@@ -35,7 +35,7 @@ class FinancesControllerTest < ActionController::TestCase
   end
 
   test "should update finance" do
-    patch :update, id: @finance, finance: { description: @finance.description, title: @finance.title, type: @finance.type, user_id: @finance.user_id }
+    patch :update, id: @finance, finance: { classification: @finance.classification, description: @finance.description, title: @finance.title, user_id: @finance.user_id }
     assert_redirected_to finance_path(assigns(:finance))
   end
 

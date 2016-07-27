@@ -1,15 +1,14 @@
 default: &default
   adapter: mysql2
+  encoding: utf8
   pool: 5
-  timeout: 5000
+  username: root
+  password: kvhipj23
+  socket: /var/run/mysqld/mysqld.sock
 
 development:
   <<: *default
-  encoding: utf8
   database: aneib_development
-  pool: 5
-  username: root
-  password: pacitax2
 
 test:
   <<: *default
@@ -17,7 +16,6 @@ test:
 
 production:
   <<: *default
-  database: aneib_staging
-  pool: 5
-  username: root
-  password: pacitax2
+  database: aneib_production
+  username: aneib
+  password: kvhipj23

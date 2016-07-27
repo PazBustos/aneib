@@ -6,9 +6,10 @@
 {
 	min-width: 150px;
 }
-.btn:visited
+.btn, .btn:visited, .btn:hover, .btn:focus
 {
 	color: #2B81F2;
+	background: white;
 }
 .btn-admin
 {
@@ -18,7 +19,8 @@
 	padding-top: 15px;
 	padding-bottom: 15px;
 }
-.btn-admin:hover
+.btn-admin:hover, .btn:hover
 {
 	font-weight: bold;
+	border-color: #2B81F2;
 }

@@ -1,2 +1,0 @@
-# aneib
-ANEIB official page

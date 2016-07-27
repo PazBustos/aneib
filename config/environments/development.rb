@@ -13,18 +13,6 @@ Rails.application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
- # Don't care if the mailer can't send.
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.delivery_method = :mailgun
-  config.action_mailer.mailgun_settings = {
-          :port => 587,
-          api_key: 'key-5b41486f6b02208d233a05748bb8b3ae',
-          domain: 'sandbox1d5c2d3084c744bb8fd30f594262fd0d.mailgun.org'
-  }
-
-
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
