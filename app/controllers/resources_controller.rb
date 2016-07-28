@@ -1,12 +1,10 @@
 class ResourcesController < ApplicationController
   before_action :set_resource, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :validate_status
   before_action :validate_3, except: [:show, :index]
   before_action :validate_4
-
-
-    add_breadcrumb "Inicio", :root_path
-    add_breadcrumb "Recursos", :resources_path
+  add_breadcrumb "Recursos", :resources_path
 
   # GET /resources
   # GET /resources.json
@@ -81,7 +79,11 @@ class ResourcesController < ApplicationController
     def resource_params
       params.require(:resource).permit(:name, :description, :category, :date,:archive)
     end
-
+    def validate_status
+      if current_user.status != 2
+        redirect_to root_path, alert: "Su usuario no ha sido validado aún."
+      end 
+    end
     def validate_3
       if current_user.category == 3
         redirect_to root_path, alert: "Su categoría no le permite ésta acción."

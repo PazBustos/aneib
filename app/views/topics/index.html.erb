@@ -4,7 +4,7 @@
 	<thead>
 		<tr>
 		<th></th>
-		<th>Título del tema</th>
+		<th>Título del área</th>
 		<th># Posts</th>
 		<th>Creación</th>
 		<th>Administrador</th>
@@ -18,7 +18,7 @@
 		<td><%= link_to topic.title, topic %></td>
 		<td><%= topic.articles.count %></td>
 		<td><%= time_ago_in_words(topic.created_at)%></td>
-		<th><%= topic.user.name%></th>
+		<th><%= topic.user.nickname%></th>
 		</tr>
 		<% end %>
 	</tbody>
@@ -26,7 +26,7 @@
 
 <br>
 <%if current_user.category == 1%>
-<%= link_to 'Administar temas', administration_topicos_path, :class =>'btn btn-default btn-form' %>
+<%= link_to 'Administar áreas', administration_topicos_path, :class =>'btn btn-default btn-form' %>
 <%end%>
 
 <script>

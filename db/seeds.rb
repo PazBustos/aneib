@@ -10,7 +10,8 @@ User.create([{
 	password: 'administrador123',
 	name: 'Administrador',
 	nickname: 'Admin',
-	category: 1, 
+	category: 1,
+	status: 2
 },
 {
 	email: 'delegado@aneib.cl',
@@ -18,13 +19,15 @@ User.create([{
 	name: 'Delegado',
 	nickname: 'Delegado',
 	category: 2, 
+	status: 1
 },
 {
 	email: 'socio@aneib.cl',
 	password: 'socio123',
 	name: 'Socio',
 	nickname: 'Socio',
-	category: 3, 
+	category: 3,
+	status: 1
 },
 {
 	email: 'media@aneib.cl',
@@ -32,4 +35,5 @@ User.create([{
 	name: 'Media Partner',
 	nickname: 'Media',
 	category: 4, 
+	status: 1
 }])

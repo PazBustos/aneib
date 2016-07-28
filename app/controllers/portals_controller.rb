@@ -1,10 +1,8 @@
 class PortalsController < ApplicationController
   before_action :set_portal, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:show, :index]
+  before_action :validate_status, except: [:show, :index]
   before_action :validate_3, except: [:show, :index]
-
-
-  add_breadcrumb "Inicio", :root_path
 
   # GET /portals
   # GET /portals.json
@@ -157,7 +155,11 @@ class PortalsController < ApplicationController
     def portal_params
       params.require(:portal).permit(:user_id, :title, :body, :section)
     end
-
+    def validate_status
+      if current_user.status != 2
+        redirect_to root_path, alert: "Su usuario no ha sido validado aún."
+      end 
+    end
     def validate_3
       if current_user.category == 3
         redirect_to root_path, alert: "Su categoría no le permite ésta acción."

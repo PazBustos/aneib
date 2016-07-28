@@ -1,4 +1,9 @@
 <h1><%=@article.topic.title%></h1>
+<%if @article.topic.status == 2%>
+	<div class="alert alert-alert">
+		Este tópico está inactivo, solo puede verlo un administrador
+	</div>
+<%end%>
 <div class="panel panel-default panel-aneib">
 	<div class="panel-heading">
 		<%= @article.title %>
@@ -16,14 +21,19 @@
 	<%= render "comments/form" %>
 		<ul>
 			<% @article.comments.order("created_at DESC").each do |comment| %>
-			<p>
-				<strong><%= comment.user.nickname %>:</strong> <%= comment.body %> 
-				<p class="note">
-					Publicado: <%= time_ago_in_words(comment.created_at)%> atrás
-				</p> 
-			<p>
+				<p>
+					<%if comment.user.photo.present?%>
+						<%= image_tag comment.user.photo.url(:mini), :class =>"profile-picture" %> 
+					<%else%>
+						<%= link_to '<i class="glyphicon glyphicon-globe"></i>'.html_safe, comment.user %> 
+					<%end %>
+					<%= link_to comment.user.nickname, comment.user%> comentó hace <%= time_ago_in_words(comment.created_at)%>: 
+					<%if current_user == comment.user or current_user.category == 1 %><%= link_to 'Eliminar', article_comment_path(@article,comment), method: :delete, data: { confirm: '¿Está seguro de eliminar el comentario?' }, :class => "btn btn-default btn-comment"%>
+					<%end%>	
+				</p>
+				<p><%=comment.body%></p>	
 			<%end%>
-
 		</ul>
 	</div>
 </div>
+

@@ -1,10 +1,9 @@
 class FinancesController < ApplicationController
   before_action :set_finance, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :validate_status
   before_action :validate_1, except: [:show, :index]
   before_action :validate_4
-
-  add_breadcrumb "Inicio", :root_path
   add_breadcrumb "Cuentas claras", :finances_path
 
   # GET /finances
@@ -79,7 +78,11 @@ class FinancesController < ApplicationController
     def finance_params
       params.require(:finance).permit(:user_id, :title, :description, :classification)
     end
-
+    def validate_status
+      if current_user.status != 2
+        redirect_to root_path, alert: "Su usuario no ha sido validado aún."
+      end 
+    end
     def validate_1
       if current_user.category != 1
         redirect_to root_path, alert: "Su categoría no le permite ésta acción."

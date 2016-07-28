@@ -1,3 +1,8 @@
+<%if @topic.status == 2%>
+	<div class="alert alert-alert">
+		Este tópico está inactivo, solo puede verlo un administrador
+	</div>
+<%end%>
 <h1>Bienvenido al tópico de <%=@topic.title%></h1>
 
 <p> <%=raw @topic.description %> </p>
@@ -16,8 +21,8 @@
 	<tbody>
 		<%@articles.each do |post|%>
 			<tr>
-				<td><%=link_to post.id, post %></td>
-				<td><%=link_to post.title,post %></td>
+				<td><%=link_to post.id, topic_article_path(@topic,post) %></td>
+				<td><%=link_to post.title,topic_article_path(@topic,post) %></td>
 				<td><%= post.user.nickname%></td>
 				<td><%= time_ago_in_words(post.created_at)%></td>
 				<td><%= post.comments.count%></td>
@@ -25,9 +30,9 @@
 		<% end %>
 	</tbody>
 </table>
-<%=link_to 'Postear', new_article_path, :class=>'btn btn-default btn-form'%>
+<%=link_to 'Postear', new_topic_article_path(@topic), :class=>'btn btn-default btn-form'%>
 <%if current_user.category == 1%>
-	<%= link_to 'Editar Topico', edit_topic_path(@topic), :class=>"btn btn-default btn-form"%>
+	<%= link_to 'Activar o desactivar Topico', edit_topic_path(@topic), :class=>"btn btn-default btn-form"%>
 	<p class="note">Acá podrás cerrar o cambiar el nombre a un tópico</p>
 <%end%>
 

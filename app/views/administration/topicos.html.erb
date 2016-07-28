@@ -1,10 +1,10 @@
-<h1>Administración de temas del foro</h1>
+<h1>Administración de áreas del foro</h1>
 
 <table id="forum_dt">
 	<thead>
 		<tr>
 		<th></th>
-		<th>Título del tema</th>
+		<th>Título del área</th>
 		<th>Estado</th>
 		<th>Creación</th>
 		<th>Administrar</th>
@@ -32,7 +32,7 @@
 </table>
 
 <%if current_user.category == 1%>
-<%= link_to 'Agregar nuevo tema', new_topic_path, :class =>'btn btn-default btn-form' %>
+<%= link_to 'Agregar nuevo área', new_topic_path, :class =>'btn btn-default btn-form' %>
 <%end%>
 
 <script>

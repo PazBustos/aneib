@@ -1,7 +1,5 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
-
-  add_breadcrumb "Inicio", :root_path
   add_breadcrumb "Contacto", :contacts_path
 
   # GET /contacts

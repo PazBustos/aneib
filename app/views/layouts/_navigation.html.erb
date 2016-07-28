@@ -11,9 +11,6 @@
 	<li class="<%= 'active' if current_page?(portals_coneib_path) %>">
 		<%= link_to '<i class="glyphicon glyphicon-leaf"></i> ¿Qué es CONEIB?'.html_safe, portals_coneib_path %>
 	</li >
-	<li class="disabled">
-		<%= link_to '<i class="glyphicon glyphicon-leaf"></i> Galeria'.html_safe, portals_somos_path %>
-	</li>
 	<li class="<%= 'active' if current_page?(events_path) %>">
 		<%= link_to '<i class="glyphicon glyphicon-leaf"></i> Eventos'.html_safe, events_path %>
 	</li>
@@ -39,7 +36,7 @@
 	</li>
 <%else%>
 	<li class="<%= 'active' if current_page?(portals_somos_path) %>">
-		<%= link_to '<i class="glyphicon glyphicon-leaf"></i> Mi cuenta'.html_safe, portals_somos_path %>
+		<%= link_to '<i class="glyphicon glyphicon-leaf"></i> Mi cuenta'.html_safe, users_path %>
 	</li>
 	<%if current_user.category != 4%>
 		<li class="disabled">
@@ -55,9 +52,6 @@
 	<li class="<%= 'active' if current_page?(resources_path) %>">
 		<%= link_to '<i class="glyphicon glyphicon-leaf"></i> Recursos'.html_safe, resources_path %>
 	</li>
-	<li class="disabled">
-		<%= link_to '<i class="glyphicon glyphicon-leaf"></i> Galeria'.html_safe, portals_somos_path %>
-	</li>
 	<li class="<%= 'active' if current_page?(events_path) %>">
 		<%= link_to '<i class="glyphicon glyphicon-leaf"></i> Eventos'.html_safe, events_path %>
 	</li>
@@ -67,7 +61,7 @@
 			<i class="glyphicon glyphicon-leaf"></i> Foro
 		<span class="caret"></span></a>
 		<ul class="dropdown-menu" role="navigation">
-			<li class="dropdown-header"> Temas</li>
+			<li class="dropdown-header"> áreas</li>
 			<% @topics.last(5).each do |topic|%>
 				<li>
 					<%=link_to topic.title.truncate(25), topic%>

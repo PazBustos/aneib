@@ -1,0 +1,68 @@
+<h1> Todos los usuarios registrados </h1>
+
+<div class="panel panel-default panel-aneib">
+	<div class="panel-heading">
+		Usuarios registrados
+	</div>
+	<div class="panel-body">
+		<table id = "user_dt">
+			<thead>
+				<tr>
+					<td>Nombre</td>
+					<td>Nick</td>
+					<td>Categoría</td>
+					<td>Validar</td>
+				</tr>
+			</thead>
+			<tbody>
+				<%@users.each do |user|%>
+					<tr>
+					
+						<td><%=link_to user.name, user%></td>
+						<td><%=user.nickname%></td>
+					<td>							
+							<%if user.status == 1%>
+								<i class="glyphicon glyphicon-remove-circle", style = "color: red;"></i>
+							<%else%>
+								<i class="glyphicon glyphicon-ok-circle", style = "color: green;"></i>
+							<%end%>	
+							<%if user.category == 1%>
+								Administrador
+							<%elsif user.category == 2%>
+								Delegado
+							<%elsif user.category == 3%>
+								Socio
+							<%elsif user.category == 4%>
+								Media Partner
+							<%end%>							
+						</td>
+						<td><%=link_to '<i class="glyphicon glyphicon-circle-arrow-right"></i>'.html_safe, edit_user_path(user)%></td>					
+					</tr>
+				<%end%>
+			</tbody>
+		</table>
+	</div>
+	<div class="panel-footer">
+		<p><i class="glyphicon glyphicon-remove-circle", style = "color: red;"> No-validado </i></p>
+		<p><i class="glyphicon glyphicon-ok-circle", style = "color: green;"> Validado </i></p>
+		<p class="note">Todos los usuarios deben ser autorizados por un administrador</p>		
+	</div>
+</div>
+
+<script>
+	$(document).ready(function() {
+		$('#user_dt').DataTable({
+			"language": {
+				"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+			},
+			"scrollCollapse": true,
+			"paging": false,
+			"columns": [
+				{ "width": "50%" },
+				{ "width": "25%" },
+				{ "width": "20%" },
+				{ "width": "5%" },
+			]
+		});
+	} );
+</script>

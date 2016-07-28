@@ -1,9 +1,8 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :validate_status, except: [:index,:show]
   before_action :validate_3, except: [:index, :show]
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-
-  add_breadcrumb "Inicio", :root_path
   add_breadcrumb "Eventos", :events_path
 
 
@@ -78,7 +77,11 @@ class EventsController < ApplicationController
     def event_params
       params.require(:event).permit(:user_id, :title, :address, :status, :description, :start_time, :end_time)
     end
-
+    def validate_status
+      if current_user.status != 2
+        redirect_to root_path, alert: "Su usuario no ha sido validado aún."
+      end 
+    end
     def validate_3
       if current_user.category == 3
         redirect_to root_path, alert: "Su categoría no le permite ésta acción."

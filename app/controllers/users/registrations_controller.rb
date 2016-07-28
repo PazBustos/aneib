@@ -3,11 +3,28 @@ class Users::RegistrationsController < Devise::RegistrationsController
 # before_action :configure_account_update_params, only: [:update]
   before_filter :configure_permitted_parameters
 
-
 protected
     def configure_permitted_parameters
-      devise_parameter_sanitizer.for(:sign_up).push(:name, :nickname, :category, :institution, :profession)
-      devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:institution, :profession,:nickname, :name, :description, :email, :password, :password_confirmation, :current_password) }
+      devise_parameter_sanitizer.for(:sign_up).push(
+        :name, 
+        :nickname, 
+        :information, 
+        :category,
+        :status, 
+        :institution, 
+        :profession)
+      devise_parameter_sanitizer.for(:account_update) { |u| u.permit(
+        :information, 
+        :status, 
+        :institution, 
+        :profession,
+        :nickname, 
+        :name, 
+        :email, 
+        :password, 
+        :password_confirmation, 
+        :current_password,
+        :photo) }
     end
 
   # GET /resource/sign_up

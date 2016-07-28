@@ -1,4 +1,14 @@
 /* Labels */
+a
+{
+	color: #2B81F2;
+}
+a:hover
+{
+	color: #2B81F2;
+	font-weight: bold;
+	text-decoration: none;
+}
 h1,h2,h3,h4
 {
 	color: #2B81F2;
@@ -10,58 +20,6 @@ p
 }
 
 /*** Class ****/
-.panelCalendar
-{
-	background: white;
-}
-.panel
-{
-	background: white;
-}
-
-#logo
-{
-	max-width: 80%;
-}
-/*#81F404 -- verde
-#5B6AA4 -- azul
-
-*/
-.panel-aneib
-{
-	background: white;
-	border-color: #2B81F2;
-	border-radius: 10px;
-}
-.panel-aneib .panel-heading
-{
-	border-radius: 10px 10px 0 0;
-	background: white;
-	color: #2B81F2;
-	font-weight: bold;
-	border-color: #2B81F2;
-	font-size: 14px;
-
-}
-.menu
-{
-	float: left;
-	display: inline;
-	min-width: 6%;
-}
-.breadcrumbs
-{
-	display: inline-block;
-	min-width: 94%;
-}
-.note
-{
-	font-size: 10px;
-	color: #2B81F2;
-	text-align: justify;
-	margin: 0;
-}
-
 /*flash*/
 .alert-error {
     background-color: #f2dede;
@@ -90,3 +48,76 @@ p
     color: #468847;
     text-align: left;
  }
+ .breadcrumbs
+{
+	display: inline-block;
+	min-width: 94%;
+}
+.breadcrumb
+{
+	background: white;
+	border-radius: 10px;
+}
+
+.menu
+{
+	float: left;
+	display: inline;
+	min-width: 6%;
+}
+
+.note
+{
+	font-size: 10px;
+	color: #2B81F2;
+	text-align: justify;
+	margin: 0;
+}
+
+.panelCalendar
+{
+	background: white;
+}
+.panel
+{
+	background: white;
+}
+
+#logo
+{
+	max-width: 80%;
+}
+
+.panel-aneib
+{
+	background: white;
+	border-color: #2B81F2;
+	border-radius: 10px;
+}
+.panel-aneib .panel-heading
+{
+	border-radius: 10px 10px 0 0;
+	background: white;
+	color: #2B81F2;
+	font-weight: bold;
+	border-color: #2B81F2;
+	font-size: 14px;
+
+}
+.panel-aneib .panel-footer
+{
+	border-radius: 0px 0px 10px 10px;
+	background: white;
+}
+.profile-picture
+{
+	border-radius: 40px;
+	max-width: 90%;
+	max-height: 300px;
+}
+.status
+{
+	color: red;
+	text-align: justify;
+	font: 16px;
+}

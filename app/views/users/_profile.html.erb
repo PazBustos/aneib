@@ -1,0 +1,38 @@
+<div class="panel panel-default panel-aneib">
+	<div class="panel-heading">
+		Sobre <%= @user.nickname %>
+	</div>
+	<div class="panel-body">
+		<p><strong>Nombre completo: </strong> <%= @user.name %></p>
+		<p><strong>Categoría:</strong> 
+			<%if @user.category == 1%> Administrador <%end%>
+			<%if @user.category == 2%> Profesor <%end%>
+			<%if @user.category == 3%> Vinculador Social <%end%>
+			<%if @user.category == 4%> Socio Comunitario <%end%>
+		</p>
+		<p><strong>Correo: </strong> <%= @user.email%></p>
+		<%if !@user.institution.blank?%>
+			<p><strong>Institución: </strong> <%= @user.institution%></p>
+		<%end%>
+		<%if !@user.profession.blank?%>
+			<p><strong>Carrera: </strong> <%= @user.profession%></p>
+		<%end%>
+	</div>
+	<div class="panel-footer">
+		<center>
+			<%if !@user.photo.blank?%>
+				<%= image_tag @user.photo.url(:thumb),:class=>'profile-picture' %>
+			<%else%>
+				<%if current_user==@user%>
+					<p class="note">¡Recuerda colocar una foto de perfil!</p>
+				<%else%>
+					<p class="note"><%=@user.nickname%> aún no coloca foto de perfil</p>
+				<%end%>
+			<%end%>
+		</center>
+		<%if !@user.information.blank?%>
+			<strong>Sobre mi: </strong> 
+			<p><%= @user.information%></p>
+		<%end%>
+	</div>
+</div>

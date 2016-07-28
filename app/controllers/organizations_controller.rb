@@ -1,7 +1,5 @@
 class OrganizationsController < ApplicationController
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
-
-  add_breadcrumb "Inicio", :root_path
   add_breadcrumb "Organización congreso", :organizations_path
 
   # GET /organizations

@@ -1,8 +1,8 @@
 class AdministrationController < ApplicationController
 	before_action :authenticate_user!
+	before_action :validate_status
 	before_action :validate_3
  
-	
  	add_breadcrumb "Administración", :administration_index_path
 
 	def index
@@ -53,7 +53,11 @@ class AdministrationController < ApplicationController
 
 
 private #acciones privadas del controlador
-
+	def validate_status
+		if current_user.status != 2
+			redirect_to root_path, alert: "Su usuario no ha sido validado aún."
+		end 
+	end
 	def validate_3
       if current_user.category == 3
         redirect_to root_path, alert: "Su categoría no le permite ésta acción."

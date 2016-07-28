@@ -1,39 +1,70 @@
-<h2>Editar mi registro <%= resource_name.to_s.humanize %></h2>
-
+<h2>Editar mi perfil</h2>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+	<%= devise_error_messages! %>
+	<div class="panel panel-default panel-aneib">
+		<div class="panel-heading">
+			Información de <%=current_user.nickname%>
+		</div>
+		<div class="panel-body">
+			<div class="field">
+				<%= f.label :email %><br />
+				<%= f.email_field :email, autofocus: true, :class => 'form-control', :required => true,  :disabled => true%>
+			</div>
+			<div data-toggle="collapse" data-target="#CambiarPass">
+				<h3>Modificar contraseña</h3>	
+					<p>Si deseas modificar su contraseña <a class="btn btn-default">seleccione aquí</a></p>
+			</div>
+			<div class="collapse" id="CambiarPass">
+				<div class="field">
+					<%= f.label :password %> <i class="note">(Deja este cuadro en blanco en caso de no desear cambiarla)</i>
+					<%= f.password_field :password, autocomplete: "off",:class => 'form-control' %>
+				</div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+				<div class="field">
+					<%= f.label :password_confirmation, "Confirmar contraseña" %>
+					<%= f.password_field :password_confirmation, autocomplete: "off",:class => 'form-control' %>
+				</div>
+			</div>
+		
+			<% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+				<div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+			<% end %>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+			<h3>Foto de perfil</h3>
+			<%= f.file_field :photo, :class=>'btn btn-default btn-form' %>
+			
+			<h3>Modificar datos personales</h3>
+			<div class="field">
+				<%=f.label :name, "Nombre completo"%>
+				<%=f.text_field :name,:class=>"form-control", :required => true%>
+			</div>
+			<div class="field">
+				<%=f.label :nickname, "Nombre"%>
+				<%=f.text_field :nickname,:class=>"form-control",:required => true%>
+			</div>
+			<div class="field">
+				<%=f.label :institution, "Institución"%>
+				<%=f.text_field :institution,:class=>"form-control"%>
+			</div>
+			<div class="field">
+				<%=f.label :profession, "Carrera"%>
+				<%=f.text_field :profession,:class=>"form-control"%>
+			</div>
+			<div class="field">
+				<%=f.label :information, "Sobre mi"%> <i class="note"> (Cuéntanos sobre ti y tus intereses)</i>
+				<%=f.text_area :information,:class=>"form-control"%>
+			</div>
+			<div class="field">
+				<%= f.label :current_password, "Contraseña actual"%> <i class="note">(Se requiere tu contraseña actual para confirmar los cambios)</i>
+				<%= f.password_field :current_password, autocomplete: "off",:class => 'form-control',:required => true %>
+			</div>
+		</div>
+	</div>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+	<div class="actions">
+		<%= f.submit "Actualizar datos", :class=>'btn btn-default btn-form' %>
+		<%= link_to "Volver", :back, :class=>'btn btn-default btn-form' %>
+	</div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
 <% end %>
-
-<h3>Eliminar mi cuenta</h3>
-
-<p>Unhappy? <%= button_to "Eliminar mi cuenta", registration_path(resource_name), data: { confirm: "¿Está seguro de eliminar su cuenta?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
