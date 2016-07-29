@@ -1,13 +1,49 @@
 <h1>Estatuto ANEIB</h1>
 
-<% @portals.each do |portal| %>
-	<div  class="panel panel-default panel-aneib">
+<div id="indice">
+	<div  class="panel panel-default panel-aneib">	
 		<div class="panel-heading">
-			<%=	portal.title %> 
+			Índice del estatuto
 		</div>
 		<div class="panel-body">
-			<p><%=raw portal.body %></p>
+			<ul>
+				<% @portals.each do |portal| %>
+					<% div_id = portal.id -%>					
+					<a class="btn btn-default btn-form" style="display:block;" id="funcion<%= div_id -%>"> <%= portal.title %></a>			
+				<%end%>
+			</ul>
 		</div>
 	</div>
+</div>
 
+<% @portals.each do |portal| %>
+	<% div_id = portal.id -%>
+	<div id="titulo<%= div_id -%>" >
+		<div  class="panel panel-default panel-aneib">
+			<div class="panel-heading">
+				<i class="glyphicon glyphicon-circle-arrow-up" id="volver<%= div_id -%>"></i> <%=	portal.title %> 
+			</div>
+			<div class="panel-body">
+				<p><%=raw portal.body %></p>
+			</div>
+		</div>
+	</div>
 <%end%>
+
+<script type="text/javascript">
+	<% @portals.each do |portal| %>
+		<% div_id = portal.id -%>
+		$("#funcion<%= div_id -%>").click(function() 
+		{
+		    $('html,body').animate({
+		        scrollTop: $("#titulo<%= div_id -%>").offset().top},
+		        'slow');
+		});
+		$("#volver<%= div_id -%>").click(function() 
+			{
+			$('html,body').animate({
+			scrollTop: $("#indice").offset().top},
+			'slow');
+		});
+	<%end%>
+</script>
