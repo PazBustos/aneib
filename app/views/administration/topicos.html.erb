@@ -1,56 +1,60 @@
-<h1>Administración de áreas del foro</h1>
+<h1>Administración del Foro</h1>
+<%= link_to "Nueva tema", new_topic_path, class:"btn btn-default btn-form"%>
+<div class="panel panel-default panel-aneib">
+	<div class="panel-heading">
+		Listado de temas del foro
+	</div>
+	<div class="panel-body">
+		<table id="topic_dt">
+			<thead>
+				<tr>
+					<td>Título</td>
+					<td>Autor</td>
+					<td>Creación</td>
+					<td>Estado</td>
+					<td>Administrar</td>
+				</tr>
+			</thead>
+			<tbody>
+				<% @topics.each do |topic| %>
+					<tr>
+						<td> <%= topic.title %></td>
+						<td> <%= topic.user.nickname%> </td>
+						<td><%= time_ago_in_words(topic.created_at)%></td>
+						<td>
+							<%if topic.status == 1%>
+								Activo
+							<%else%>
+								Inactivo
+							<%end%>		
+						</td>
+						<td> 
+						<%= link_to '<i class="glyphicon glyphicon-eye-open gportal"></i>'.html_safe, topic %>				
+						<%= link_to '<i class="glyphicon glyphicon-pencil gportal"></i>'.html_safe, edit_topic_path(topic)%> 
+					</tr>
+				<%end%>
+			</tbody>
+		</table>
 
-<table id="forum_dt">
-	<thead>
-		<tr>
-		<th></th>
-		<th>Título del área</th>
-		<th>Estado</th>
-		<th>Creación</th>
-		<th>Administrar</th>
-		</tr>
-	</thead>
-
-	<tbody>
-		<% @topics.each do |topic| %>
-		<tr>
-		<td><%= link_to '<i class="glyphicon glyphicon-circle-arrow-right"></i>'.html_safe, topic %></td>
-		<td><%= link_to topic.title, topic %></td>
-
-		<td>
-			<%if topic.status == 1%>
-				Activo
-			<%else%>
-				Inactivo
-			<%end%>			
-		</td>
-		<td><%= time_ago_in_words(topic.created_at)%></td>
-		<td><%= link_to '<i class="glyphicon glyphicon-cog"></i>'.html_safe, edit_topic_path(topic) %></td>
-		</tr>
-		<% end %>
-	</tbody>
-</table>
-
-<%if current_user.category == 1%>
-<%= link_to 'Agregar nuevo área', new_topic_path, :class =>'btn btn-default btn-form' %>
-<%end%>
-
+	</div>
+</div>
+<%=link_to "Volver", administration_index_path, :class=>"btn btn-default btn-form"%>
 <script>
 	$(document).ready(function() {
-		$('#forum_dt').DataTable({
+		$('#topic_dt').DataTable({
 			"language": {
 				"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
 			},
 			"scrollCollapse": true,
 			"paging": false,
 			"columns": [
-				{ "width": "5%" },
-				{ "width": "55%" },
-				{ "width": "10%" },
+				{ "width": "45%" },
 				{ "width": "15%" },
-				{ "width": "15%" }
+				{ "width": "20%" },
+				{ "width": "5%" },
+				{ "width": "10%" }
 			],
-			"order": [[ 4, "desc" ]]
+			"order": [[ 1, "desc" ]]
 		});
 	} );
 </script>

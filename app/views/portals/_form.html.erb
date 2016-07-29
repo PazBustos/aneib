@@ -29,11 +29,11 @@
 		</div>
 		<div class="panel-body">
 			<div class="field">
-					<%= f.label :title, "Título" %><br>
+					<%= f.label :title, "Título" %>
 					<%= f.text_field :title, class:"form-control" %>
 				</div>
 			<div class="field">
-				<%= f.label :body, "Descripción" %><br>
+				<%= f.label :body, "Descripción" %>
 				<%= f.text_area :body, :placeholder=> "Escribir aquí.", :id=>"eg-basic",:required=>true %>
 			</div>
 
@@ -60,7 +60,7 @@
 						<%= f.select(:section, [['Noticia', 1],['¿Quiénes somos?', 2],['¿Qué es CONEIB?', 3],['Estatuto', 4],['Hazte Socio', 5]], {:include_blank => '— Seleccione una sección —'}, { :class => 'form-control', :required => true }) %>
 					</p></div>
 				<%end%>
-				<br>
+				
 				<div class="actions">
 					<%= f.submit "Aceptar",:class=>"btn btn-default btn-form" %>
 					<%= link_to 'Volver', :back,:class=>'btn btn-default btn-form' %>

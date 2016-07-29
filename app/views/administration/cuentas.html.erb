@@ -1,17 +1,138 @@
 <h1>Administración Cuentas claras</h1>
-<%= link_to "Nueva Cuenta", new_finance_path, class:"btn btn-default btn-admin"%>
-<div class="panel panel-default">
+
+<%= link_to "Nueva Cuenta", new_finance_path, class:"btn btn-default btn-form"%>
+<div class="panel panel-default panel-aneib">
 	<div class="panel-heading">
-		Listado de Cuentas claras
+	<ul class="nav nav-tabs tabRease nav-justified">
+		<li id="fin1" onclick="fin1()"><a>Ingresos</a></li>
+		<li id="fin2" onclick="fin2()"><a>Egresos</a></li>
+		<li id="fin3" onclick="fin3()"><a>Balances</a></li>
+	</ul>
 	</div>
 	<div class="panel-body">
-		<% @finances.each do |finanzas| %>
-			<p>
-			<%=	finanzas.title %>  - 
-			<%=	link_to "Ver", finanzas %>  -				
-			<%= link_to "Editar", edit_finance_path(finanzas)%> - 
-			<%= link_to 'Eliminar', finanzas, method: :delete, data: { confirm: '¿Está seguro de eliminar esta cuenta?' } %>
-			</p>
-		<%end%>
+		<div id="ingresos">
+			<table id="ingresos_dt">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Fecha</th>
+						<th>Autor</th>
+						<th>Opciones</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<% @ingresos.each do |finance| %>
+						<tr>
+						<td><%=finance.title%></td>
+						<td><%=l finance.date%></td>
+						<td><%= finance.user.nickname%></td>
+						<td>
+							<%= link_to '<i class="glyphicon glyphicon-download-alt gportal"></i>'.html_safe, finance.archive.url, :target => "_blank" %> -
+							<%= link_to '<i class="glyphicon glyphicon-eye-open gportal"></i>'.html_safe, finance %> 
+							<%= link_to '<i class="glyphicon glyphicon-trash gportal"></i>'.html_safe, finance, method: :delete, data: { confirm: '¿Está seguro de eliminar esta sección?' } %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+
+		<div id="egresos">
+			<table id="egresos_dt">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Fecha</th>
+						<th>Autor</th>
+						<th>Opciones</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<% @egresos.each do |finance| %>
+						<tr>
+						<td><%=finance.title%></td>
+						<td><%=l finance.date%></td>
+						<td><%= finance.user.nickname%></td>
+						<td>
+							<%= link_to '<i class="glyphicon glyphicon-download-alt gportal"></i>'.html_safe, finance.archive.url, :target => "_blank" %> -
+							<%= link_to '<i class="glyphicon glyphicon-eye-open gportal"></i>'.html_safe, finance %> 
+							<%= link_to '<i class="glyphicon glyphicon-trash gportal"></i>'.html_safe, finance, method: :delete, data: { confirm: '¿Está seguro de eliminar esta sección?' } %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+
+		<div id="balances">
+			<table id="balances_dt">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Fecha</th>
+						<th>Autor</th>
+						<th>Opciones</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<% @balances.each do |finance| %>
+						<tr>
+						<td><%=finance.title%></td>
+						<td><%=l finance.date%></td>
+						<td><%= finance.user.nickname%></td>
+						<td>
+							<%= link_to '<i class="glyphicon glyphicon-download-alt gportal"></i>'.html_safe, finance.archive.url, :target => "_blank" %> -
+							<%= link_to '<i class="glyphicon glyphicon-eye-open gportal"></i>'.html_safe, finance %> 
+							<%= link_to '<i class="glyphicon glyphicon-trash gportal"></i>'.html_safe, finance, method: :delete, data: { confirm: '¿Está seguro de eliminar esta sección?' } %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+	document.getElementById('ingresos').style.display='block'; 
+	document.getElementById("fin1").className = "active"; 
+	document.getElementById('egresos').style.display='none';
+	document.getElementById('balances').style.display='none';
+
+	function fin1(){
+		document.getElementById('ingresos').style.display='block'; 
+		document.getElementById('egresos').style.display='none';
+		document.getElementById('balances').style.display='none';
+		document.getElementById("fin1").className = "active";
+		document.getElementById("fin2").className = "";
+		document.getElementById("fin3").className = "";
+	}
+	function fin2(){
+		document.getElementById('ingresos').style.display='none';	
+		document.getElementById('egresos').style.display='block';
+		document.getElementById('balances').style.display='none';
+		document.getElementById("fin1").className = "";
+		document.getElementById("fin2").className = "active";
+		document.getElementById("fin3").className = "";
+
+	}
+	function fin3(){
+		document.getElementById('ingresos').style.display='none';		
+		document.getElementById('egresos').style.display='none';
+		document.getElementById('balances').style.display='block';
+		document.getElementById("fin3").className = "active";
+		document.getElementById("fin1").className = "";
+		document.getElementById("fin2").className = "";
+	}
+
+	$(document).ready(function() {
+		$($("#ingresos_dt,#egresos_dt,#balances_dt")).DataTable({
+			"language": {
+				"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+			},
+			"scrollCollapse": true,
+			"paging": false
+		});
+	} );
+</script>
+

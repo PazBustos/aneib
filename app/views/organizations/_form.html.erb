@@ -1,31 +1,31 @@
 <%= form_for(@organization) do |f| %>
-  <% if @organization.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@organization.errors.count, "error") %> prohibited this organization from being saved:</h2>
+	<% if @organization.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@organization.errors.count, "error") %> prohibited this organization from being saved:</h2>
 
-      <ul>
-      <% @organization.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+			<ul>
+			<% @organization.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+			<% end %>
+			</ul>
+		</div>
+	<% end %>
 <div class="panel panel-default panel-aneib">
 	<div class="panel-heading">
-  		Datos de la publicación
-  	</div>
-  	<div class="panel-body">
+			Datos de la publicación
+		</div>
+		<div class="panel-body">
 		<div class="field">
 			<%= f.label :title, "Título" %>
 			<%= f.text_field :title, :class => "form-control" %>
 		</div>
 		<div class="field">
-			<%= f.label :description, "Descripción" %><br>
+			<%= f.label :description, "Descripción" %>
 			<%= f.text_area :description, :placeholder=> "Escribir aquí.", :id=>"eg-basic",:required=>true %>
 		</div>
-		<br>
+		
 		<div class="actions">
-		<%= f.submit "aceptar", :class => 'btn btn-default btn-form'  %>
+		<%= f.submit "aceptar", :class => 'btn btn-default btn-form'	%>
 		</div>
 	</div>
 </div>

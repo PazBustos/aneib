@@ -17,7 +17,7 @@
 		</div>
 		<div class="panel-body">
 			<div class="field">
-				<%= f.label :name, "Nombre" %><br>
+				<%= f.label :name, "Nombre" %>
 				<%= f.text_field :name, :class=>'form-control' %>
 			</div>
 
@@ -35,12 +35,8 @@
 				<%=f.label :archive, "Archivo adjunto"%>
 				<%=f.file_field :archive%>
 			</div>
-
-			<div class="field"><br>
-				<%= f.label :date,"Fecha" %>
-				<%= f.date_select :date, :class=>'form-control' %>
-			</div>
-			<div class="actions"><br>
+			
+			<div class="actions">
 				<%= f.submit "aceptar", :class=>"btn btn-default btn-form" %>
 				<%= link_to 'Volver', administration_recursos_path,:class=>'btn btn-default btn-form' %>
 			</div>

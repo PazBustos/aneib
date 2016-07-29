@@ -3,15 +3,16 @@
 #
 # Examples:
 #
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+#	 cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+#	 Mayor.create(name: 'Emanuel', city: cities.first)
 User.create([{
 	email: 'administrador@aneib.cl',
 	password: 'administrador123',
 	name: 'Administrador',
 	nickname: 'Admin',
 	category: 1,
-	status: 2
+	status: 2,
+	confirmed_at: Time.now
 },
 {
 	email: 'delegado@aneib.cl',
@@ -19,7 +20,8 @@ User.create([{
 	name: 'Delegado',
 	nickname: 'Delegado',
 	category: 2, 
-	status: 1
+	status: 1,
+	confirmed_at: Time.now
 },
 {
 	email: 'socio@aneib.cl',
@@ -27,7 +29,8 @@ User.create([{
 	name: 'Socio',
 	nickname: 'Socio',
 	category: 3,
-	status: 1
+	status: 1,
+	confirmed_at: Time.now
 },
 {
 	email: 'media@aneib.cl',
@@ -35,5 +38,6 @@ User.create([{
 	name: 'Media Partner',
 	nickname: 'Media',
 	category: 4, 
-	status: 1
+	status: 1,
+	confirmed_at: Time.now
 }])

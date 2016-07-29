@@ -14,15 +14,11 @@
 			<%= @resource.category %>
 		</p>
 
-		<p>
-			<strong>Fecha de subida:</strong>
-			<%= @resource.date %>
-		</p>
 	</div>
 </div>
 
 
-<% if user_signed_in? && current_user.category != 3  && current_user.category != 4 %>
+<% if user_signed_in? && current_user.category != 3	&& current_user.category != 4 %>
 	<% if @resource.user.id == current_user.id || current_user.category == 1%>
 		<%= link_to 'Editar', edit_resource_path(@resource) %> |
 	<%end%>

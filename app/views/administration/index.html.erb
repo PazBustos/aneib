@@ -4,16 +4,12 @@
 
 <h2>Portal web</h2>
 
-	<%= link_to "Administrar Noticias", administration_noticias_path, class:"btn btn-default btn-admin"%>
-
-	<%if current_user.category != 4%>
-		<%= link_to "Administrar Galería", administration_galeria_path, class:"btn btn-default btn-admin disabled"%>
-	<%end%>
+	<%= link_to "Administrar noticias", administration_noticias_path, class:"btn btn-default btn-admin"%>
 
 	<%if current_user.category == 1%>
-		<%= link_to "Administrar Hazte socio", administration_socio_path, class:"btn btn-default btn-admin"%>
-		<%= link_to "Administrar ¿Qué es CONEIB?", administration_coneib_path, class:"btn btn-default btn-admin"%>
-		<%= link_to "Administrar ¿Quiénes somos?", administration_somos_path, class:"btn btn-default btn-admin"%>
+		<%= link_to "Administrar 'hazte socio'", administration_socio_path, class:"btn btn-default btn-admin"%>
+		<%= link_to "Administrar '¿Qué es CONEIB?'", administration_coneib_path, class:"btn btn-default btn-admin"%>
+		<%= link_to "Administrar '¿Quiénes somos?'", administration_somos_path, class:"btn btn-default btn-admin"%>
 	<%end%>
 
 <%if current_user.category != 4%>
@@ -21,12 +17,12 @@
 	<h2>Intranet</h2>
 	<%if current_user.category == 1%>
 		<%= link_to "Administrar cuentas claras", administration_cuentas_path, class:"btn btn-default btn-admin"%>
-		<%= link_to "Administrar Estatuto", administration_estatuto_path, class:"btn btn-default btn-admin"%>
-		<%= link_to "Administrar Organización CONEIB", administration_organizacion_path, class:"btn btn-default btn-admin"%>
+		<%= link_to "Administrar articulos del estatuto", administration_estatuto_path, class:"btn btn-default btn-admin"%>
+		<%= link_to "Administrar 'organización CONEIB'", administration_organizacion_path, class:"btn btn-default btn-admin"%>
 		<%= link_to "Administrar áreas del foro", administration_topicos_path, class:"btn btn-default btn-admin"%>
 		<%= link_to "Administrar usuarios", users_user_list_path, class:"btn btn-default btn-admin"%>
 	<%end%>
 
-		<%= link_to "Administrar Recursos", administration_recursos_path, class:"btn btn-default btn-admin"%>
+		<%= link_to "Administrar recursos", administration_recursos_path, class:"btn btn-default btn-admin"%>
 <%end%>
 

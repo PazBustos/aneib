@@ -14,17 +14,17 @@
 	<tbody>
 		<% @topics.each do |topic| %>
 		<tr>
-		<td><%= link_to '<i class="glyphicon glyphicon-circle-arrow-right"></i>'.html_safe, topic %></td>
-		<td><%= link_to topic.title, topic %></td>
-		<td><%= topic.articles.count %></td>
-		<td><%= time_ago_in_words(topic.created_at)%></td>
-		<th><%= topic.user.nickname%></th>
+			<td><%= link_to '<i class="glyphicon glyphicon-circle-arrow-right"></i>'.html_safe, topic %></td>
+			<td><%= link_to topic.title, topic %></td>
+			<td><%= topic.articles.count %></td>
+			<td><%= time_ago_in_words(topic.created_at)%></td>
+			<td><%= topic.user.nickname%></td>
 		</tr>
 		<% end %>
 	</tbody>
 </table>
 
-<br>
+
 <%if current_user.category == 1%>
 <%= link_to 'Administar áreas', administration_topicos_path, :class =>'btn btn-default btn-form' %>
 <%end%>

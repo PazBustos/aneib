@@ -1,1 +1,1 @@
-json.extract! @finance, :id, :user_id, :title, :description, :classification, :created_at, :updated_at
+json.extract! @finance, :id, :user_id, :title, :description, :category, :created_at, :updated_at

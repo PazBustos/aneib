@@ -1,17 +1,48 @@
 <h1>Administración Organización congreso</h1>
-<%= link_to "Nueva seccion de Organización del congreso", new_organization_path, class:"btn btn-default btn-admin"%>
+<%= link_to "Nueva seccion de Organización del congreso", new_organization_path, class:"btn btn-default btn-form"%>
 <div class="panel panel-default panel-aneib">
 	<div class="panel-heading">
 		Listado de Cuentas claras
 	</div>
 	<div class="panel-body">
-		<% @organizations.each do |org| %>
-			<p>
-			<%=	org.title %>  - 
-			<%=	link_to "Ver", org %>  -				
-			<%= link_to "Editar", edit_organization_path(org)%> - 
-			<%= link_to 'Eliminar', org, method: :delete, data: { confirm: '¿Está seguro de eliminar esta cuenta?' } %>
-			</p>
-		<%end%>
+		<table id="organization_dt">
+			<thead>
+				<tr>
+					<td>Título</td>
+					<td>Autor</td>
+					<td>Administrar</td>
+				</tr>
+			</thead>
+			<tbody>
+				<% @organizations.each do |organization| %>
+					<tr>
+						<td> <%= organization.title %></td>
+						<td> <%= organization.user.nickname%> </td>
+						<td> 
+						<%= link_to '<i class="glyphicon glyphicon-eye-open gorganization"></i>'.html_safe, organization %>				
+						<%= link_to '<i class="glyphicon glyphicon-pencil gorganization"></i>'.html_safe, edit_organization_path(organization)%> 
+						<%= link_to '<i class="glyphicon glyphicon-trash gorganization"></i>'.html_safe, organization, method: :delete, data: { confirm: '¿Está seguro de eliminar esta sección?' } %></td>
+					</tr>
+				<%end%>
+			</tbody>
+		</table>
 	</div>
 </div>
+<%=link_to "Volver", administration_index_path, :class=>"btn btn-default btn-form"%>
+<script>
+	$(document).ready(function() {
+		$('#organization_dt').DataTable({
+			"language": {
+				"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+			},
+			"scrollCollapse": true,
+			"paging": false,
+			"columns": [
+				{ "width": "60%" },
+				{ "width": "25%" },
+				{ "width": "15%" }
+			],
+			"order": [[ 1, "desc" ]]
+		});
+	} );
+</script>

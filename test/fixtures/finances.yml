@@ -4,10 +4,10 @@ one:
   user_id: 
   title: MyString
   description: MyText
-  classification: 1
+  category: 1
 
 two:
   user_id: 
   title: MyString
   description: MyText
-  classification: 1
+  category: 1

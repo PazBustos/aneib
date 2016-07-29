@@ -11,7 +11,7 @@
 					<td>Nombre</td>
 					<td>Nick</td>
 					<td>Categoría</td>
-					<td>Validar</td>
+					<td>Administrar</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -20,11 +20,16 @@
 					
 						<td><%=link_to user.name, user%></td>
 						<td><%=user.nickname%></td>
-					<td>							
-							<%if user.status == 1%>
+					<td>	
+							<%if user.confirmed_at == nil%>
 								<i class="glyphicon glyphicon-remove-circle", style = "color: red;"></i>
-							<%else%>
+							<%end%>					
+							<%if user.status == 1%>
+								<i class="glyphicon glyphicon-time", style = "color: yellow;"></i>
+							<%elsif user.status == 2%>
 								<i class="glyphicon glyphicon-ok-circle", style = "color: green;"></i>
+							<%else%>
+								<i class="glyphicon glyphicon-ban-circle", style = "color: red;"></i>
 							<%end%>	
 							<%if user.category == 1%>
 								Administrador
@@ -36,19 +41,32 @@
 								Media Partner
 							<%end%>							
 						</td>
-						<td><%=link_to '<i class="glyphicon glyphicon-circle-arrow-right"></i>'.html_safe, edit_user_path(user)%></td>					
+						<td><%=link_to '<i class="glyphicon glyphicon-pencil gportal"></i>'.html_safe, edit_user_path(user)%>
+						<%= link_to '<i class="glyphicon glyphicon-eye-open gportal"></i>'.html_safe, user %>				
+
+						</td>					
 					</tr>
 				<%end%>
 			</tbody>
 		</table>
 	</div>
 	<div class="panel-footer">
-		<p><i class="glyphicon glyphicon-remove-circle", style = "color: red;"> No-validado </i></p>
-		<p><i class="glyphicon glyphicon-ok-circle", style = "color: green;"> Validado </i></p>
+		<p><i class="glyphicon glyphicon-ok-circle", style = "color: green;"></i>
+			Usuario confirmado por administrador
+		</p>
+		<p><i class="glyphicon glyphicon-time", style = "color: yellow;"></i>
+			Usuario eperando a ser validado por administrador
+		</p>
+		<p><i class="glyphicon glyphicon-ban-circle", style = "color: red;"></i>
+			Usuario bloqueado por administrador
+		</p>
+		<p><i class="glyphicon glyphicon-remove-circle", style = "color: red;"></i>
+			Usuario que aún no ha validado su correo electrónico.
+		</p>
 		<p class="note">Todos los usuarios deben ser autorizados por un administrador</p>		
 	</div>
 </div>
-
+<%=link_to "Volver", administration_index_path, :class=>"btn btn-default btn-form"%>
 <script>
 	$(document).ready(function() {
 		$('#user_dt').DataTable({

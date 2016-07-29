@@ -1,21 +1,22 @@
-<br><br>
 <div class="panel panel-default panel-aneib">
 	<div class="panel-heading">
-		Título: <%= @finance.title %>
+		<%= @finance.title %>
 	</div>
 
 	<div class="panel-body">
 		<p>
 		<strong>Descripción:</strong>
-		<%= @finance.description %>
+		<%=raw @finance.description %>
 		</p>
 
 		<p>
 		<strong>Clasificación:</strong>
-		<%if @finance.classification == 1%>
+		<%if @finance.category == 1%>
 			Ingreso
-		<%else%>
+		<%elsif @finance.category == 2%>
 			Egreso
+		<%else%>
+			Balance
 		<%end%>
 		</p>
 	</div>

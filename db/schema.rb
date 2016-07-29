@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160727201243) do
+ActiveRecord::Schema.define(version: 20160729200312) do
 
   create_table "articles", force: :cascade do |t|
     t.integer  "user_id",     limit: 4
@@ -60,12 +60,17 @@ ActiveRecord::Schema.define(version: 20160727201243) do
   add_index "events", ["user_id"], name: "index_events_on_user_id", using: :btree
 
   create_table "finances", force: :cascade do |t|
-    t.integer  "user_id",        limit: 4
-    t.string   "title",          limit: 255
-    t.text     "description",    limit: 65535
-    t.integer  "classification", limit: 4
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.integer  "user_id",              limit: 4
+    t.string   "title",                limit: 255
+    t.text     "description",          limit: 65535
+    t.integer  "category",             limit: 4
+    t.datetime "date"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "archive_file_name",    limit: 255
+    t.string   "archive_content_type", limit: 255
+    t.integer  "archive_file_size",    limit: 4
+    t.datetime "archive_updated_at"
   end
 
   add_index "finances", ["user_id"], name: "index_finances_on_user_id", using: :btree
@@ -98,10 +103,10 @@ ActiveRecord::Schema.define(version: 20160727201243) do
   add_index "portals", ["user_id"], name: "index_portals_on_user_id", using: :btree
 
   create_table "resources", force: :cascade do |t|
+    t.integer  "user_id",              limit: 4
     t.string   "name",                 limit: 255
     t.text     "description",          limit: 65535
     t.integer  "category",             limit: 4
-    t.datetime "date"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
     t.string   "archive_file_name",    limit: 255
@@ -109,6 +114,8 @@ ActiveRecord::Schema.define(version: 20160727201243) do
     t.integer  "archive_file_size",    limit: 4
     t.datetime "archive_updated_at"
   end
+
+  add_index "resources", ["user_id"], name: "index_resources_on_user_id", using: :btree
 
   create_table "topics", force: :cascade do |t|
     t.string   "title",       limit: 255
@@ -132,10 +139,14 @@ ActiveRecord::Schema.define(version: 20160727201243) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
+    t.string   "confirmation_token",     limit: 255
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email",      limit: 255
     t.string   "name",                   limit: 255
     t.string   "nickname",               limit: 255
     t.integer  "category",               limit: 4
-    t.integer  "status",                 limit: 4
+    t.integer  "status",                 limit: 4,     default: 1
     t.string   "institution",            limit: 255
     t.string   "profession",             limit: 255
     t.text     "information",            limit: 65535
@@ -157,5 +168,6 @@ ActiveRecord::Schema.define(version: 20160727201243) do
   add_foreign_key "events", "users"
   add_foreign_key "finances", "users"
   add_foreign_key "portals", "users"
+  add_foreign_key "resources", "users"
   add_foreign_key "topics", "users"
 end

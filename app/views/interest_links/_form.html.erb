@@ -14,28 +14,28 @@
 	<% end %>
 
 	<div class="field">
-		<%= f.label :name, "Nombre" %><br>
+		<%= f.label :name, "Nombre" %>
 		<%= f.text_field :name, :class=>'form-control',:placeholder => 'Nombre del sitio' %>
 	</div>
 	<div class="field">
-		<%= f.label :url, "Dirección web" %><br>
+		<%= f.label :url, "Dirección web" %>
 		<%= f.text_field :url, :class=>'form-control',:placeholder => 'Página web. Ejemplo: http://www.ejemplo.com' %>
 	</div>
 	<div class="field">
 		<%=f.label :description, "Descripción"%>
 		<%= f.text_area :description, :id=>"eg-basic",:required=>true %>
-	</div>    
+	</div>		
 	<div class="actions">
 		<%= f.submit 'Aceptar', :class=>'btn btn-default btn-form' %>
 	</div>
 <% end %>
 
 <script>
-  $('#eg-basic').froalaEditor({
-    language: 'es',
-    toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'fontFamily', 'fontSize', '|', 'color', 'emoticons', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', '-', 'insertLink', 'insertImage', 'insertVideo', 'insertTable', '|', 'quote', 'insertHR', 'undo', 'redo', 'clearFormatting', 'selectAll', 'html'],
-    imageResizeWithPercent: true,
-    imageDefaultWidth: 70,
-    imageInsertButtons: ['imageByURL'],
-  });
+	$('#eg-basic').froalaEditor({
+		language: 'es',
+		toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'fontFamily', 'fontSize', '|', 'color', 'emoticons', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', '-', 'insertLink', 'insertImage', 'insertVideo', 'insertTable', '|', 'quote', 'insertHR', 'undo', 'redo', 'clearFormatting', 'selectAll', 'html'],
+		imageResizeWithPercent: true,
+		imageDefaultWidth: 70,
+		imageInsertButtons: ['imageByURL'],
+	});
 </script>

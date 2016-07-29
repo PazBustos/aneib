@@ -13,16 +13,16 @@
 <%= form_for @user do |f| %>
 
 	<div class="panel panel-default panel-aneib" >
-    	<div class="panel-heading">Administración de <%=@user.nickname%></div>
-    	<div class="panel-body">
+			<div class="panel-heading">Administración de <%=@user.nickname%></div>
+			<div class="panel-body">
 			<div class="field">
 				<p><%= f.label :status, "Validación" %>
 
-				<%= f.select(:status, [['No validado', 1],['Validado', 2]], {:include_blank => '-- Seleccione una opción --' }, { :class => 'form-control', :required => true }) %>
+				<%= f.select(:status, [['Esperando a ser validado', 1],['Validado', 2],['Bloqueado', 3]], {:include_blank => '-- Seleccione una opción --' }, { :class => 'form-control', :required => true }) %>
 			</div>
 			<div class="field">
 				<p><%= f.label :category, "Categoría" %>
-				<button type="button" class="btn btn-default btnWhite" id="btncategory"  data-trigger="focus" data-container="body" data-toggle="btncategory"> ? </button></p>
+				<button type="button" class="btn btn-default btnWhite" id="btncategory"	data-trigger="focus" data-container="body" data-toggle="btncategory"> ? </button></p>
 
 				<%= f.select(:category, [['Administrador', 1],['Delegado', 2],['Socio', 3],['Media Partner', 4]], {:include_blank => '-- Seleccione una opción --' }, { :class => 'form-control', :required => true }) %>
 			</div>
@@ -38,12 +38,12 @@
 
 <script type="text/javascript">
 $(function () {
-  $('[data-toggle="btncategory"]').popover(
-  {
-  	title: 'Tipo de usuario',
-    html: 'true', 
-    content: '<p><strong>Delegado:</strong> Es un represantes por casa de estudio adherida a la asociación.</p><p><strong>Socio:</strong> Estudiante de biotecnología adherido a la asociación.</p><p><strong>MediaPartner: </strong> Empresas o privados adheridos a la asociación.</p>'
-  }
-  	)
+	$('[data-toggle="btncategory"]').popover(
+	{
+		title: 'Tipo de usuario',
+		html: 'true', 
+		content: '<p><strong>Delegado:</strong> Es un represantes por casa de estudio adherida a la asociación.</p><p><strong>Socio:</strong> Estudiante de biotecnología adherido a la asociación.</p><p><strong>MediaPartner: </strong> Empresas o privados adheridos a la asociación.</p>'
+	}
+		)
 })
 </script>

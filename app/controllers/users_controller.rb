@@ -38,17 +38,17 @@ class UsersController < ApplicationController
 	def validate_1
 		if current_user.category != 1
 			redirect_to root_path, alert: "Solo el administrador tiene este privilegio"
-		end   
+		end	 
 	end
 
-	# Use callbacks to share common setup or constraints between actions.
+	
 	def set_user
 		@user = User.find(params[:id])
 	end
 	
 	def user_params
 		accessible = [ :name, :email,:category,:status,:nickname, :photo ] # extend with your own params
-     	accessible << [ :password, :password_confirmation ] unless params[:user][:password].blank?
-      	params.require(:user).permit(accessible)
+		 	accessible << [ :password, :password_confirmation ] unless params[:user][:password].blank?
+				params.require(:user).permit(accessible)
 	end
 end

@@ -6,79 +6,78 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
-  <div class="panel panel-default panel-aneib" >
-      <div class="panel-heading">Datos personales</div>
-      <div class="panel-body">
+	<div class="panel panel-default panel-aneib" >
+			<div class="panel-heading">Datos personales</div>
+			<div class="panel-body">
 
-      <div class="field"><p>
-        <%= f.label :nickname, "Apodo: "%>
-        <%= f.text_field :nickname, :placeholder => "Ingrese su apodo o nick",:class => 'form-control', :required => true  %>
-      </p></div>  
-      <div class="field"><p>
-        <%= f.label :name, "Nombre completo: "%>
-        <%= f.text_field :name, :placeholder => "Nombre completo",:class => 'form-control', :required => true  %>
-      </p></div>
-      <div class="field"><p>
-          <%= f.label :email, "Correo electrónico: "%>
-          <%= f.email_field :email, :placeholder => "Correo electrónico",:class => 'form-control', :required => true %>
-      </p></div>
-      <div class="field"><p>
-        <%= f.label :institution, "Institución: "%>
-        <%= f.text_field :institution, :placeholder => "Nombre de la institución en la que estudia",:class => 'form-control', :required => true%>
-      </p></div>
-      <div class="field"><p>
-        <%= f.label :profession, "Carrera: "%>
-        <%= f.text_field :profession, :placeholder => "Nombre de la carrera que estudia",:class => 'form-control', :required => true%>
-      </p></div>
-      <div class="field"> <!--aun no sé como agregar el valor de minimo al placeholder-->
-          <% if @validatable %> 
-            <% minimo = @minimum_password_length %> 
-          <% end %>
-        <div class="field"><p>
-          <%= f.label :password, "Contraseña: "%>
-          <%= f.password_field :password, :placeholder => "Crear contraseña (6 caracteres como mínimo)", :class => 'form-control', autocomplete: "off", :required => true %>
-        </p></div>
+			<div class="field"><p>
+				<%= f.label :nickname, "Apodo: "%>
+				<%= f.text_field :nickname, :placeholder => "Ingrese su apodo o nick",:class => 'form-control', :required => true	%>
+			</p></div>	
+			<div class="field"><p>
+				<%= f.label :name, "Nombre completo: "%>
+				<%= f.text_field :name, :placeholder => "Nombre completo",:class => 'form-control', :required => true	%>
+			</p></div>
+			<div class="field"><p>
+					<%= f.label :email, "Correo electrónico: "%>
+					<%= f.email_field :email, :placeholder => "Correo electrónico",:class => 'form-control', :required => true %>
+			</p></div>
+			<div class="field"><p>
+				<%= f.label :institution, "Institución: "%>
+				<%= f.text_field :institution, :placeholder => "Nombre de la institución en la que estudia",:class => 'form-control', :required => true%>
+			</p></div>
+			<div class="field"><p>
+				<%= f.label :profession, "Carrera: "%>
+				<%= f.text_field :profession, :placeholder => "Nombre de la carrera que estudia",:class => 'form-control', :required => true%>
+			</p></div>
+			<div class="field"> <!--aun no sé como agregar el valor de minimo al placeholder-->
+					<% if @validatable %> 
+						<% minimo = @minimum_password_length %> 
+					<% end %>
+				<div class="field"><p>
+					<%= f.label :password, "Contraseña: "%>
+					<%= f.password_field :password, :placeholder => "Crear contraseña (6 caracteres como mínimo)", :class => 'form-control', autocomplete: "off", :required => true %>
+				</p></div>
 
-        <div class="field"><p>
-          <%= f.label :password_confirmation, "Confirme su contraseña: "%>
-          <%= f.password_field :password_confirmation, :placeholder => "Debe ser la misma que la anterior",:class => 'form-control', autocomplete: "off", :required => true %>
-        </p></div>
-      </div>
-    </div>
-  </div>
+				<div class="field"><p>
+					<%= f.label :password_confirmation, "Confirme su contraseña: "%>
+					<%= f.password_field :password_confirmation, :placeholder => "Debe ser la misma que la anterior",:class => 'form-control', autocomplete: "off", :required => true %>
+				</p></div>
+			</div>
+		</div>
+	</div>
 
-  <div class="panel panel-default panel-aneib" >
-    <div class="panel-heading">Identificación dentro de la asociación </div>
-    <div class="panel-body">
+	<div class="panel panel-default panel-aneib" >
+		<div class="panel-heading">Identificación dentro de la asociación </div>
+		<div class="panel-body">
 
-      <div class="field">
-        <p><%= f.label :category, "Tipo de usuario" %>
-        <button type="button" class="btn btn-default" data-trigger="focus" data-container="body" data-toggle="btnRolUsuario"> ? </button></p>
+			<div class="field">
+				<p><%= f.label :category, "Tipo de usuario" %>
+				<button type="button" class="btn btn-default" data-trigger="focus" data-container="body" data-toggle="btnRolUsuario"> ? </button></p>
 
-        <%= f.select(:category, [['Delegado', 2],['Socio', 3],['MediaPartner', 4]], {:include_blank => '-- Seleccione una opción --' }, { :class => 'form-control', :required => true }) %>
-      </div>
-      <br><br>
-      <div class="actions">
-        <%= f.submit "Enviar Fomulario", :class => 'btn btn-default btn-form'%>
-        <%= link_to "Cancelar", root_path, :class => 'btn btn-default btn-form'%>
-      </div>
+				<%= f.select(:category, [['Delegado', 2],['Socio', 3],['MediaPartner', 4]], {:include_blank => '-- Seleccione una opción --' }, { :class => 'form-control', :required => true }) %>
+			</div>
+			<div class="actions">
+				<%= f.submit "Enviar Fomulario", :class => 'btn btn-default btn-form'%>
+				<%= link_to "Cancelar", root_path, :class => 'btn btn-default btn-form'%>
+			</div>
 
-    </div>
-  </div>          
+		</div>
+	</div>					
 
 <% end %>
 
 <!--desactivar btnes del indice, para que no aparezcan-->
 <script type="text/javascript">
 $(function () {
-  $('[data-toggle="btnRolUsuario"]').popover(
-  {
-    title: 'Tipo de usuario',
-    html: 'true', 
-    content: '<p><strong>Delegado:</strong> Es un represantes por casa de estudio adherida a la asociación.</p><p><strong>Socio:</strong> Estudiante de biotecnología adherido a la asociación.</p><p><strong>MediaPartner: </strong> Empresas o privados adheridos a la asociación.</p>'
+	$('[data-toggle="btnRolUsuario"]').popover(
+	{
+		title: 'Tipo de usuario',
+		html: 'true', 
+		content: '<p><strong>Delegado:</strong> Es un represantes por casa de estudio adherida a la asociación.</p><p><strong>Socio:</strong> Estudiante de biotecnología adherido a la asociación.</p><p><strong>MediaPartner: </strong> Empresas o privados adheridos a la asociación.</p>'
 
-  }
-    )
+	}
+		)
 })
 
 </script>

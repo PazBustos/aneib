@@ -1,66 +1,95 @@
 <h1>Recursos </h1>
 
-<ul class="nav nav-tabs tabRease nav-justified">
-	<li id="res1" onclick="res1()"><a>Actas</a></li>
-	<li id="res2" onclick="res2()"><a>Planillas</a></li>
-	<li id="res3" onclick="res3()"><a>Extras</a></li>
-</ul>
-<div id="actas">
-	<div class="panel panel-default panel-aneib">
-		<div class="panel-heading">
-			actas disponibles
-		</div>
-		<div class="panel-body">
-			<%if @actas.present?%>
-				<% @actas.each do |resource| %>
-					<p> <%=resource.name%>: <%=l resource.date%> - 
-					<%= link_to 'Ver recurso', resource.archive.url, :target => "_blank" %> -
-					<%= link_to 'Detalle', resource %> 
-					</p>
-				<%end%>
-			<%else%>
-				<p>No hay actas de reuniones disponibles</p>
-			<%end%>
-		</div>
-	</div>
-</div>
 
-<div id="planillas">
-	<div class="panel panel-default panel-aneib">
-		<div class="panel-heading">
-			planillas disponibles
-		</div>
-		<div class="panel-body">
-		<%if @planillas.present?%>
-			<% @planillas.each do |resource| %>
-				<p> <%=resource.name%>: <%=l resource.date%> - 
-				<%= link_to 'Ver recurso', resource.archive.url,:target => "_blank" %> -
-				<%= link_to 'Detalle', resource %> 
-				</p>
-			<%end%>
-		<%else%>
-			No hay planillas de recursos disponibles
-		<%end%>
-		</div>
-	</div>
-</div>
 
-<div id="extras">
-	<div class="panel panel-default panel-aneib">
-		<div class="panel-heading">
-			Otro recursos disponibles
+<div class="panel panel-default panel-aneib">
+	<div class="panel-heading">
+	<ul class="nav nav-tabs tabRease nav-justified">
+		<li id="res1" onclick="res1()"><a>Actas</a></li>
+		<li id="res2" onclick="res2()"><a>Planillas</a></li>
+		<li id="res3" onclick="res3()"><a>Extras</a></li>
+	</ul>
+	</div>
+	<div class="panel-body">
+		<div id="actas">
+			<table id="actas_dt">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Fecha</th>
+						<th>Autor</th>
+						<th>Opciones</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<% @actas.each do |resource| %>
+						<tr>
+						<td><%=resource.name%></td>
+						<td><%=l resource.date%></td>
+						<td><%= resource.user.nickname%></td>
+						<td>
+							<%= link_to '<i class="glyphicon glyphicon-download-alt gportal"></i>'.html_safe, resource.archive.url, :target => "_blank" %> -
+							<%= link_to '<i class="glyphicon glyphicon-eye-open gportal"></i>'.html_safe, resource %> 
+						</td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
 		</div>
-		<div class="panel-body">
-			<%if @extras.present?%>
-				<% @extras.each do |resource| %>
-				<p> <%=resource.name%>: <%=l resource.date%> - 
-				<%= link_to 'Ver recurso', resource.archive.url,:target => "_blank" %> -
-				<%= link_to 'Detalle', resource %>
-				</p>
-			<%end%>
-			<%else%>
-				No hay extras recursos disponibles
-			<%end%>
+
+		<div id="planillas">
+			<table id="planillas_dt">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Fecha</th>
+						<th>Autor</th>
+						<th>Opciones</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<% @planillas.each do |resource| %>
+						<tr>
+						<td><%=resource.name%></td>
+						<td><%=l resource.date%></td>
+						<td><%= resource.user.nickname%></td>
+						<td>
+							<%= link_to '<i class="glyphicon glyphicon-download-alt gportal"></i>'.html_safe, resource.archive.url, :target => "_blank" %> -
+							<%= link_to '<i class="glyphicon glyphicon-eye-open gportal"></i>'.html_safe, resource %> 
+						</td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+
+		<div id="extras">
+			<table id="extras_dt">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Fecha</th>
+						<th>Autor</th>
+						<th>Opciones</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<% @extras.each do |resource| %>
+						<tr>
+						<td><%=resource.name%></td>
+						<td><%=l resource.date%></td>
+						<td><%= resource.user.nickname%></td>
+						<td>
+							<%= link_to '<i class="glyphicon glyphicon-download-alt gportal"></i>'.html_safe, resource.archive.url, :target => "_blank" %> -
+							<%= link_to '<i class="glyphicon glyphicon-eye-open gportal"></i>'.html_safe, resource %> 
+						</td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
 		</div>
 	</div>
 </div>
@@ -80,7 +109,7 @@
 		document.getElementById("res3").className = "";
 	}
 	function res2(){
-		document.getElementById('actas').style.display='none';  
+		document.getElementById('actas').style.display='none';	
 		document.getElementById('planillas').style.display='block';
 		document.getElementById('extras').style.display='none';
 		document.getElementById("res1").className = "";
@@ -89,11 +118,22 @@
 
 	}
 	function res3(){
-		document.getElementById('actas').style.display='none';    
+		document.getElementById('actas').style.display='none';		
 		document.getElementById('planillas').style.display='none';
 		document.getElementById('extras').style.display='block';
 		document.getElementById("res3").className = "active";
 		document.getElementById("res1").className = "";
 		document.getElementById("res2").className = "";
 	}
+
+	$(document).ready(function() {
+		$($("#actas_dt,#planillas_dt,#extras_dt")).DataTable({
+			"language": {
+				"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+			},
+			"scrollCollapse": true,
+			"paging": false
+		});
+	} );
 </script>
+

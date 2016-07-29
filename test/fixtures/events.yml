@@ -1,19 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user_id: 
-  title: MyString
-  address: MyString
-  status: MyString
-  description: MyText
-  start_time: 2016-07-26 13:44:21
-  end_time: 2016-07-26 13:44:21
+	user_id: 
+	title: MyString
+	address: MyString
+	status: MyString
+	description: MyText
+	start_time: 2016-07-26 13:44:21
+	end_time: 2016-07-26 13:44:21
 
 two:
-  user_id: 
-  title: MyString
-  address: MyString
-  status: MyString
-  description: MyText
-  start_time: 2016-07-26 13:44:21
-  end_time: 2016-07-26 13:44:21
+	user_id: 
+	title: MyString
+	address: MyString
+	status: MyString
+	description: MyText
+	start_time: 2016-07-26 13:44:21
+	end_time: 2016-07-26 13:44:21

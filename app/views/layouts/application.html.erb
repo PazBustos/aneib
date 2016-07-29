@@ -3,7 +3,7 @@
 <head>
 <meta name="viewport" content="initial-scale=1">
 	<title>Aneib2</title>
-	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= stylesheet_link_tag		'application', media: 'all', 'data-turbolinks-track' => true %>
 	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	<%= csrf_meta_tags %>
 </head>
@@ -35,8 +35,13 @@
 						</div>
 							<%= render 'layouts/messages' %>
 						<%if user_signed_in?%>
-							<%if current_user.status != 2%>
-								<div class="alert alert-alert">Su usuario no ha sido validado aún, por favor comuncarse con un administrador desde la página de contacto, si se ha demorado más tiempo de lo esperado. Recuerde adjuntar sus datos de usuario. </div>
+							<%if current_user.status == 1%>
+								<div class="alert alert-alert"><%=current_user.nickname%>, te recordamos que ANEIB consta de dos confirmaciones de usuarios, la que realizas por correo electrónico y a través de un administrador del sitio. Tu usuario no ha sido validado aún por un administrador del sitio. En caso de llevar tiempo de esta forma, por favor comunícate con un administrador desde la página de <%= link_to 'Contacto', contacts_path,:class=>"btn btn-default btn-contact" %>. Recuerda adjuntar tus datos de usuario para analizar su situación. </div>
+							<%end%>
+							<%if current_user.status == 3%>
+								<div class="alert alert-alert">
+									<%=current_user.nickname%> tu cuenta ha sido bloqueada por un administrador. Si deseas comunicarte con administrador y así aclarar tu situación, puedes hacerlo a través de la página de <%= link_to 'Contacto', contacts_path,:class=>"btn btn-default btn-contact" %>.
+								</div>
 							<%end%>
 						<%end%> 	
 						<%=yield%>
@@ -47,7 +52,7 @@
 		
 		<div id="footer">
 			<!--Pie de página-->
-			ANEIB - Asociación Nacional de Estudiantes de Ingeniería en Biotecnología<br>
+			ANEIB - Asociación Nacional de Estudiantes de Ingeniería en Biotecnología
 			Contacto: directorio@aneib.cl
 		</div>
 	</div>

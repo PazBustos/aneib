@@ -1,7 +1,7 @@
 <h1>Estatuto ANEIB</h1>
 
 <div id="indice">
-	<div  class="panel panel-default panel-aneib">	
+	<div	class="panel panel-default panel-aneib">	
 		<div class="panel-heading">
 			Índice del estatuto
 		</div>
@@ -19,7 +19,7 @@
 <% @portals.each do |portal| %>
 	<% div_id = portal.id -%>
 	<div id="titulo<%= div_id -%>" >
-		<div  class="panel panel-default panel-aneib">
+		<div	class="panel panel-default panel-aneib">
 			<div class="panel-heading">
 				<i class="glyphicon glyphicon-circle-arrow-up" id="volver<%= div_id -%>"></i> <%=	portal.title %> 
 			</div>
@@ -35,9 +35,9 @@
 		<% div_id = portal.id -%>
 		$("#funcion<%= div_id -%>").click(function() 
 		{
-		    $('html,body').animate({
-		        scrollTop: $("#titulo<%= div_id -%>").offset().top},
-		        'slow');
+				$('html,body').animate({
+						scrollTop: $("#titulo<%= div_id -%>").offset().top},
+						'slow');
 		});
 		$("#volver<%= div_id -%>").click(function() 
 			{

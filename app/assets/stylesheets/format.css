@@ -43,9 +43,9 @@
 	padding: 15px;
 	min-height: 620px;
 	background: #83BC20;
-	background: -moz-linear-gradient(left,  #83BC20 0%, #ffffff 21%, #ffffff 100%);
-	background: -webkit-linear-gradient(left,  #83BC20 0%,#ffffff 21%,#ffffff 100%);
-	background: linear-gradient(to right,  #83BC20 0%,#ffffff 21%,#ffffff 100%);
+	background: -moz-linear-gradient(left,	#83BC20 0%, #ffffff 21%, #ffffff 100%);
+	background: -webkit-linear-gradient(left,	#83BC20 0%,#ffffff 21%,#ffffff 100%);
+	background: linear-gradient(to right,	#83BC20 0%,#ffffff 21%,#ffffff 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#83BC20', endColorstr='#ffffff',GradientType=1 );
 }
 #footer
