@@ -35,13 +35,12 @@
 			<%= f.label :body, "Comentario:" %>
 			<%= f.text_area :body, :class => 'form-control', :placeholder => 'Escriba acá su comentario...', :required => true %>
 		</div>
-		<div class="actions">
-		<%= f.submit "Enviar Comentario", :class => "btn btn-default btn-form" %>
-		
-		<%= link_to 'Volver', root_path, :class => "btn btn-default btn-form" %>
-		</div>
-		<% end %>
-
 		</p>
 	</div>
 </div>
+<div class="actions">
+<%= f.submit "Enviar Comentario", :class => "btn btn-default btn-form" %>
+
+<%= link_to 'Volver', root_path, :class => "btn btn-default btn-form" %>
+</div>
+<% end %>

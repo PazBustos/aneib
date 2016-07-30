@@ -58,12 +58,11 @@
 						<%= f.label :section, "Sección: "%>
 						<%= f.select(:section, [['Noticia', 1],['¿Quiénes somos?', 2],['¿Qué es CONEIB?', 3],['Estatuto', 4],['Hazte Socio', 5]], {:include_blank => '— Seleccione una sección —'}, { :class => 'form-control', :required => true }) %>
 					</p></div>
-				<%end%>
-				
-				<div class="actions">
-					<%= f.submit "Aceptar",:class=>"btn btn-default btn-form" %>
-					<%= link_to 'Volver', :back,:class=>'btn btn-default btn-form' %>
-				</div>				
+				<%end%>	
 		</div>
 	</div>
+<div class="actions">
+	<%= f.submit "Aceptar",:class=>"btn btn-default btn-form" %>
+	<%= link_to 'Volver', :back,:class=>'btn btn-default btn-form' %>
+</div>	
 <% end %>

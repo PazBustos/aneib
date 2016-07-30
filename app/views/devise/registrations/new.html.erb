@@ -57,14 +57,12 @@
 
 				<%= f.select(:category, [['Delegado', 2],['Socio', 3],['MediaPartner', 4]], {:include_blank => '-- Seleccione una opción --' }, { :class => 'form-control', :required => true }) %>
 			</div>
-			<div class="actions">
-				<%= f.submit "Enviar Fomulario", :class => 'btn btn-default btn-form'%>
-				<%= link_to "Cancelar", root_path, :class => 'btn btn-default btn-form'%>
-			</div>
-
 		</div>
 	</div>					
-
+<div class="actions">
+	<%= f.submit "Enviar Fomulario", :class => 'btn btn-default btn-form'%>
+	<%= link_to "Cancelar", root_path, :class => 'btn btn-default btn-form'%>
+</div>
 <% end %>
 
 <!--desactivar btnes del indice, para que no aparezcan-->

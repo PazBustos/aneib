@@ -36,10 +36,11 @@
 			<%= f.label :date,"Fecha" %>
 			<%= f.date_select :date, :class=>'form-control' %>
 		</div>
-		<div class="actions">
-			<%= f.submit "aceptar", :class=>"btn btn-default btn-form" %>
-			<%= link_to 'Volver', administration_cuentas_path,:class=>'btn btn-default btn-form' %>
-		</div>
 	</div>
+</div>
+
+<div class="actions">
+	<%= f.submit "aceptar", :class=>"btn btn-default btn-form" %>
+	<%= link_to 'Volver', administration_cuentas_path,:class=>'btn btn-default btn-form' %>
 </div>
 <% end %>

@@ -35,11 +35,10 @@
 				<%=f.label :archive, "Archivo adjunto"%>
 				<%=f.file_field :archive%>
 			</div>
-			
-			<div class="actions">
-				<%= f.submit "aceptar", :class=>"btn btn-default btn-form" %>
-				<%= link_to 'Volver', administration_recursos_path,:class=>'btn btn-default btn-form' %>
-			</div>
 		</div>
 	</div>
+<div class="actions">
+	<%= f.submit "aceptar", :class=>"btn btn-default btn-form" %>
+	<%= link_to 'Volver', administration_recursos_path,:class=>'btn btn-default btn-form' %>
+</div>
 <% end %>

@@ -13,8 +13,8 @@
 <div class="panel panel-default panel-aneib">
 	<div class="panel-heading">
 			Datos de la publicación
-		</div>
-		<div class="panel-body">
+	</div>
+	<div class="panel-body">
 		<div class="field">
 			<%= f.label :title, "Título" %>
 			<%= f.text_field :title, :class => "form-control" %>
@@ -22,12 +22,11 @@
 		<div class="field">
 			<%= f.label :description, "Descripción" %>
 			<%= f.text_area :description, :placeholder=> "Escribir aquí.", :id=>"eg-basic",:required=>true %>
-		</div>
-		
-		<div class="actions">
-		<%= f.submit "aceptar", :class => 'btn btn-default btn-form'	%>
-		</div>
+		</div>	
 	</div>
 </div>
+<div class="actions">
+	<%= f.submit "aceptar", :class => 'btn btn-default btn-form'%>
+	<%= link_to "Volver", administration_organizacion_path, :class => 'btn btn-default btn-form'%>
+</div>
 <% end %>
-<script>

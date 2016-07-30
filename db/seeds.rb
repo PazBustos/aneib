@@ -7,7 +7,7 @@
 #	 Mayor.create(name: 'Emanuel', city: cities.first)
 User.create([{
 	email: 'administrador@aneib.cl',
-	password: 'administrador123',
+	password: 'aneib123',
 	name: 'Administrador',
 	nickname: 'Admin',
 	category: 1,
@@ -16,7 +16,7 @@ User.create([{
 },
 {
 	email: 'delegado@aneib.cl',
-	password: 'delegado123',
+	password: 'aneib123',
 	name: 'Delegado',
 	nickname: 'Delegado',
 	category: 2, 
@@ -25,7 +25,7 @@ User.create([{
 },
 {
 	email: 'socio@aneib.cl',
-	password: 'socio123',
+	password: 'aneib123',
 	name: 'Socio',
 	nickname: 'Socio',
 	category: 3,
@@ -34,7 +34,7 @@ User.create([{
 },
 {
 	email: 'media@aneib.cl',
-	password: 'media123',
+	password: 'aneib123',
 	name: 'Media Partner',
 	nickname: 'Media',
 	category: 4, 

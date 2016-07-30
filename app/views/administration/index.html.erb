@@ -10,6 +10,7 @@
 		<%= link_to "Administrar 'hazte socio'", administration_socio_path, class:"btn btn-default btn-admin"%>
 		<%= link_to "Administrar '¿Qué es CONEIB?'", administration_coneib_path, class:"btn btn-default btn-admin"%>
 		<%= link_to "Administrar '¿Quiénes somos?'", administration_somos_path, class:"btn btn-default btn-admin"%>
+		<%= link_to "Administrar eventos", administration_eventos_path, class:"btn btn-default btn-admin"%>
 	<%end%>
 
 <%if current_user.category != 4%>
@@ -25,4 +26,3 @@
 
 		<%= link_to "Administrar recursos", administration_recursos_path, class:"btn btn-default btn-admin"%>
 <%end%>
-

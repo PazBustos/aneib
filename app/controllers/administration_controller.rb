@@ -51,7 +51,10 @@ class AdministrationController < ApplicationController
 		@topics = Topic.all
 	end
 
-
+	def eventos
+		add_breadcrumb "Eventos", :administration_eventos_path
+		@events = Event.all
+	end
 	private #acciones privadas del controlador
 
 		def validate_status
