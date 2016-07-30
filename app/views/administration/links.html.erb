@@ -1,0 +1,51 @@
+<h1>Administración Redes Sociales</h1>
+<%= link_to "Nueva Red Social", new_interest_link_path, class:"btn btn-default btn-form"%>
+
+<div class="panel panel-default panel-aneib">
+	<div class="panel-heading">
+		Redes sociales
+	</div>
+	<div class="panel-body">
+		<table id="links_dt">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Dirección web</th>
+					<th>Administrar</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<% @interest_links.each do |interest_link| %>
+					<tr>
+						<td> <%= interest_link.name %></td>
+						<td> <%= interest_link.url%> </td>
+						<td> 
+						<%= link_to '<i class="glyphicon glyphicon-pencil gportal"></i>'.html_safe, edit_interest_link_path(interest_link) %> 
+						<%= link_to '<i class="glyphicon glyphicon-trash gportal"></i>'.html_safe, interest_link, method: :delete, data: { confirm: '¿Está seguro de eliminar esta sección?' } %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<%= link_to "Volver", administration_index_path, :class=> "btn btn-default btn-form" %>
+
+<script>
+	$(document).ready(function() {
+		$('#links_dt').DataTable({
+			"language": {
+				"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+			},
+			"scrollCollapse": true,
+			"paging": false,
+			"columns": [
+				{ "width": "40%" },
+				{ "width": "45%" },
+				{ "width": "15%" }
+			],
+			"order": [[ 1, "desc" ]]
+		});
+	} );
+</script>

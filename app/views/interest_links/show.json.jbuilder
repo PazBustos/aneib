@@ -1,1 +1,0 @@
-json.partial! "interest_links/interest_link", interest_link: @interest_link
