@@ -21,12 +21,8 @@ Rails.application.routes.draw do
 	get 'administration/organizacion'
 	get 'administration/recursos'
 	get 'administration/topicos'
-<<<<<<< HEAD
 	get 'administration/eventos'
-
-=======
 	get 'administration/links'
->>>>>>> Navigation
 
 	resources :resources
 	resources :organizations

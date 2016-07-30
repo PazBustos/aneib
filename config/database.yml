@@ -3,7 +3,7 @@ default: &default
   encoding: utf8
   pool: 5
   username: root
-  password: pacitax2
+  password: kvhipj23
   socket: /var/run/mysqld/mysqld.sock
 
 development:
@@ -18,4 +18,4 @@ production:
   <<: *default
   database: aneib_production
   username: aneib
-  password: pacitax2
+  password: kvhipj23
