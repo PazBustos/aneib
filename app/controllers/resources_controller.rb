@@ -4,23 +4,30 @@ class ResourcesController < ApplicationController
 	before_action :validate_status
 	before_action :validate_3, except: [:show, :index]
 	before_action :validate_4
-	add_breadcrumb "Recursos", :resources_path
-
+	
 	def index
+		add_breadcrumb "Recursos", :resources_path
 		@actas = Resource.where(category: 1).order("created_at DESC")
 		@planillas = Resource.where(category: 2).order("created_at DESC")
 		@extras = Resource.where(category: 3).order("created_at DESC")
 	end
 
 	def show
-		add_breadcrumb "Mostrar"
+		add_breadcrumb "Recursos", :resources_path
+		add_breadcrumb @resource.name
 	end
 
 	def new
+		add_breadcrumb "Administración", :administration_index_path
+		add_breadcrumb "Recursos", :administration_recursos_path
+		add_breadcrumb "Nuevo"
 		@resource = Resource.new
 	end
 
 	def edit
+		add_breadcrumb "Administración", :administration_index_path
+		add_breadcrumb "Recursos", :administration_recursos_path
+		add_breadcrumb "Editando "+@resource.name
 	end
 
 	def create

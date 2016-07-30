@@ -1,6 +1,11 @@
-<h1>Editing Article</h1>
+<h1>Editando Post</h1>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @article %> |
-<%= link_to 'Back', articles_path %>
+<%if current_user == @article.user and current_user.category != 1%>
+	<%= render 'form', orden: "editar" %>
+<%end%>
+<%if current_user == @article.user and current_user.category == 1%>
+	<%= render 'form', orden: "administrar" %>
+<%end%>
+<%if current_user != @article.user and current_user.category == 1%>
+	<%= render 'form', orden: "validar"%>
+<%end%>

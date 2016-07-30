@@ -25,12 +25,10 @@ class AdministrationController < ApplicationController
 		@portals = Portal.where("section = ?", 4)
 	end
 	def socio
-		add_breadcrumb "HazteSocio", :administration_socio_path
+		add_breadcrumb "Hazte socio", :administration_socio_path
 		@portals = Portal.where("section = ?", 5)
 	end
-	def galerian
-		add_breadcrumb "Galería", :administration_galeria_path
-	end
+
 	def cuentas
 		add_breadcrumb "Cuentas claras", :administration_cuentas_path
 		@ingresos = Finance.where(category: 1).order("created_at DESC")
@@ -49,6 +47,7 @@ class AdministrationController < ApplicationController
 
 	end
 	def topicos
+		add_breadcrumb "Foro", :administration_topicos_path
 		@topics = Topic.all
 	end
 

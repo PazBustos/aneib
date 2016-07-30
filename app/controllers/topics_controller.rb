@@ -4,21 +4,30 @@ class TopicsController < ApplicationController
 	before_action :validate_status
 	before_action :validate_1, only: [:edit, :update, :destroy, :create]
 	before_action :validate_activity, only: [:show]
-	add_breadcrumb "Foro", :topics_path
+	
 
 	def index
+		add_breadcrumb "Foro", :topics_path
 		@topics = Topic.where(status: 1)
 	end
 
 	def show
-		@articles = @topic.articles.all
+		add_breadcrumb "Foro", :topics_path
+		add_breadcrumb @topic.title
+		@articles = @topic.articles.all		
 	end
 
 	def new
+		add_breadcrumb "Administración", :administration_index_path
+		add_breadcrumb "Foro", :topics_path
+		add_breadcrumb "Nuevo tema"
 		@topic = Topic.new
 	end
 
 	def edit
+		add_breadcrumb "Administración", :administration_index_path
+		add_breadcrumb "Foro", :topics_path
+		add_breadcrumb "Editando "+ @topic.title
 	end
 
 	def create

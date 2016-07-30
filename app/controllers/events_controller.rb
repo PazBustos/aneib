@@ -10,13 +10,16 @@ class EventsController < ApplicationController
 	end
 
 	def show
+		add_breadcrumb @event.title
 	end
 
 	def new
+		add_breadcrumb "Nuevo evento"
 		@event = Event.new
 	end
 
 	def edit
+		add_breadcrumb "Editando evento"
 	end
 
 	def create

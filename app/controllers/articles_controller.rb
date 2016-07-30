@@ -4,12 +4,10 @@ class ArticlesController < ApplicationController
 	before_action :authenticate_user!
 	before_action :validate_status
 	before_action :validate_activity
-
-	def index
-		@articles = Article.all
-	end
-
+	add_breadcrumb "Foro", :topics_path
 	def show
+		add_breadcrumb @topic.title, @topic
+		add_breadcrumb @article.title
 		@comment = Comment.new
 	end
 
@@ -17,13 +15,19 @@ class ArticlesController < ApplicationController
 		@article = Article.new
 	end
 
-
 	def edit
+		if current_user.category != 1 and current_user != @article.user
+			redirect_to root_path, alert: "Este post no te pertenece. No puedes editarlo"
+		end
+	end
+
+	def validate		
 	end
 
 	def create
 		@article = current_user.articles.new(article_params)
 		@article.topic_id = @topic.id
+		@article.status = 1
 
 		respond_to do |format|
 			if @article.save
@@ -76,6 +80,11 @@ class ArticlesController < ApplicationController
 		end
 				
 		def validate_activity
+			if @article.present? and @article.status == 2
+				if current_user.category != 1
+					redirect_to root_path, alert: "Este post está inactivo o cerrado"
+				end	
+			end
 			if @topic.status == 2
 				if current_user.category != 1
 					redirect_to root_path, alert: "Este tema está inactivo o cerrado"
@@ -88,6 +97,7 @@ class ArticlesController < ApplicationController
 				:user_id, 
 				:topic_id, 
 				:title, 
-				:description)
+				:description,
+				:status)
 		end
 end

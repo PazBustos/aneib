@@ -5,6 +5,7 @@ class CreateArticles < ActiveRecord::Migration
 			t.references :topic, index: true, foreign_key: true
 			t.string :title
 			t.text :description
+			t.integer :status
 
 			t.timestamps null: false
 		end

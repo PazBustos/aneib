@@ -4,24 +4,30 @@
 	before_action :validate_status
 	before_action :validate_1, except: [:show, :index]
 	before_action :validate_4
-	add_breadcrumb "Cuentas claras", :finances_path
 
 	def index
+		add_breadcrumb "Cuentas claras", :finances_path
 		@ingresos = Finance.where(category: 1).order("created_at DESC")
 		@egresos = Finance.where(category: 2).order("created_at DESC")
 		@balances = Finance.where(category: 3).order("created_at DESC")
 	end
 
 	def show
-		add_breadcrumb "Mostrar", :finances_path
+		add_breadcrumb "Cuentas claras", :finances_path
+		add_breadcrumb @finance.title
 	end
 
 	def new
-		add_breadcrumb "Nuevo", :finances_path
+		add_breadcrumb "Admistración", :administration_index_path
+		add_breadcrumb "Cuentas claras", :administration_cuentas_path
+		add_breadcrumb "Nueva cuenta clara"
 		@finance = Finance.new
 	end
 
 	def edit
+		add_breadcrumb "Admistración", :administration_cuentas_path
+		add_breadcrumb "Cuentas claras", :administration_cuentas_path
+		add_breadcrumb "Editando "+@finance.title
 	end
 
 	def create

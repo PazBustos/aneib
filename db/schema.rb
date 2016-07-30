@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20160729200312) do
     t.integer  "topic_id",    limit: 4
     t.string   "title",       limit: 255
     t.text     "description", limit: 65535
+    t.integer  "status",      limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end

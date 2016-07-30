@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
 			end
 		end
 	end
-n
+
 	def update
 		respond_to do |format|
 			if @comment.update(comment_params)

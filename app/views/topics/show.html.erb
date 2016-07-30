@@ -15,17 +15,31 @@
 			<th>Autor</th>
 			<th>Publicado</th>
 			<th>Comentarios</th>
+			<th>Opciones</th>
 		</tr>
 	</thead>
 
 	<tbody>
+		<%if current_user.category != 1
+			@articles = @articles.where(status: 1)
+		end%>
 		<%@articles.each do |post|%>
 			<tr>
 				<td><%=link_to post.id, topic_article_path(@topic,post) %></td>
-				<td><%=link_to post.title,topic_article_path(@topic,post) %></td>
+				<td>
+					<% if post.status == 2%>
+						<i class="glyphicon glyphicon-ban-circle", style = "color: red;"></i>
+					<%end%>
+					<%=link_to post.title,topic_article_path(@topic,post) %>
+				</td>
 				<td><%= post.user.nickname%></td>
 				<td><%= time_ago_in_words(post.created_at)%></td>
 				<td><%= post.comments.count%></td>
+				<td><%= link_to '<i class="glyphicon glyphicon-eye-open gportal"></i>'.html_safe, topic_article_path(@topic,post) %>
+					<%if current_user.category == 1 or current_user == post.user%>
+					<%= link_to '<i class="glyphicon glyphicon-pencil gportal"></i>'.html_safe, edit_topic_article_path(@topic,post) %>
+					<%end%>
+				</td>
 			</tr>
 		<% end %>
 	</tbody>
@@ -50,6 +64,7 @@
 				{ "width": "50%" },
 				{ "width": "20%" },
 				{ "width": "20%" },
+				{ "width": "5%" },
 				{ "width": "5%" }
 			],
 			"order": [[ 1, "desc" ]]

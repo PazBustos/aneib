@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 	get 'administration/recursos'
 	get 'administration/topicos'
 
+
 	resources :resources
 	resources :organizations
 	resources :finances
@@ -30,7 +31,7 @@ Rails.application.routes.draw do
 	resources :contacts, only: [:index, :create]
 	resources :portals
 	resources :topics do
-		resources :articles
+		resources :articles, except: [:index]
 	end
 	resources :administration, only: [:index]
 	resources :articles do

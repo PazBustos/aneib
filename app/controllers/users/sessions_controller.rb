@@ -1,4 +1,5 @@
 class Users::SessionsController < Devise::SessionsController
+	add_breadcrumb "Hazte socio"
 # before_action :configure_sign_in_params, only: [:create]
 
 	# GET /resource/sign_in

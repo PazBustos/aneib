@@ -6,19 +6,58 @@ class PortalsController < ApplicationController
 
 
 	def index
+		add_breadcrumb "Noticias", :root_path
 		@portals = Portal.where("section = ?", 1)
 	end
 
 	def show
-			add_breadcrumb "Mostrar", :root_path
+		add_breadcrumb "Administración", :administration_index_path
+		if @portal.section == 1
+			add_breadcrumb "Noticias", :administration_noticias_path
+		elsif @portal.section == 2
+			add_breadcrumb "Quiénes somos", :administration_somos_path
+		elsif @portal.section == 3
+			add_breadcrumb "CONEIB", :administration_coneib_path
+		elsif @portal.section == 4
+			add_breadcrumb "Estatuto", :administration_estatuto_path
+		else
+			add_breadcrumb "Hazte socio", :administration_socio_path
+		end
+		add_breadcrumb @portal.title
 	end
 
 	def new
+		add_breadcrumb "Administración", :administration_index_path
+		if @portal.section == 1
+			add_breadcrumb "Noticias", :administration_noticias_path
+		elsif @portal.section == 2
+			add_breadcrumb "Quiénes somos", :administration_somos_path
+		elsif @portal.section == 3
+			add_breadcrumb "CONEIB", :administration_coneib_path
+		elsif @portal.section == 4
+			add_breadcrumb "Estatuto", :administration_estatuto_path
+		else
+			add_breadcrumb "Hazte socio", :administration_socio_path
+		end
+		add_breadcrumb "Nuevo"
 		@portal = Portal.new
 	end
 
 
 	def edit
+		add_breadcrumb "Administración", :administration_index_path
+		if @portal.section == 1
+			add_breadcrumb "Noticias", :administration_noticias_path
+		elsif @portal.section == 2
+			add_breadcrumb "Quiénes somos", :administration_somos_path
+		elsif @portal.section == 3
+			add_breadcrumb "CONEIB", :administration_coneib_path
+		elsif @portal.section == 4
+			add_breadcrumb "Estatuto", :administration_estatuto_path
+		else
+			add_breadcrumb "Hazte socio", :administration_socio_path
+		end
+		add_breadcrumb "Editando "+@portal.title
 	end
 
 	def create
@@ -109,9 +148,6 @@ class PortalsController < ApplicationController
 		add_breadcrumb "Nuevo encabezado"
 		@portal = Portal.new
 	end
-	
-	def admin
-	end
 
 	def somos
 		add_breadcrumb "Quiénes somos", :portals_somos_path
@@ -129,7 +165,7 @@ class PortalsController < ApplicationController
 	end
 
 	def socio
-		add_breadcrumb "Estatuto", :portals_socio_path
+		add_breadcrumb "Hazte socio", :portals_socio_path
 		@portals = Portal.where("section = ?", 5)
 	end
 

@@ -1,7 +1,7 @@
 <h1>Eventos <button type="button" class="btn btn-default" id:"btnEvent" data-trigger="focus" data-container="body" data-toggle="btnEvent"> ? </button></h1>
 
 <% if user_signed_in? && current_user.category != 3 %>
-	<%= link_to 'Nuevo evento', new_event_path, :class => 'btn btn-default'%>
+	<%= link_to 'Nuevo evento', new_event_path, :class => 'btn btn-default btn-form'%>
 <% end %>
 
 

@@ -1,2 +1,14 @@
-<h1>Editando sección del portal web</h1>
+<h1>Editando 
+	<%if @portal.section ==1%>
+		Noticia
+	<%elsif @portal.section ==2%>
+		sección de ¿Quiénes somos?
+	<%elsif @portal.section ==3%>
+		sección de ¿Qué es CONEIB?
+	<%elsif @portal.section ==4%>
+		artículo del estatuto
+	<%else%>
+		encabezado de Hazte Socio
+	<%end%>
+</h1>
 <%= render 'form' %>

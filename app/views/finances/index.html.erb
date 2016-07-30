@@ -29,6 +29,10 @@
 						<td>
 							<%= link_to '<i class="glyphicon glyphicon-download-alt gportal"></i>'.html_safe, finance.archive.url, :target => "_blank" %> -
 							<%= link_to '<i class="glyphicon glyphicon-eye-open gportal"></i>'.html_safe, finance %> 
+							<%if current_user.category == 1 or current_user == finance.user%>
+								<%= link_to '<i class="glyphicon glyphicon-pencil gportal"></i>'.html_safe, edit_finance_path(finance) %> 
+								<%= link_to '<i class="glyphicon glyphicon-trash gportal"></i>'.html_safe, finance, method: :delete, data: { confirm: '¿Está seguro de eliminar esta cuenta?' } %>	
+							<%end%>
 						</td>
 						</tr>
 					<% end %>
@@ -55,7 +59,11 @@
 						<td><%= finance.user.nickname%></td>
 						<td>
 							<%= link_to '<i class="glyphicon glyphicon-download-alt gportal"></i>'.html_safe, finance.archive.url, :target => "_blank" %> -
-							<%= link_to '<i class="glyphicon glyphicon-eye-open gportal"></i>'.html_safe, finance %> 
+							<%= link_to '<i class="glyphicon glyphicon-eye-open gportal"></i>'.html_safe, finance %>
+							<%if current_user.category == 1 or current_user == finance.user%>
+								<%= link_to '<i class="glyphicon glyphicon-pencil gportal"></i>'.html_safe, edit_finance_path(finance) %> 
+								<%= link_to '<i class="glyphicon glyphicon-trash gportal"></i>'.html_safe, finance, method: :delete, data: { confirm: '¿Está seguro de eliminar esta cuenta?' } %>	
+							<%end%>
 						</td>
 						</tr>
 					<% end %>
@@ -82,7 +90,11 @@
 						<td><%= finance.user.nickname%></td>
 						<td>
 							<%= link_to '<i class="glyphicon glyphicon-download-alt gportal"></i>'.html_safe, finance.archive.url, :target => "_blank" %> -
-							<%= link_to '<i class="glyphicon glyphicon-eye-open gportal"></i>'.html_safe, finance %> 
+							<%= link_to '<i class="glyphicon glyphicon-eye-open gportal"></i>'.html_safe, finance %>
+							<%if current_user.category == 1 or current_user == finance.user%>
+								<%= link_to '<i class="glyphicon glyphicon-pencil gportal"></i>'.html_safe, edit_finance_path(finance) %> 
+								<%= link_to '<i class="glyphicon glyphicon-trash gportal"></i>'.html_safe, finance, method: :delete, data: { confirm: '¿Está seguro de eliminar esta cuenta?' } %>	
+							<%end%>
 						</td>
 						</tr>
 					<% end %>

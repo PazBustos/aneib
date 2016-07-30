@@ -1,6 +1,5 @@
 <%seccion ||= 1%>
 <%accion ||= "Crear" %>
-
 <%= form_for(@portal) do |f| %>
 	<% if @portal.errors.any? %>
 		<div id="error_explanation">

@@ -1,11 +1,39 @@
-	<div	class="panel panel-default panel-aneib">
-		<div class="panel-heading">
-			<%= @portal.title %> 
-		</div>
-		<div class="panel-body">
-			<p><%=raw @portal.body %></p>
-		</div>
+<h1> Mostrando detalle de 
+	<%if @portal.section ==1%>
+		Noticia
+	<%elsif @portal.section ==2%>
+		sección de ¿Quiénes somos?
+	<%elsif @portal.section ==3%>
+		sección de ¿Qué es CONEIB?
+	<%elsif @portal.section ==4%>
+		artículo del estatuto
+	<%else%>
+		encabezado de Hazte Socio
+	<%end%>
+</h1>
+
+<div	class="panel panel-default panel-aneib">
+	<div class="panel-heading">
+		<%= @portal.title %> 
 	</div>
+	<div class="panel-body">
+		<p><%=raw @portal.body %></p>
+		<p><strong>Autor: </strong> <%=link_to @portal.user.nickname, @portal.user%></p>
+		<p><strong>Publicado el: </strong><%=l @portal.created_at%></p>
+	</div>
+</div>
 
-<%= link_to 'Editar', edit_portal_path(@portal) %>
-
+<%= link_to 'Editar', edit_portal_path(@portal), :class=>'btn btn-default btn-form' %>
+	<%if @portal.section ==1
+		@link = administration_noticias_path
+	elsif @portal.section ==2
+		@link = administration_somos_path
+	elsif @portal.section ==3
+		@link = administration_coneib_path
+	elsif @portal.section ==4
+		@link = administration_estatuto_path
+	else
+		@link = administration_socio_path
+	end%>
+</h1>
+<%= link_to 'Volver', @link, :class=>'btn btn-default btn-form' %>

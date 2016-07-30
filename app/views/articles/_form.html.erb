@@ -1,3 +1,4 @@
+<%orden ||= "nuevo"%>
 <%= form_for([@topic,@article]) do |f| %>
 	<% if @article.errors.any? %>
 		<div id="error_explanation">
@@ -10,16 +11,37 @@
 			</ul>
 		</div>
 	<% end %>
-	
-	<div class="field">
-		<%= f.label :title, "Título" %>
-		<%= f.text_field :title, :class=>'form-control' %>
-	</div>
-	<div class="field">
-		<%=f.label :description, "Descripción"%>
-		<%= f.text_area :description, :placeholder=> "Escribir aquí.", :id=>"eg-basic",:required=>true %>
-	</div>
+		<%if orden=="editar" or orden=="administrar"%>
+			<div class="panel panel-default panel-aneib">
+				<div class="panel-heading">
+					Editar post
+				</div>
+				<div class="panel-body">
+					<div class="field">
+						<%= f.label :title, "Título" %>
+						<%= f.text_field :title, :class=>'form-control' %>
+					</div>
+					<div class="field">
+						<%=f.label :description, "Descripción"%>
+						<%= f.text_area :description, :placeholder=> "Escribir aquí.", :id=>"eg-basic",:required=>true %>
+					</div>	
+				</div>
+			</div>
+		<%end%>
+		<%if orden == "administrar" or orden == "validar"%>
+			<div class="panel panel-default panel-aneib">
+				<div class="panel-heading">
+					Modificar estado del post
+				</div>
+				<div class="panel-body">
+					<div class="field">
+						<%= f.label :status, "Estado "%>
+						<%= f.select(:status, [['Activo', 1],['Bloqueado', 2]], {:include_blank => '— Seleccione una opción —'}, { :class => 'form-control', :required => true }) %>
+					</div>
+				</div>
+			</div>
+		<%end%>
 	<div class="actions">
-		<%= f.submit %>
+		<%= f.submit "Aceptar", :class=>"btn btn-default btn-forms" %>
 	</div>
 <% end %>
