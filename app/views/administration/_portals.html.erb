@@ -18,9 +18,12 @@
 						<td> <%=link_to '<i class="glyphicon glyphicon-circle-arrow-right"></i> '.html_safe+portal.title,portal %></td>
 						<td> <%= portal.user.nickname%> </td>
 						<td> 
-						<%= link_to '<i class="glyphicon glyphicon-eye-open gportal"></i>'.html_safe, portal %>				
-						<%= link_to '<i class="glyphicon glyphicon-pencil gportal"></i>'.html_safe, edit_portal_path(portal)%> 
-						<%= link_to '<i class="glyphicon glyphicon-trash gportal"></i>'.html_safe, portal, method: :delete, data: { confirm: '¿Está seguro de eliminar esta sección?' } %></td>
+							<%= link_to '<i class="glyphicon glyphicon-eye-open gportal"></i>'.html_safe, portal %>	
+							<%if current_user == portal.user || current_user.category == 1%>			
+								<%= link_to '<i class="glyphicon glyphicon-pencil gportal"></i>'.html_safe, edit_portal_path(portal)%> 
+								<%= link_to '<i class="glyphicon glyphicon-trash gportal"></i>'.html_safe, portal, method: :delete, data: { confirm: '¿Está seguro de eliminar esta sección?' } %>
+							<%end%>
+						</td>
 					</tr>
 				<%end%>
 			</tbody>

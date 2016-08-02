@@ -2,7 +2,11 @@ class PortalsController < ApplicationController
 	before_action :set_portal, only: [:show, :edit, :update, :destroy]
 	before_action :authenticate_user!, only: [:edit, :update, :destroy]
 	before_action :validate_status,  only: [:edit, :update, :destroy]
+	before_action :validate_1,  only: [:edit, :update, :destroy]
+	before_action :validate_2,  only: [:edit, :update, :destroy]
 	before_action :validate_3,  only: [:edit, :update, :destroy]
+	before_action :validate_3,  only: [:edit, :update, :destroy]
+	before_action :validate_own, only: [:edit, :update, :destroy]
 
 
 	def index
@@ -195,6 +199,11 @@ class PortalsController < ApplicationController
 			if current_user.category == 3
 				redirect_to root_path, alert: "Su categoría no le permite ésta acción."
 			end 
+		end
+		def validate_own
+			if current_user.category != 1 and current_user != @portal
+				redirect_to root_path, alert: "Esta sección no le pertenece"
+			end			
 		end
 
 

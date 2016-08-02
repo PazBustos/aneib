@@ -1,12 +1,13 @@
+<h1>Recurso</h1>
 <div class="panel panel-default panel-aneib">
 	<div class="panel-heading">
-		Nombre: <%= @resource.name %>
+		<%= @resource.name %>
 	</div>
 
 	<div class="panel-body">
 		<p>
 			<strong>Descripción:</strong>
-			<%= @resource.description %>
+			<%=raw @resource.description %>
 		</p>
 
 		<p>
@@ -17,9 +18,10 @@
 	</div>
 </div>
 
-
+<%= link_to "Ver recurso", @resource.archive.url, :target=>"_blank", :class=>'btn btn-default btn-form'%>
+<%= link_to "Volver", resources_path, :class=>'btn btn-default btn-form'%>
 <% if user_signed_in? && current_user.category != 3	&& current_user.category != 4 %>
 	<% if @resource.user.id == current_user.id || current_user.category == 1%>
-		<%= link_to 'Editar', edit_resource_path(@resource) %> |
+		<%= link_to 'Editar', edit_resource_path(@resource), :class=>'btn btn-default btn-form' %>
 	<%end%>
 <%end%>

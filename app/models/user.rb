@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
 	has_many :event_comments
 	has_many :organizations
 	
-	has_attached_file :photo, styles: {mini:"30x30", medium: "500x500", thumb:"1000x1000"}, :default_url => ":style/missingPhoto.png"
+	has_attached_file :photo, styles: {mini:"80x80", medium: "500x500", thumb:"1000x1000"}, :default_url => ":style/missingPhoto.png"
 	validates_attachment_content_type :photo, content_type: /\Aimage\/.*\Z/
 
 	validates :name, presence: true, length:{maximum:100}

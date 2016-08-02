@@ -14,7 +14,7 @@
 				<thead>
 					<tr>
 						<th>Nombre</th>
-						<th>Fecha</th>
+						
 						<th>Autor</th>
 						<th>Opciones</th>
 					</tr>
@@ -24,7 +24,7 @@
 					<% @actas.each do |resource| %>
 						<tr>
 						<td><%=resource.name%></td>
-						<td><%=l resource.date%></td>
+						
 						<td><%= resource.user.nickname%></td>
 						<td>
 							<%= link_to '<i class="glyphicon glyphicon-download-alt gportal"></i>'.html_safe, resource.archive.url, :target => "_blank" %> -
@@ -41,7 +41,7 @@
 				<thead>
 					<tr>
 						<th>Nombre</th>
-						<th>Fecha</th>
+						
 						<th>Autor</th>
 						<th>Opciones</th>
 					</tr>
@@ -51,7 +51,7 @@
 					<% @planillas.each do |resource| %>
 						<tr>
 						<td><%=resource.name%></td>
-						<td><%=l resource.date%></td>
+						
 						<td><%= resource.user.nickname%></td>
 						<td>
 							<%= link_to '<i class="glyphicon glyphicon-download-alt gportal"></i>'.html_safe, resource.archive.url, :target => "_blank" %> -
@@ -68,7 +68,7 @@
 				<thead>
 					<tr>
 						<th>Nombre</th>
-						<th>Fecha</th>
+						
 						<th>Autor</th>
 						<th>Opciones</th>
 					</tr>
@@ -78,7 +78,7 @@
 					<% @extras.each do |resource| %>
 						<tr>
 						<td><%=resource.name%></td>
-						<td><%=l resource.date%></td>
+						
 						<td><%= resource.user.nickname%></td>
 						<td>
 							<%= link_to '<i class="glyphicon glyphicon-download-alt gportal"></i>'.html_safe, resource.archive.url, :target => "_blank" %> -
