@@ -38,7 +38,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
 			t.string :institution
 			t.string :profession
 			t.text :information
-			t.attachment :photo
+			t.attachment :photo, :default_url => ":style/missingPhoto.png"
 
 			t.timestamps null: false
 		end

@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 	def update
 		if @user.update(user_params)
 			flash[:notice] = "El usuario ha sido actualizado correctamente"
-			redirect_to @user
+			redirect_to users_user_list_path
 		else
 			flash[:alert] = "Ha ocurrido un error en la actualización del usuario"
 			render :edit

@@ -41,25 +41,31 @@
 		<p><strong>Fecha y hora de término: </strong><%=l @event.end_time %></p>
 	</div>
 	<div class="panel-footer">
+		<h4>Comentarios</h4>
 		<%if user_signed_in?%>
-			<h4>Comentarios</h4>
 			<%= render "event_comments/form" %>
-			<ul>
-				<% @event.event_comments.order("created_at DESC").each do |event_comment| %><hr>
-					<p>
-						<%if event_comment.user.photo.present?%>
-							<%= image_tag event_comment.user.photo.url(:mini), :class =>"profile-picture" %> 
-						<%else%>
-							<%= link_to '<i class="glyphicon glyphicon-globe"></i>'.html_safe, event_comment.user %> 
-						<%end %>
-						<%= link_to event_comment.user.nickname, event_comment.user%> comentó hace <%= time_ago_in_words(event_comment.created_at)%>: 
-						<%if current_user == event_comment.user or current_user.category == 1 %><%= link_to 'Eliminar', event_event_comment_path(@event,event_comment), method: :delete, data: { confirm: '¿Está seguro de eliminar el comentario?' }, :class => "btn btn-default btn-comment"%>
-						<%end%>	
-					</p>
-					<p><%=event_comment.body%></p>	
-				<%end%>
-			</ul>
-		<%end%>		
+		<%else%>
+			<%=link_to "Conectate para comentar", user_session_path, :class=>'btn btn-default btn-form'%>
+		<%end%>	
+		<% @event.event_comments.order("created_at DESC").each do |comment| %>
+			<hr class = "hr-comment">
+				<table class="table-comment">
+					<tr>
+						<td>
+							<%= image_tag comment.user.photo.url(:mini), :class =>"comment-picture" %> 
+						</td>
+						<td>
+							<%= link_to comment.user.nickname, comment.user%> comentó hace <%= time_ago_in_words(comment.created_at)%>: 
+							<%if user_signed_in?%>
+								<%if current_user == comment.user or current_user.category == 1 %><%= link_to 'Eliminar', event_event_comment_path(@event,comment), method: :delete, data: { confirm: '¿Está seguro de eliminar el comentario?' }, :class => "btn btn-default btn-comment"%>
+								<%end%>	
+							<%end%>
+							<p><%=raw comment.body%></p>
+						</td>
+					</tr>
+				</table>
+		<%end%>
+		<hr class = "hr-comment">
 	</div>
 </div>
 

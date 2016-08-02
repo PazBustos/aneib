@@ -20,14 +20,9 @@
 	</div>
 	<div class="panel-footer">
 		<center>
-			<%if !@user.photo.blank?%>
-				<%= image_tag @user.photo.url(:thumb),:class=>'profile-picture' %>
-			<%else%>
-				<%if current_user==@user%>
-					<p class="note">¡Recuerda colocar una foto de perfil!</p>
-				<%else%>
-					<p class="note"><%=@user.nickname%> aún no coloca foto de perfil</p>
-				<%end%>
+			<%= image_tag @user.photo.url(:thumb),:class=>'profile-picture' %>
+			<%if @user.photo.blank? && current_user==@user%>
+				<p class="note">¡Recuerda colocar una foto de perfil!</p>
 			<%end%>
 		</center>
 		<%if !@user.information.blank?%>

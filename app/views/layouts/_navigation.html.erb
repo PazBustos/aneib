@@ -77,9 +77,11 @@
 	<li class="<%= 'active' if current_page?(organizations_path) %>">
 		<%= link_to '<i class="glyphicon glyphicon-leaf"></i> Organización CONEIB'.html_safe, organizations_path %>
 	</li>
-	<li class="<%= 'active' if current_page?(resources_path) %>">
-		<%= link_to '<i class="glyphicon glyphicon-leaf"></i> Recursos'.html_safe, resources_path %>
-	</li>
+	<%if current_user.category != 4%>
+		<li class="<%= 'active' if current_page?(resources_path) %>">
+			<%= link_to '<i class="glyphicon glyphicon-leaf"></i> Recursos'.html_safe, resources_path %>
+		</li>
+	<%end%>
 	<li class="<%= 'active' if current_page?(events_path) %>">
 		<%= link_to '<i class="glyphicon glyphicon-leaf"></i> Eventos'.html_safe, events_path %>
 	</li>

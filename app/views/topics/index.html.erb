@@ -7,19 +7,17 @@
 		<table id="forum_dt">
 			<thead>
 				<tr>
-				<th></th>
-				<th>Título del tema</th>
-				<th># Posts</th>
-				<th>Creación</th>
-				<th>Administrador</th>
+					<th>Título del tema</th>
+					<th># Posts</th>
+					<th>Creación</th>
+					<th>Administrador</th>
 				</tr>
 			</thead>
 
 			<tbody>
 				<% @topics.each do |topic| %>
 				<tr>
-					<td><%= link_to '<i class="glyphicon glyphicon-circle-arrow-right"></i>'.html_safe, topic %></td>
-					<td><%= link_to topic.title, topic %></td>
+					<td><%= link_to '<i class="glyphicon glyphicon-circle-arrow-right"></i> '.html_safe+topic.title, topic %></td>
 					<td><%= topic.articles.count %></td>
 					<td><%= time_ago_in_words(topic.created_at)%></td>
 					<td><%= topic.user.nickname%></td>
@@ -29,7 +27,6 @@
 		</table>	
 	</div>
 </div>
-
 
 
 <%if current_user.category == 1%>
@@ -45,13 +42,11 @@
 			"scrollCollapse": true,
 			"paging": false,
 			"columns": [
-				{ "width": "5%" },
 				{ "width": "55%" },
 				{ "width": "10%" },
-				{ "width": "15%" },
+				{ "width": "20%" },
 				{ "width": "15%" }
-			],
-			"order": [[ 4, "desc" ]]
+			]
 		});
 	} );
 </script>

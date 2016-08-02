@@ -34,7 +34,7 @@
 							<% if post.status == 2%>
 								<i class="glyphicon glyphicon-ban-circle", style = "color: red;"></i>
 							<%end%>
-							<%=link_to post.title,topic_article_path(@topic,post) %>
+							<%= link_to '<i class="glyphicon glyphicon-circle-arrow-right"></i> '.html_safe+post.title, topic_article_path(@topic,post) %>		
 						</td>
 						<td><%= post.user.nickname%></td>
 						<td><%= time_ago_in_words(post.created_at)%></td>
@@ -42,7 +42,7 @@
 						<td><%= link_to '<i class="glyphicon glyphicon-eye-open gportal"></i>'.html_safe, topic_article_path(@topic,post) %>
 							<%if current_user.category == 1 or current_user == post.user%>
 							<%= link_to '<i class="glyphicon glyphicon-pencil gportal"></i>'.html_safe, edit_topic_article_path(@topic,post) %>
-							<%= link_to '<i class="glyphicon glyphicon-trash gportal"></i>'.html_safe,article_comment_path(@topic,post), method: :delete, data: { confirm: '¿Está seguro de eliminar este tema de discusión?' } %>
+							<%= link_to '<i class="glyphicon glyphicon-trash gportal"></i>'.html_safe,topic_article_path(@topic,post), method: :delete, data: { confirm: '¿Está seguro de eliminar este tema de discusión?' } %>
 							<%end%>
 						</td>
 					</tr>
@@ -53,6 +53,7 @@
 </div>
 
 <%=link_to 'Postear', new_topic_article_path(@topic), :class=>'btn btn-default btn-form'%>
+<%=link_to 'Volver', topics_path, :class=>'btn btn-default btn-form'%>
 <%if current_user.category == 1%>
 	<%= link_to 'Activar o desactivar Topico', edit_topic_path(@topic), :class=>"btn btn-default btn-form"%>
 <%end%>

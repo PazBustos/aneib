@@ -1,4 +1,5 @@
 <h1><%=@article.topic.title%>: <%=@article.title%>: </h1>
+<%=link_to "Volver a "+@article.topic.title, @article.topic,:class=>'btn btn-default btn-form'%>
 <%if @article.topic.status == 2%>
 	<div class="alert alert-alert">
 		Este tópico está inactivo, solo puede verlo un administrador
@@ -16,21 +17,23 @@
 		<h4>Comentarios</h4>
 		<p class="note">2000 caracteres máximo.</p>
 		<%= render "comments/form" %>
-		<ul>
-			<% @article.comments.order("created_at DESC").each do |comment| %>
-				<hr><p>
-					<%if comment.user.photo.present?%>
-						<%= image_tag comment.user.photo.url(:mini), :class =>"profile-picture" %> 
-					<%else%>
-						<%= link_to '<i class="glyphicon glyphicon-globe"></i>'.html_safe, comment.user %> 
-					<%end %>
-					<%= link_to comment.user.nickname, comment.user%> comentó hace <%= time_ago_in_words(comment.created_at)%>: 
-					<%if current_user == comment.user or current_user.category == 1 %><%= link_to 'Eliminar', article_comment_path(@article,comment), method: :delete, data: { confirm: '¿Está seguro de eliminar el comentario?' }, :class => "btn btn-default btn-comment"%>
-					<%end%>	
-				</p>
-				<p><%=raw comment.body%></p>	
-			<%end%>
-		</ul>
+		<% @article.comments.order("created_at DESC").each do |comment| %>
+			<hr class = "hr-comment">
+				<table class="table-comment">
+					<tr>
+						<td>
+							<%= image_tag comment.user.photo.url(:mini), :class =>"comment-picture" %> 
+						</td>
+						<td>
+							<%= link_to comment.user.nickname, comment.user%> comentó hace <%= time_ago_in_words(comment.created_at)%>: 
+							<%if current_user == comment.user or current_user.category == 1 %><%= link_to 'Eliminar', article_comment_path(@article,comment), method: :delete, data: { confirm: '¿Está seguro de eliminar el comentario?' }, :class => "btn btn-default btn-comment"%>
+							<%end%>	
+							<p><%=raw comment.body%></p>
+						</td>
+					</tr>
+				</table>
+		<%end%>
+		<hr class = "hr-comment">
 	</div>	
 </div>
 
