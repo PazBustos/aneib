@@ -1,13 +1,9 @@
 <%= form_for(@finance) do |f| %>
 	<% if @finance.errors.any? %>
 		<div id="error_explanation">
-			<h2><%= pluralize(@finance.errors.count, "error") %> prohibited this finance from being saved:</h2>
-
-			<ul>
 			<% @finance.errors.full_messages.each do |message| %>
-				<li><%= message %></li>
+				<%flash[:alert] = "No se pudo generar el reporte de cuentas por lo siguiente:<br>".html_safe+message %>
 			<% end %>
-			</ul>
 		</div>
 	<% end %>
 <div class="panel panel-default panel-aneib">

@@ -14,6 +14,22 @@ h1,h2,h3,h4
 	color: #2B81F2;
 
 }
+h1
+{
+	font-size: 30px;
+}
+h2
+{
+	font-size: 24px;
+}
+h3
+{
+	font-size: 20px;
+}
+h4
+{
+	font-size: 18px;
+}
 p
 {
 	color: black;
@@ -52,6 +68,10 @@ p
 {
 	display: inline-block;
 	min-width: 94%;
+}
+.be-green
+{
+	color: #83BC20;
 }
 .breadcrumb
 {

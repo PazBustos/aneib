@@ -10,4 +10,11 @@ class Finance < ActiveRecord::Base
 		'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
 	]
 
+	#Validaciones
+	validates :title, presence: true, uniqueness: true, length: {maximum: 100}
+	validates :description, presence: true, length: {maximum: 10000}
+	validates :category, presence: true
+	validates :date, presence: true
+
+
 end

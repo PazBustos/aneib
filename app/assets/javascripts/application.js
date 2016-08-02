@@ -22,9 +22,6 @@
 //= require bootstrap-sprockets
 //= require moment 
 //= require fullcalendar
-//= require bootstrap-datetimepicker
-//= require pickers
-//= require moment/es
 
 //= require froala_editor.min.js
 //= require languages/es.js

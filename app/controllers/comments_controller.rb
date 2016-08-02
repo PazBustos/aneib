@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
 				format.html { redirect_to topic_article_path(@topic,@article), notice: 'El comentario ha sido agregado' }
 				format.json { render :show, status: :created, location: topic_article_path(@topic,@article) }
 			else
-				format.html { render :new }
+				format.html { redirect_to topic_article_path(@topic,@article), alert: 'El comentario no fue publicado. Máximo 2000 caracteres.'}
 				format.json { render json: @comment.errors, status: :unprocessable_entity }
 			end
 		end

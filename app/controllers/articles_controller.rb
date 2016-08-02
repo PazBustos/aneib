@@ -55,7 +55,7 @@ class ArticlesController < ApplicationController
 	def destroy
 		@article.destroy
 		respond_to do |format|
-			format.html { redirect_to articles_url, notice: 'El post ha sido eliminado exitosamente' }
+			format.html { redirect_to @topic, notice: 'El post ha sido eliminado exitosamente' }
 			format.json { head :no_content }
 		end
 	end

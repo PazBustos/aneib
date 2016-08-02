@@ -23,7 +23,7 @@
 				<tbody>
 					<% @actas.each do |resource| %>
 						<tr>
-						<td><%=resource.name%></td>
+						<td> <%=link_to '<i class="glyphicon glyphicon-circle-arrow-right"></i> '.html_safe+resource.name,resource %></td>
 						<td><%=l resource.date%></td>
 						<td><%= resource.user.nickname%></td>
 						<td>
@@ -51,7 +51,7 @@
 				<tbody>
 					<% @planillas.each do |resource| %>
 						<tr>
-						<td><%=resource.name%></td>
+						<td> <%=link_to '<i class="glyphicon glyphicon-circle-arrow-right"></i> '.html_safe+resource.name,resource %></td>
 						<td><%=l resource.date%></td>
 						<td><%= resource.user.nickname%></td>
 						<td>
@@ -79,7 +79,7 @@
 				<tbody>
 					<% @extras.each do |resource| %>
 						<tr>
-						<td><%=resource.name%></td>
+						<td> <%=link_to '<i class="glyphicon glyphicon-circle-arrow-right"></i> '.html_safe+resource.name,resource %></td>
 						<td><%=l resource.date%></td>
 						<td><%= resource.user.nickname%></td>
 						<td>

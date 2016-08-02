@@ -1,13 +1,9 @@
 <%= form_for(@organization) do |f| %>
 	<% if @organization.errors.any? %>
 		<div id="error_explanation">
-			<h2><%= pluralize(@organization.errors.count, "error") %> prohibited this organization from being saved:</h2>
-
-			<ul>
 			<% @organization.errors.full_messages.each do |message| %>
-				<li><%= message %></li>
+				<%flash[:alert] = "No se pudo generar el artículo por lo siguiente:<br>".html_safe+message %>
 			<% end %>
-			</ul>
 		</div>
 	<% end %>
 <div class="panel panel-default panel-aneib">

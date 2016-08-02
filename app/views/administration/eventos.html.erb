@@ -23,7 +23,7 @@
 				<tbody>
 					<% @vigentes.each do |event| %>
 						<tr>
-							<td> <%= event.title %></td>
+							<td> <%=link_to '<i class="glyphicon glyphicon-circle-arrow-right"></i> '.html_safe+event.title,event %></td>
 							<td> <%= event.user.nickname%> </td>
 							<td> <%= event.start_time%></td>
 							<td> <%= event.start_time%></td>
@@ -54,7 +54,7 @@
 				<tbody>
 					<% @realizados.each do |event| %>
 						<tr>
-							<td> <%= event.title %></td>
+							<td> <%=link_to '<i class="glyphicon glyphicon-circle-arrow-right"></i> '.html_safe+event.title,event %></td>
 							<td> <%= event.user.nickname%> </td>
 							<td> <%= event.start_time%></td>
 							<td> <%= event.start_time%></td>
@@ -85,7 +85,7 @@
 				<tbody>
 					<% @cancelados.each do |event| %>
 						<tr>
-							<td> <%= event.title %></td>
+							<td> <%=link_to '<i class="glyphicon glyphicon-circle-arrow-right"></i> '.html_safe+event.title,event %></td>
 							<td> <%= event.user.nickname%> </td>
 							<td> <%= event.start_time%></td>
 							<td> <%= event.start_time%></td>

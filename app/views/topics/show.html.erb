@@ -1,53 +1,60 @@
 <%if @topic.status == 2%>
 	<div class="alert alert-alert">
-		Este tópico está inactivo, solo puede verlo un administrador
+		Este tema de discusión está inactivo, solo puede verlo un administrador
 	</div>
 <%end%>
-<h1>Bienvenido al tópico de <%=@topic.title%></h1>
+<h1>Tema de discusión: <%=@topic.title%> </h1>
 
-<p> <%=raw @topic.description %> </p>
+<div class="panel panel-default panel-aneib">
+	<div class="panel-heading">
+		Descripción y post de <%=@topic.title%>
+	</div>
+	<div class="panel-body">
+		<p> <%=raw @topic.description %> </p>
+	</div>
+	<div class="panel-footer">
+		<table id="post_dt">
+			<thead>
+				<tr>
+					<th>Título del post</th>
+					<th>Autor</th>
+					<th>Publicado</th>
+					<th>Comentarios</th>
+					<th>Opciones</th>
+				</tr>
+			</thead>
 
-<table id="post_dt">
-	<thead>
-		<tr>
-			<th>#</th>
-			<th>Título del post</th>
-			<th>Autor</th>
-			<th>Publicado</th>
-			<th>Comentarios</th>
-			<th>Opciones</th>
-		</tr>
-	</thead>
+			<tbody>
+				<%if current_user.category != 1
+					@articles = @articles.where(status: 1)
+				end%>
+				<%@articles.each do |post|%>
+					<tr>
+						<td>
+							<% if post.status == 2%>
+								<i class="glyphicon glyphicon-ban-circle", style = "color: red;"></i>
+							<%end%>
+							<%=link_to post.title,topic_article_path(@topic,post) %>
+						</td>
+						<td><%= post.user.nickname%></td>
+						<td><%= time_ago_in_words(post.created_at)%></td>
+						<td><%= post.comments.count%></td>
+						<td><%= link_to '<i class="glyphicon glyphicon-eye-open gportal"></i>'.html_safe, topic_article_path(@topic,post) %>
+							<%if current_user.category == 1 or current_user == post.user%>
+							<%= link_to '<i class="glyphicon glyphicon-pencil gportal"></i>'.html_safe, edit_topic_article_path(@topic,post) %>
+							<%= link_to '<i class="glyphicon glyphicon-trash gportal"></i>'.html_safe,article_comment_path(@topic,post), method: :delete, data: { confirm: '¿Está seguro de eliminar este tema de discusión?' } %>
+							<%end%>
+						</td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
 
-	<tbody>
-		<%if current_user.category != 1
-			@articles = @articles.where(status: 1)
-		end%>
-		<%@articles.each do |post|%>
-			<tr>
-				<td><%=link_to post.id, topic_article_path(@topic,post) %></td>
-				<td>
-					<% if post.status == 2%>
-						<i class="glyphicon glyphicon-ban-circle", style = "color: red;"></i>
-					<%end%>
-					<%=link_to post.title,topic_article_path(@topic,post) %>
-				</td>
-				<td><%= post.user.nickname%></td>
-				<td><%= time_ago_in_words(post.created_at)%></td>
-				<td><%= post.comments.count%></td>
-				<td><%= link_to '<i class="glyphicon glyphicon-eye-open gportal"></i>'.html_safe, topic_article_path(@topic,post) %>
-					<%if current_user.category == 1 or current_user == post.user%>
-					<%= link_to '<i class="glyphicon glyphicon-pencil gportal"></i>'.html_safe, edit_topic_article_path(@topic,post) %>
-					<%end%>
-				</td>
-			</tr>
-		<% end %>
-	</tbody>
-</table>
 <%=link_to 'Postear', new_topic_article_path(@topic), :class=>'btn btn-default btn-form'%>
 <%if current_user.category == 1%>
 	<%= link_to 'Activar o desactivar Topico', edit_topic_path(@topic), :class=>"btn btn-default btn-form"%>
-	<p class="note">Acá podrás cerrar o cambiar el nombre a un tópico</p>
 <%end%>
 
 
@@ -60,14 +67,14 @@
 			"scrollCollapse": true,
 			"paging": false,
 			"columns": [
-				{ "width": "5%" },
-				{ "width": "50%" },
+				{ "width": "45%" },
 				{ "width": "20%" },
-				{ "width": "20%" },
+				{ "width": "15%" },
 				{ "width": "5%" },
-				{ "width": "5%" }
+				{ "width": "15%" }
 			],
 			"order": [[ 1, "desc" ]]
 		});
 	} );
 </script>
+

@@ -1,32 +1,39 @@
 <h1>Foro ANEIB</h1>
+<div class="panel panel-default panel-aneib">
+	<div class="panel-heading">
+		Temas de discusión
+	</div>
+	<div class="panel-body">
+		<table id="forum_dt">
+			<thead>
+				<tr>
+				<th></th>
+				<th>Título del tema</th>
+				<th># Posts</th>
+				<th>Creación</th>
+				<th>Administrador</th>
+				</tr>
+			</thead>
 
-<table id="forum_dt">
-	<thead>
-		<tr>
-		<th></th>
-		<th>Título del área</th>
-		<th># Posts</th>
-		<th>Creación</th>
-		<th>Administrador</th>
-		</tr>
-	</thead>
+			<tbody>
+				<% @topics.each do |topic| %>
+				<tr>
+					<td><%= link_to '<i class="glyphicon glyphicon-circle-arrow-right"></i>'.html_safe, topic %></td>
+					<td><%= link_to topic.title, topic %></td>
+					<td><%= topic.articles.count %></td>
+					<td><%= time_ago_in_words(topic.created_at)%></td>
+					<td><%= topic.user.nickname%></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>	
+	</div>
+</div>
 
-	<tbody>
-		<% @topics.each do |topic| %>
-		<tr>
-			<td><%= link_to '<i class="glyphicon glyphicon-circle-arrow-right"></i>'.html_safe, topic %></td>
-			<td><%= link_to topic.title, topic %></td>
-			<td><%= topic.articles.count %></td>
-			<td><%= time_ago_in_words(topic.created_at)%></td>
-			<td><%= topic.user.nickname%></td>
-		</tr>
-		<% end %>
-	</tbody>
-</table>
 
 
 <%if current_user.category == 1%>
-<%= link_to 'Administar áreas', administration_topicos_path, :class =>'btn btn-default btn-form' %>
+<%= link_to 'Administar temas de discusión', administration_topicos_path, :class =>'btn btn-default btn-form' %>
 <%end%>
 
 <script>

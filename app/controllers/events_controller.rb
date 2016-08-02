@@ -37,6 +37,42 @@ class EventsController < ApplicationController
 		@event = current_user.events.new(event_params)
 		respond_to do |format|
 			if @event.save
+				err=0
+				a=0
+				b=0
+				c=0
+				if @event.end_time ==  @event.start_time
+					@event.update(end_time: @event.end_time+1.hours)
+					err = 1
+					a = 1
+				end
+				if @event.end_time < @event.start_time
+					@aux = @event.end_time
+					@event.update(end_time: @event.start_time)
+					@event.update(start_time: @aux)
+					err = 1;
+					b = 1
+				end
+				if @event.start_time < @event.created_at - 30.minutes 
+					@diferencia = @event.end_time - @event.start_time
+					@event.update(start_time: Time.now) 
+					@event.update(end_time: Time.now+@diferencia)
+					err = 1;
+					c = 1
+				end
+				if err == 1
+					flash[:alert] = "La fecha ingresada no es válida, se ha puesto una fecha estimativa válida automáticamente."
+					if a == 1
+						flash[:alert] = "Las fechas no pueden ser iguales."
+					end
+					if b == 1
+						flash[:alert] = "La fecha de término no puede ser anterior a la de inicio."
+					end
+					if c == 1
+						flash[:alert] = "Las fechas no pueden ser menor a la fecha actual"
+					end
+				end
+				
 				format.html { redirect_to @event, notice: 'El evento ha sido creado correctamente.' }
 				format.json { render :show, status: :created, location: @event }
 			else

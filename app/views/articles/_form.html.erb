@@ -2,13 +2,9 @@
 <%= form_for([@topic,@article]) do |f| %>
 	<% if @article.errors.any? %>
 		<div id="error_explanation">
-			<h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
-
-			<ul>
 			<% @article.errors.full_messages.each do |message| %>
-				<li><%= message %></li>
+				<%flash[:alert] = "No se pudo generar el post por lo siguiente:<br>".html_safe+message %>
 			<% end %>
-			</ul>
 		</div>
 	<% end %>
 		<%if orden == "crear" or orden=="editar" or orden=="administrar"%>

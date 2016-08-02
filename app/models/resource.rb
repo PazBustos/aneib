@@ -17,5 +17,8 @@ class Resource < ActiveRecord::Base
 		'application/mspowerpoint','application/vnd.ms-powerpoint',
 		'application/vnd.openxmlformats-officedocument.presentationml.presentation'
 	]
+
+	validates :name, presence: true, uniqueness: true, length: {maximum: 100} #no pueden haber dos titulos iguales
+	validates :description, presence: true, length: {minimum: 20, maximum: 10000} 
 	
 end

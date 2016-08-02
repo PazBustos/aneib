@@ -3,7 +3,7 @@ class CreateEventComments < ActiveRecord::Migration
     create_table :event_comments do |t|
       t.text :body
       t.references :user, index: true, foreign_key: true
-      t.references :event, index: true, foreign_key: true
+      t.references :event, index: true, foreign_key: true, on_delete: :cascade
 
       t.timestamps null: false
     end

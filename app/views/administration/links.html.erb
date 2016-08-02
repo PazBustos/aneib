@@ -18,7 +18,7 @@
 			<tbody>
 				<% @interest_links.each do |interest_link| %>
 					<tr>
-						<td> <%= interest_link.name %></td>
+						<td> <%=link_to '<i class="glyphicon glyphicon-circle-arrow-right"></i> '.html_safe+interest_link.name,interest_link %></td>
 						<td> <%= interest_link.url%> </td>
 						<td> 
 						<%= link_to '<i class="glyphicon glyphicon-pencil gportal"></i>'.html_safe, edit_interest_link_path(interest_link) %> 

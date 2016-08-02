@@ -1,5 +1,4 @@
-<h1>Eventos <button type="button" class="btn btn-default" id:"btnEvent" data-trigger="focus" data-container="body" data-toggle="btnEvent"> ? </button></h1>
-
+<h1>Eventos</h1>
 <% if user_signed_in? && current_user.category != 3 %>
 	<%= link_to 'Nuevo evento', new_event_path, :class => 'btn btn-default btn-form'%>
 	<% if current_user.category == 1 %>
@@ -36,15 +35,5 @@
 
 		})
 	});
-	$(function () {
-		$('[data-toggle="btnEvent"]').popover(
-			{
-				title: 'Eventos',
-				html: 'true', 
-				content: '<p>Los <strong>Eventos</strong> son	actividades, reuniones y talleres a los que la red invita.</p><p>Solo aparecerán en el calendario los eventos disponibles.</p>',
-				template: '<div class="popover popover-rease"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>'
-			}
-		)
-	})
 </script>
 

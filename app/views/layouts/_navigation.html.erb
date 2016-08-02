@@ -89,7 +89,7 @@
 			<i class="glyphicon glyphicon-leaf"></i> Foro
 		<span class="caret"></span></a>
 		<ul class="dropdown-menu" role="navigation">
-			<li class="dropdown-header"> áreas</li>
+			<li class="dropdown-header"> <h4 class="be-green">Temas de discusión</h4></li>
 			<% @topics.last(5).each do |topic|%>
 				<li>
 					<%=link_to topic.title.truncate(25), topic%>

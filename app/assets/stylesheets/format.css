@@ -84,13 +84,18 @@
 }
 
 .sidebar-nav li a:hover,
-.sidebar-nav li.active,
 .sidebar-nav li a:focus {
 	color: white;
 	font-weight: bold;
 	background: #83BC20;
 	text-decoration: none;
 }
+.sidebar-nav li.active > a{
+    color: white;
+    background: #83BC20;
+    font-weight: bold;
+ }
+
 
 .sidebar-nav > .sidebar-brand {
 	height: 100px;

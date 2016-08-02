@@ -15,7 +15,7 @@
 			<tbody>
 				<% @portals.each do |portal| %>
 					<tr>
-						<td> <%= portal.title %></td>
+						<td> <%=link_to '<i class="glyphicon glyphicon-circle-arrow-right"></i> '.html_safe+portal.title,portal %></td>
 						<td> <%= portal.user.nickname%> </td>
 						<td> 
 						<%= link_to '<i class="glyphicon glyphicon-eye-open gportal"></i>'.html_safe, portal %>				

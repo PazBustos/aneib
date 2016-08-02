@@ -1,13 +1,9 @@
 <%= form_for(@contact) do |f| %>
 	<% if @contact.errors.any? %>
 		<div id="error_explanation">
-		<h2><%= pluralize(@contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
-
-		<ul>
-		<% @contact.errors.full_messages.each do |message| %>
-		<li><%= message %></li>
-		<% end %>
-		</ul>
+			<% @contact.errors.full_messages.each do |message| %>
+				<%flash[:alert] = "No se pudo enviar el contacto por lo siguiente:<br>".html_safe+message %>
+			<% end %>
 		</div>
 	<% end %>
 	<div class="panel panel-default panel-aneib">

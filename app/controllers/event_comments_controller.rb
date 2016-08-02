@@ -11,7 +11,7 @@ class EventCommentsController < ApplicationController
 				format.html { redirect_to @event, notice: 'Tu comentario ha sido realizado correctamente.' }
 				format.json { render :show, status: :created, location: @event_comment }
 			else
-				format.html { render :new }
+				format.html { redirect_to @event, alert: 'El comentario no pudo ser realizado (Entre 2 y 400 caracteres)' }
 				format.json { render json: @event_comment.errors, status: :unprocessable_entity }
 			end
 		end
@@ -20,7 +20,7 @@ class EventCommentsController < ApplicationController
 	def destroy
 		@event_comment.destroy
 		respond_to do |format|
-			format.html { redirect_to event_comments_url, notice: 'Se ha eliminado el comentario correctamente.' }
+			format.html { redirect_to @event, notice: 'Se ha eliminado el comentario correctamente.' }
 			format.json { head :no_content }
 		end
 	end

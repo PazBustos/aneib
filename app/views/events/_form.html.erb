@@ -1,11 +1,12 @@
 <%orden ||= "Crear"%>
 <%= form_for(@event) do |f| %>
 	<% if @event.errors.any? %>
-		<% @event.errors.full_messages.each do |message| %>
-			<%flash[:alert] = message %>
-		<% end %>
+		<div id="error_explanation">
+			<% @event.errors.full_messages.each do |message| %>
+				<%flash[:alert] = "No se pudo generar el evento por lo siguiente:<br>".html_safe+message %>
+			<% end %>
+		</div>
 	<% end %>
-
 	<div class="panel panel-default panel-aneib" >
 		<div class="panel-heading">Datos del evento</div>
 			<div class="panel-body">

@@ -24,7 +24,7 @@
 				<tbody>
 					<% @ingresos.each do |finance| %>
 						<tr>
-						<td><%=finance.title%></td>
+						<td> <%=link_to '<i class="glyphicon glyphicon-circle-arrow-right"></i> '.html_safe+finance.title,finance %></td>
 						<td><%=l finance.date%></td>
 						<td><%= finance.user.nickname%></td>
 						<td>
@@ -54,7 +54,7 @@
 				<tbody>
 					<% @egresos.each do |finance| %>
 						<tr>
-						<td><%=finance.title%></td>
+						<td> <%=link_to '<i class="glyphicon glyphicon-circle-arrow-right"></i> '.html_safe+finance.title,finance %></td>
 						<td><%=l finance.date%></td>
 						<td><%= finance.user.nickname%></td>
 						<td>
@@ -84,7 +84,7 @@
 				<tbody>
 					<% @balances.each do |finance| %>
 						<tr>
-						<td><%=finance.title%></td>
+						<td> <%=link_to '<i class="glyphicon glyphicon-circle-arrow-right"></i> '.html_safe+finance.title,finance %></td>
 						<td><%=l finance.date%></td>
 						<td><%= finance.user.nickname%></td>
 						<td>

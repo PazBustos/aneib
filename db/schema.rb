@@ -106,7 +106,6 @@ ActiveRecord::Schema.define(version: 20160801194720) do
     t.integer  "user_id",    limit: 4
     t.string   "title",      limit: 255
     t.text     "body",       limit: 65535
-    t.integer  "priority",   limit: 4
     t.integer  "section",    limit: 4
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false

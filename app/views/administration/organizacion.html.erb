@@ -16,8 +16,8 @@
 			<tbody>
 				<% @organizations.each do |organization| %>
 					<tr>
-						<td> <%= organization.title %></td>
-						<td> <%= organization.user.nickname%> </td>
+						<td> <%=link_to '<i class="glyphicon glyphicon-circle-arrow-right"></i> '.html_safe+organization.title,organization %></td>
+						<td> <%= organization.user.nicktitle%> </td>
 						<td> 
 						<%= link_to '<i class="glyphicon glyphicon-eye-open gorganization"></i>'.html_safe, organization %>				
 						<%= link_to '<i class="glyphicon glyphicon-pencil gorganization"></i>'.html_safe, edit_organization_path(organization)%> 

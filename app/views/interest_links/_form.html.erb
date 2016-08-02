@@ -1,17 +1,11 @@
 <%= form_for(@interest_link) do |f| %>
 	<% if @interest_link.errors.any? %>
 		<div id="error_explanation">
-			<h2>
-				<%= pluralize(@interest_link.errors.count, "error") %> prohibited this interest_link from being saved:
-			</h2>
-
-			<ul>
-				<% @interest_link.errors.full_messages.each do |message| %>
-					<li><%= message %></li>
-				<% end %>
-			</ul>
+			<% @interest_link.errors.full_messages.each do |message| %>
+				<%flash[:alert] = "No se pudo generar el link por lo siguiente:<br>".html_safe+message %>
+			<% end %>
 		</div>
-	<% end %>	
+	<% end %>
 	<div class="panel panel-default panel-aneib">
 		<div class="panel-heading">
 			Datos de la red social
@@ -60,7 +54,7 @@
 			</div>
 			<div class="field">
 				<%= f.label :url, "Dirección web" %>
-				<%= f.text_field :url, :class=>'form-control',:placeholder => 'Página web. Ejemplo: http://www.ejemplo.com' %>
+				<%= f.url_field :url, :class=>'form-control',:placeholder => 'Página web. Ejemplo: http://www.ejemplo.com' %>
 			</div>
 		</div>	
 	</div>		

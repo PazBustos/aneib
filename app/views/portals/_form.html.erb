@@ -3,13 +3,9 @@
 <%= form_for(@portal) do |f| %>
 	<% if @portal.errors.any? %>
 		<div id="error_explanation">
-			<h2><%= pluralize(@portal.errors.count, "error") %> prohibited this portal from being saved:</h2>
-
-			<ul>
-				<% @portal.errors.full_messages.each do |message| %>
-					<li><%= message %></li>
-				<% end %>
-			</ul>
+			<% @portal.errors.full_messages.each do |message| %>
+				<%flash[:alert] = "No se pudo generar la sección por lo siguiente:<br>".html_safe+message %>
+			<% end %>
 		</div>
 	<% end %>
 

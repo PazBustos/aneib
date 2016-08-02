@@ -2,35 +2,37 @@
 <%= form_for(@topic) do |f| %>
 	<% if @topic.errors.any? %>
 		<div id="error_explanation">
-		<h2>
-			<%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:
-		</h2>
-		<ul>
 			<% @topic.errors.full_messages.each do |message| %>
-				<li><%= message %></li>
+				<%flash[:alert] = "No se pudo generar el tema de discusión por lo siguiente:<br>".html_safe+message %>
 			<% end %>
-		</ul>
 		</div>
 	<% end %>
-
-	<div class="field">
-		<%= f.label :title, "Título" %>
-		<%= f.text_field :title, :class=>'form-control' %>
-	</div>
-	<div class="field">
-		<%=f.label :description, "Descripción"%>
-		<%= f.text_area :description, :placeholder=> "Escribir aquí.", :id=>"eg-basic",:required=>true %>
-	</div>
-	<%if orden=="administrar"%>
-		<div class="field">
-			<%=f.label :status, "Estado"%>
-			<%= f.select(:status, [['Activo', 1],['Inactivo', 2]], {:include_blank => '-- Seleccione el estado --' }, { :class => 'form-control', :required => true }) %>
+	<div class="panel panel-deafult panel-aneib">
+		<div class="panel-heading">
+			Datos del tema de discusión
 		</div>
-	<%end%>
+		<div class="panel-body">
+			<div class="field">
+				<%= f.label :title, "Título" %>
+				<%= f.text_field :title, :class=>'form-control' %>
+			</div>
+			<div class="field">
+				<%=f.label :description, "Descripción"%>
+				<%= f.text_area :description, :placeholder=> "Escribir aquí.", :id=>"eg-basic",:required=>true %>
+			</div>
+			<%if orden=="administrar"%>
+				<div class="field">
+					<%=f.label :status, "Estado"%>
+					<%= f.select(:status, [['Activo', 1],['Inactivo', 2]], {:include_blank => '-- Seleccione el estado --' }, { :class => 'form-control', :required => true }) %>
+				</div>
+			<%end%>
+		</div>
+	
+	</div>
+
 	<div class="actions">
 		<%= f.submit 'Aceptar', :class=>'btn btn-default btn-form' %>
 		<%= link_to 'Volver', administration_topicos_path,:class=>'btn btn-default btn-form' %>
 	</div>
-
-
 <% end %>
+

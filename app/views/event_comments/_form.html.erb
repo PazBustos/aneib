@@ -1,13 +1,9 @@
 <%= form_for([@event,@event_comment]) do |f| %>
 	<% if @event_comment.errors.any? %>
 		<div id="error_explanation">
-			<h2><%= pluralize(@event_comment.errors.count, "error") %> prohibited this event_comment from being saved:</h2>
-
-			<ul>
 			<% @event_comment.errors.full_messages.each do |message| %>
-				<li><%= message %></li>
+				<%flash[:alert] = "No se pudo generar el comentario por lo siguiente:"+message %>
 			<% end %>
-			</ul>
 		</div>
 	<% end %>
 	

@@ -4,7 +4,6 @@ class CreatePortals < ActiveRecord::Migration
 			t.references :user, index: true, foreign_key: true
 			t.string :title
 			t.text :body
-			t.integer :priority
 			t.integer :section
 
 			t.timestamps null: false

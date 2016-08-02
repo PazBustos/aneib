@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+	match "/404" => "errors#error404", via: [ :get, :post, :patch, :delete ]
 	get 'users/user_list'
 	get 'portals/somos'
 	get 'portals/coneib'
@@ -10,20 +11,17 @@ Rails.application.routes.draw do
 	get 'portals/newNotice'
 	get 'portals/newEstatuto'
 	get 'portals/newSocio'
-
 	get 'administration/somos'
 	get 'administration/coneib'
 	get 'administration/estatuto'
 	get 'administration/socio'
 	get 'administration/noticias'
-	get 'administration/galeria'
 	get 'administration/cuentas'
 	get 'administration/organizacion'
 	get 'administration/recursos'
 	get 'administration/topicos'
 	get 'administration/eventos'
 	get 'administration/links'
-
 	get 'events/listado'
 
 	resources :resources
@@ -32,19 +30,18 @@ Rails.application.routes.draw do
 	resources :portals
 	resources :administration, only: [:index]
 	resources :contacts, only: [:index, :create]
+	resources :interest_links, except: [:index, :show]
 	resources :events do
-		resources :event_comments
+		resources :event_comments, only: [:create,:destroy]
 	end
 	resources :topics do
 		resources :articles, except: [:index]
 	end
 	resources :articles do
-		resources :comments
+		resources :comments, only: [:create,:destroy]
 	end
 	devise_for :users, :controllers => { :registrations => "users/registrations"}
 	resources :users, only: [:index, :show, :edit, :update]
-
-	resources :interest_links, except: [:index, :show]
 
 	root 'portals#index'
 

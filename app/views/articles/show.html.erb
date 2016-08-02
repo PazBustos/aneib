@@ -1,4 +1,4 @@
-<h1><%=@article.topic.title%></h1>
+<h1><%=@article.topic.title%>: <%=@article.title%>: </h1>
 <%if @article.topic.status == 2%>
 	<div class="alert alert-alert">
 		Este tópico está inactivo, solo puede verlo un administrador
@@ -6,22 +6,19 @@
 <%end%>
 <div class="panel panel-default panel-aneib">
 	<div class="panel-heading">
-		<%= @article.title %>
+		<%=l @article.created_at%>
 	</div>
 	<div class="panel-body">
-		<p><strong><%= @article.user.nickname %></strong> dijo:</p>
+		<p><strong><%=link_to @article.user.nickname, @article.user %></strong> dijo:</p>
 		<%=raw @article.description %>
 	</div>
-</div>
-<div class="panel panel-default panel-aneib">
-	<div class="panel-heading">
-		 Comentarios
-	</div>
-	<div class="panel-body">
-	<%= render "comments/form" %>
+	<div class="panel-footer">
+		<h4>Comentarios</h4>
+		<p class="note">2000 caracteres máximo.</p>
+		<%= render "comments/form" %>
 		<ul>
 			<% @article.comments.order("created_at DESC").each do |comment| %>
-				<p>
+				<hr><p>
 					<%if comment.user.photo.present?%>
 						<%= image_tag comment.user.photo.url(:mini), :class =>"profile-picture" %> 
 					<%else%>
@@ -31,9 +28,9 @@
 					<%if current_user == comment.user or current_user.category == 1 %><%= link_to 'Eliminar', article_comment_path(@article,comment), method: :delete, data: { confirm: '¿Está seguro de eliminar el comentario?' }, :class => "btn btn-default btn-comment"%>
 					<%end%>	
 				</p>
-				<p><%=comment.body%></p>	
+				<p><%=raw comment.body%></p>	
 			<%end%>
 		</ul>
-	</div>
+	</div>	
 </div>
 

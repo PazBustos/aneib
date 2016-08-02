@@ -9,7 +9,6 @@
 
 <%= link_to 'Volver', events_path, :class => "btn btn-default btn-form" %>
 
-
 <div class="panel panel-default panel-aneib" >
 	<div class="panel-heading">
 		<%= @event.title %>
@@ -17,10 +16,10 @@
 	
 	<div class="panel-body">
 
-		<h2>Descripción</h2>
+		<h4>Descripción</h4>
 		 <p><%=raw @event.description %></p>
 
-		<h2> Información </h2>
+		<h4> Información </h4>
 		<p><strong>Dirección: </strong><%= @event.address %></p>
 		<p><strong>Estado: </strong>
 		<% if @event.status == 1%>
@@ -41,17 +40,12 @@
 
 		<p><strong>Fecha y hora de término: </strong><%=l @event.end_time %></p>
 	</div>
-</div>
-
-<%if user_signed_in?%>
-	<div class="panel panel-default panel-aneib">
-		<div class="panel-heading">
-			 Comentarios
-		</div>
-		<div class="panel-body">
-		<%= render "event_comments/form" %>
+	<div class="panel-footer">
+		<%if user_signed_in?%>
+			<h4>Comentarios</h4>
+			<%= render "event_comments/form" %>
 			<ul>
-				<% @event.event_comments.order("created_at DESC").each do |event_comment| %>
+				<% @event.event_comments.order("created_at DESC").each do |event_comment| %><hr>
 					<p>
 						<%if event_comment.user.photo.present?%>
 							<%= image_tag event_comment.user.photo.url(:mini), :class =>"profile-picture" %> 
@@ -65,6 +59,7 @@
 					<p><%=event_comment.body%></p>	
 				<%end%>
 			</ul>
-		</div>
+		<%end%>		
 	</div>
-<%end%>
+</div>
+
