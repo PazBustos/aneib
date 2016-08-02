@@ -1,16 +1,21 @@
 class EventsController < ApplicationController
-	before_action :authenticate_user!, except: [:index, :show]
-	before_action :validate_status, except: [:index,:show]
-	before_action :validate_3, except: [:index, :show]
+	before_action :authenticate_user!, except: [:index, :show, :listado]
+	before_action :validate_status, except: [:index,:show, :listado]
+	before_action :validate_3, except: [:index, :show, :listado]
 	before_action :set_event, only: [:show, :edit, :update, :destroy]
 	add_breadcrumb "Eventos", :events_path
 
 	def index
-	@eventnts = Event.all
+		@events = Event.where(status: 1)
 	end
 
 	def show
 		add_breadcrumb @event.title
+		@event_comment = EventComment.new
+		if @event.end_time < Time.now && @event.status == 1
+			@event.update(status: 2)
+			flash[:success] = "Este evento ya fue realizado"
+		end
 	end
 
 	def new
@@ -22,10 +27,14 @@ class EventsController < ApplicationController
 		add_breadcrumb "Editando evento"
 	end
 
+	def listado
+		add_breadcrumb "Todos los eventos"
+		@vigentes = Event.where(status: 1)
+		@realizados = Event.where(status: 2)
+	end
+
 	def create
 		@event = current_user.events.new(event_params)
-		@event.status = 1
-
 		respond_to do |format|
 			if @event.save
 				format.html { redirect_to @event, notice: 'El evento ha sido creado correctamente.' }

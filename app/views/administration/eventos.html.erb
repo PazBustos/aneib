@@ -2,52 +2,148 @@
 <%= link_to "Nueva evento", new_event_path, class:"btn btn-default btn-form"%>
 <div class="panel panel-default panel-aneib">
 	<div class="panel-heading">
-		Listado de eventos
+	<ul class="nav nav-tabs tabRease nav-justified">
+		<li id="event1" onclick="event1()"><a>Vigente</a></li>
+		<li id="event2" onclick="event2()"><a>Realizados</a></li>
+		<li id="event3" onclick="event3()"><a>Cancelados</a></li>
+	</ul>
 	</div>
 	<div class="panel-body">
-		<table id="event_dt">
-			<thead>
-				<tr>
-					<td>Título</td>
-					<td>Autor</td>
-					<td>Inicio</td>
-					<td>Término</td>
-					<td>Administrar</td>
-				</tr>
-			</thead>
-			<tbody>
-				<% @events.each do |event| %>
+		<div id="vigente">
+			<table id="vigente_dt">
+				<thead>
 					<tr>
-						<td> <%= event.title %></td>
-						<td> <%= event.user.nickname%> </td>
-						<td> <%= event.start_date%></td>
-						<td> <%= event.end_date%></td>
-						<td> 
-						<%= link_to '<i class="glyphicon glyphicon-eye-open gevent"></i>'.html_safe, event %>				
-						<%= link_to '<i class="glyphicon glyphicon-pencil gevent"></i>'.html_safe, edit_event_path(event)%> 
-						<%= link_to '<i class="glyphicon glyphicon-trash gevent"></i>'.html_safe, event, method: :delete, data: { confirm: '¿Está seguro de este evento?' } %></td>
+						<td>Título</td>
+						<td>Organizador</td>
+						<td>Inicio</td>
+						<td>Término</td>
+						<td>Opciones</td>
 					</tr>
-				<%end%>
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+					<% @vigentes.each do |event| %>
+						<tr>
+							<td> <%= event.title %></td>
+							<td> <%= event.user.nickname%> </td>
+							<td> <%= event.start_time%></td>
+							<td> <%= event.start_time%></td>
+							<td> 
+								<%= link_to '<i class="glyphicon glyphicon-eye-open gevent"></i>'.html_safe, event %>
+								<%if user_signed_in? && (current_user.category == 1 or event.user = current_user)%>				
+									<%= link_to '<i class="glyphicon glyphicon-pencil gevent"></i>'.html_safe, edit_event_path(event)%> 
+									<%= link_to '<i class="glyphicon glyphicon-trash gevent"></i>'.html_safe, event, method: :delete, data: { confirm: '¿Está seguro de este evento?' } %>
+								<%end%>								
+							</td>
+						</tr>
+					<%end%>
+				</tbody>
+			</table>
+		</div>
+
+		<div id="realizados">
+			<table id="realizados_dt">
+				<thead>
+					<tr>
+						<td>Título</td>
+						<td>Organizador</td>
+						<td>Inicio</td>
+						<td>Término</td>
+						<td>Opciones</td>
+					</tr>
+				</thead>
+				<tbody>
+					<% @realizados.each do |event| %>
+						<tr>
+							<td> <%= event.title %></td>
+							<td> <%= event.user.nickname%> </td>
+							<td> <%= event.start_time%></td>
+							<td> <%= event.start_time%></td>
+							<td> 
+								<%= link_to '<i class="glyphicon glyphicon-eye-open gevent"></i>'.html_safe, event %>
+								<%if user_signed_in? && (current_user.category == 1 or event.user = current_user)%>				
+									<%= link_to '<i class="glyphicon glyphicon-pencil gevent"></i>'.html_safe, edit_event_path(event)%> 
+									<%= link_to '<i class="glyphicon glyphicon-trash gevent"></i>'.html_safe, event, method: :delete, data: { confirm: '¿Está seguro de este evento?' } %>
+								<%end%>								
+							</td>
+						</tr>
+					<%end%>
+				</tbody>
+			</table>
+		</div>
+
+		<div id="cancelados">
+			<table id="cancelados_dt">
+				<thead>
+					<tr>
+						<td>Título</td>
+						<td>Organizador</td>
+						<td>Inicio</td>
+						<td>Término</td>
+						<td>Opciones</td>
+					</tr>
+				</thead>
+				<tbody>
+					<% @cancelados.each do |event| %>
+						<tr>
+							<td> <%= event.title %></td>
+							<td> <%= event.user.nickname%> </td>
+							<td> <%= event.start_time%></td>
+							<td> <%= event.start_time%></td>
+							<td> 
+								<%= link_to '<i class="glyphicon glyphicon-eye-open gevent"></i>'.html_safe, event %>
+								<%if user_signed_in? && (current_user.category == 1 or event.user = current_user)%>				
+									<%= link_to '<i class="glyphicon glyphicon-pencil gevent"></i>'.html_safe, edit_event_path(event)%> 
+									<%= link_to '<i class="glyphicon glyphicon-trash gevent"></i>'.html_safe, event, method: :delete, data: { confirm: '¿Está seguro de este evento?' } %>
+								<%end%>								
+							</td>
+						</tr>
+					<%end%>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </div>
-<%=link_to "Volver", administration_index_path, :class=>"btn btn-default btn-form"%>
-<script>
+
+<script type="text/javascript">
+	document.getElementById('vigente').style.display='block'; 
+	document.getElementById("event1").className = "active"; 
+	document.getElementById('realizados').style.display='none';
+	document.getElementById('cancelados').style.display='none';
+
+	function event1(){
+		document.getElementById('vigente').style.display='block'; 
+		document.getElementById('realizados').style.display='none';
+		document.getElementById('cancelados').style.display='none';
+		document.getElementById("event1").className = "active";
+		document.getElementById("event2").className = "";
+		document.getElementById("event3").className = "";
+	}
+	function event2(){
+		document.getElementById('vigente').style.display='none';	
+		document.getElementById('realizados').style.display='block';
+		document.getElementById('cancelados').style.display='none';
+		document.getElementById("event1").className = "";
+		document.getElementById("event2").className = "active";
+		document.getElementById("event3").className = "";
+
+	}
+	function event3(){
+		document.getElementById('vigente').style.display='none';		
+		document.getElementById('realizados').style.display='none';
+		document.getElementById('cancelados').style.display='block';
+		document.getElementById("event3").className = "active";
+		document.getElementById("event1").className = "";
+		document.getElementById("event2").className = "";
+	}
+
 	$(document).ready(function() {
-		$('#event_dt').DataTable({
+		$($("#vigente_dt,#realizados_dt,#cancelados_dt")).DataTable({
 			"language": {
 				"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
 			},
 			"scrollCollapse": true,
-			"paging": false,
-			"columns": [
-				{ "width": "35%" },
-				{ "width": "15%" },
-				{ "width": "20%" },
-				{ "width": "20%" },
-				{ "width": "10%" }
-			],
+			"paging": false
 		});
 	} );
 </script>
+

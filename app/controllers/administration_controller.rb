@@ -53,7 +53,9 @@ class AdministrationController < ApplicationController
 
 	def eventos
 		add_breadcrumb "Eventos", :administration_eventos_path
-		@events = Event.all
+		@vigentes = Event.where(status: 1)
+		@realizados = Event.where(status: 2)
+		@cancelados = Event.where(status: 3)
 	end
 
 	def links

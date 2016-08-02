@@ -2,8 +2,12 @@
 
 <% if user_signed_in? && current_user.category != 3 %>
 	<%= link_to 'Nuevo evento', new_event_path, :class => 'btn btn-default btn-form'%>
+	<% if current_user.category == 1 %>
+		<%= link_to 'Administrar eventos', administration_eventos_path, :class => 'btn btn-default btn-form'%>
+	<%end%>
 <% end %>
-
+<%= link_to 'Mostrar todos <i class="glyphicon glyphicon-th-list"></i>
+'.html_safe, events_listado_path, :class =>'btn btn-default btn-form'%>
 
 <div	class="panel panel-default panel-aneib">
 	<div class="panel-heading ">

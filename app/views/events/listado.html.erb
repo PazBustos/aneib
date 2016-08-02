@@ -1,0 +1,112 @@
+<h1>Eventos</h1>
+
+<% if user_signed_in? && current_user.category != 3 %>
+	<%= link_to 'Nuevo evento', new_event_path, :class => 'btn btn-default btn-form'%>
+	<% if current_user.category == 1 %>
+		<%= link_to 'Administrar eventos', administration_eventos_path, :class => 'btn btn-default btn-form'%>
+	<%end%>
+<% end %>
+<%= link_to 'Mostrar calendario <i class="glyphicon glyphicon-calendar"></i>
+'.html_safe, events_path, :class =>'btn btn-default btn-form'%>
+
+<div class="panel panel-default panel-aneib">
+	<div class="panel-heading">
+	<ul class="nav nav-tabs tabRease nav-justified">
+		<li id="event1" onclick="event1()"><a>Vigente</a></li>
+		<li id="event2" onclick="event2()"><a>Realizados</a></li>
+	</ul>
+	</div>
+	<div class="panel-body">
+		<div id="vigente">
+			<table id="vigente_dt">
+				<thead>
+					<tr>
+						<td>Título</td>
+						<td>Organizador</td>
+						<td>Inicio</td>
+						<td>Término</td>
+						<td>Opciones</td>
+					</tr>
+				</thead>
+				<tbody>
+					<% @vigentes.each do |event| %>
+						<tr>
+							<td> <%= event.title %></td>
+							<td> <%= event.user.nickname%> </td>
+							<td> <%= event.start_time%></td>
+							<td> <%= event.start_time%></td>
+							<td> 
+								<%= link_to '<i class="glyphicon glyphicon-eye-open gevent"></i>'.html_safe, event %>
+								<%if user_signed_in? && (current_user.category == 1 or event.user = current_user)%>				
+									<%= link_to '<i class="glyphicon glyphicon-pencil gevent"></i>'.html_safe, edit_event_path(event)%> 
+									<%= link_to '<i class="glyphicon glyphicon-trash gevent"></i>'.html_safe, event, method: :delete, data: { confirm: '¿Está seguro de este evento?' } %>
+								<%end%>								
+							</td>
+						</tr>
+					<%end%>
+				</tbody>
+			</table>
+		</div>
+
+		<div id="realizados">
+			<table id="realizados_dt">
+				<thead>
+					<tr>
+						<td>Título</td>
+						<td>Organizador</td>
+						<td>Inicio</td>
+						<td>Término</td>
+						<td>Opciones</td>
+					</tr>
+				</thead>
+				<tbody>
+					<% @realizados.each do |event| %>
+						<tr>
+							<td> <%= event.title %></td>
+							<td> <%= event.user.nickname%> </td>
+							<td> <%= event.start_time%></td>
+							<td> <%= event.start_time%></td>
+							<td> 
+								<%= link_to '<i class="glyphicon glyphicon-eye-open gevent"></i>'.html_safe, event %>
+								<%if user_signed_in? && (current_user.category == 1 or event.user = current_user)%>				
+									<%= link_to '<i class="glyphicon glyphicon-pencil gevent"></i>'.html_safe, edit_event_path(event)%> 
+									<%= link_to '<i class="glyphicon glyphicon-trash gevent"></i>'.html_safe, event, method: :delete, data: { confirm: '¿Está seguro de este evento?' } %>
+								<%end%>								
+							</td>
+						</tr>
+					<%end%>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	document.getElementById('vigente').style.display='block'; 
+	document.getElementById("event1").className = "active"; 
+	document.getElementById('realizados').style.display='none';
+
+	function event1(){
+		document.getElementById('vigente').style.display='block'; 
+		document.getElementById('realizados').style.display='none';
+		document.getElementById("event1").className = "active";
+		document.getElementById("event2").className = "";
+	}
+	function event2(){
+		document.getElementById('vigente').style.display='none';	
+		document.getElementById('realizados').style.display='block';
+		document.getElementById("event1").className = "";
+		document.getElementById("event2").className = "active";
+	}
+
+	$(document).ready(function() {
+		$($("#vigente_dt,#realizados_dt")).DataTable({
+			"language": {
+				"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+			},
+			"scrollCollapse": true,
+			"paging": false
+		});
+	} );
+</script>
+

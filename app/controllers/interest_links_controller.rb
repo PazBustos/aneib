@@ -58,7 +58,7 @@ class InterestLinksController < ApplicationController
 			params.require(:interest_link).permit(
 				:name, 
 				:url, 
-				:description)
+				:social)
 		end
 		
 		def validate_1

@@ -58,6 +58,15 @@ p
 	background: white;
 	border-radius: 10px;
 }
+.date
+{
+    display: inline-block;
+    max-width: 80px;
+}
+.form-control
+{
+	margin-bottom: 10px;
+}
 .gportal
 {
 	font-size: 16px;

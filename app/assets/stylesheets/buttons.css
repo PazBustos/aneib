@@ -6,6 +6,7 @@
 {
 	margin: 0px 20px 20px 0px;
 	min-width: 150px;
+
 }
 .btn, .btn:visited, .btn:hover, .btn:focus
 {
@@ -23,7 +24,7 @@
 .btn-admin:hover, .btn:hover
 {
 	font-weight: bold;
-	border-color: #2B81F2;
+	border-color: #83BC20;
 }
 .btn-comment
 {

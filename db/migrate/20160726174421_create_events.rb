@@ -4,7 +4,7 @@ class CreateEvents < ActiveRecord::Migration
 			t.references :user, index: true, foreign_key: true
 			t.string :title
 			t.string :address
-			t.string :status
+			t.integer :status, :default => 1
 			t.text :description
 			t.datetime :start_time
 			t.datetime :end_time

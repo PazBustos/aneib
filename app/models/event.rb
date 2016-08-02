@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
 	belongs_to :user
+	has_many :event_comments
 
 		#validaciones
 	validates :title, presence: true, uniqueness: true #no pueden haber dos titulos iguales

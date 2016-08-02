@@ -26,7 +26,38 @@
 			<li class="dropdown-header"> Nuestras redes</li>
 			<% @interest_links.each do |interest|%>
 				<li>
-					<%=link_to interest.name, interest.url, :target => "_blank"%>
+					<%if interest.social == 1%> 
+						<%=link_to "<i class='fa fa-dropbox'></i> ".html_safe+interest.name,interest.url, :target => "_blank"%>
+					<%elsif interest.social == 2%>
+						<%=link_to "<i class='fa fa-facebook'></i> ".html_safe+interest.name,interest.url, :target => "_blank"%>
+					<%elsif interest.social == 3%>
+						<%=link_to "<i class='fa fa-flickr'></i> ".html_safe+interest.name,interest.url, :target => "_blank"%>  
+					<%elsif interest.social == 4%>
+						<%=link_to "<i class='fa fa-foursquare'></i> ".html_safe+interest.name,interest.url, :target => "_blank"%>
+					<%elsif interest.social == 5%>
+						<%=link_to "<i class='fa fa-github'></i> ".html_safe+interest.name,interest.url, :target => "_blank"%>  
+					<%elsif interest.social == 6%>
+						<%=link_to "<i class='fa fa-google-plus'></i> ".html_safe+interest.name,interest.url, :target => "_blank"%>
+					<%elsif interest.social == 7%>
+						<%=link_to "<i class='fa fa-instagram'></i> ".html_safe+interest.name,interest.url, :target => "_blank"%>
+					<%elsif interest.social == 8%>
+						<%=link_to "<i class='fa fa-linkedin'></i> ".html_safe+interest.name,interest.url, :target => "_blank"%>
+					<%elsif interest.social == 9%>
+						<%=link_to "<i class='fa fa-pinterest'></i> ".html_safe+interest.name,interest.url, :target => "_blank"%> 
+					<%elsif interest.social == 10%>
+						<%=link_to "<i class='fa fa-tumblr'></i> ".html_safe+interest.name,interest.url, :target => "_blank"%>  
+					<%elsif interest.social == 11%>
+						<%=link_to "<i class='fa fa-twitter'></i> ".html_safe+interest.name,interest.url, :target => "_blank"%>
+					<%elsif interest.social == 12%>
+						<%=link_to "<i class='fa fa-wordpress'></i> ".html_safe+interest.name,interest.url, :target => "_blank"%> 
+					<%elsif interest.social == 13%>
+						<%=link_to "<i class='fa fa-yahoo'></i> ".html_safe+interest.name,interest.url, :target => "_blank"%>
+					<%elsif interest.social == 15%>
+						<%=link_to "<i class='fa fa-youtube'></i> ".html_safe+interest.name,interest.url, :target => "_blank"%>
+					<%else%>
+						<%=link_to interest.name,interest.url, :target => "_blank"%>
+					<%end%>
+					
 				</li>
 			<%end%>
 		</ul>
@@ -77,33 +108,5 @@
 	<li class="<%= 'active' if current_page?(destroy_user_session_path) %>">
 		<%= link_to '<i class="glyphicon glyphicon-off"></i> Cerrar sesión'.html_safe, destroy_user_session_path, method: :delete %>
 	</li>
-<i class="fa fa-bitbucket"></i>      
-<i class="fa fa-digg"></i>           
-<i class="fa fa-dropbox"></i>        
-<i class="fa fa-facebook"></i>       
-<i class="fa fa-flickr"></i>         
-<i class="fa fa-foursquare"></i>     
-<i class="fa fa-github"></i>         
-<i class="fa fa-google"></i>         
-<i class="fa fa-google-plus"></i>    
-<i class="fa fa-instagram"></i>      
-<i class="fa fa-jsfiddle"></i>       
-<i class="fa fa-linkedin"></i>       
-<i class="fa fa-pinterest"></i>      
-<i class="fa fa-reddit"></i>         
-<i class="fa fa-skype"></i>          
-<i class="fa fa-soundcloud"></i>     
-<i class="fa fa-spotify"></i>        
-<i class="fa fa-stack-exchange"></i> 
-<i class="fa fa-stack-overflow"></i> 
-<i class="fa fa-steam"></i>          
-<i class="fa fa-stumbleupon"></i>    
-<i class="fa fa-tumblr"></i>         
-<i class="fa fa-twitter"></i>        
-<i class="fa fa-vimeo-square"></i>   
-<i class="fa fa-vine"></i>           
-<i class="fa fa-windows"></i>        
-<i class="fa fa-wordpress"></i>      
-<i class="fa fa-yahoo"></i>          
-<i class="fa fa-youtube"></i>    
+   
 <%end%>

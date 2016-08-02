@@ -23,25 +23,23 @@
 			<div class="field"><p>
 				<% if orden == "Actualizar" %>
 					<%= f.label :status, "Estado: "%>
-					<%= f.select(:status, [['Disponible', 1],['Realizado',2], ['Cancelado',3], ['Caducado', 4]], {:include_blank => '-- Seleccione un estado --' }, { :class => 'form-control', :required => true }) %></p>
-				<% else %>
-					<strong>Estado: </strong> Disponible </p>
+					<%= f.select(:status, [['Disponible', 1],['Realizado',2], ['Cancelado',3]], {:include_blank => '-- Seleccione un estado --' }, { :class => 'form-control', :required => true }) %></p>
 				<% end %>
+			</div>
+
+			<div class="field">
+				<p><%= f.label :start_time, "Fecha y hora de inicio" %></p>
+				<%= f.datetime_select :start_time, {order: [:day, :month, :year] }, { class: "form-control date", autocomplete: true } %>
+			</div>
+
+			<div class="field">
+				<p><%= f.label :end_time, "Fecha y hora de término" %></p>
+				<%= f.datetime_select :end_time, {order: [:day, :month, :year] }, { class: "form-control date", autocomplete: true } %>
 			</div>
 
 			<div class="field"><p>
 				<%= f.label :description, "Descripción: "%>
 				<%= f.text_area :description, :placeholder=> "Escribir aquí.", :id=>"eg-basic",:required=>true %>
-			</div>
-
-			<div class="field">
-				<p><%= f.label :start_time, "Fecha y hora de inicio" %></p>
-				<%= f.datetime_select :start_time %>
-			</div>
-
-			<div class="field">
-				<p><%= f.label :end_time, "Fecha y hora de término" %></p>
-				<%= f.datetime_select :end_time %>
 			</div>
 		</div>
 	</div>

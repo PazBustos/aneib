@@ -1,20 +1,18 @@
-<div class="panel panel-default panel-aneib">
+<%= form_for(@interest_link) do |f| %>
+	<% if @interest_link.errors.any? %>
+		<div id="error_explanation">
+			<h2>
+				<%= pluralize(@interest_link.errors.count, "error") %> prohibited this interest_link from being saved:
+			</h2>
 
-	<%= form_for(@interest_link) do |f| %>
-		<% if @interest_link.errors.any? %>
-			<div id="error_explanation">
-				<h2>
-					<%= pluralize(@interest_link.errors.count, "error") %> prohibited this interest_link from being saved:
-				</h2>
-
-				<ul>
-					<% @interest_link.errors.full_messages.each do |message| %>
-						<li><%= message %></li>
-					<% end %>
-				</ul>
-			</div>
-		<% end %>
-
+			<ul>
+				<% @interest_link.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>	
+	<div class="panel panel-default panel-aneib">
 		<div class="panel-heading">
 			Datos de la red social
 		</div>
@@ -23,18 +21,54 @@
 				<%= f.label :name, "Nombre" %>
 				<%= f.text_field :name, :class=>'form-control',:placeholder => 'Nombre del sitio' %>
 			</div>
-			<br>
+			<div class="field">
+				<p class="note">Si no pertenece a ninguna red social conocida, seleccione la opción 'otros'</p>
+				<p class="note">
+					<i class="fa fa-dropbox"></i>        
+					<i class="fa fa-facebook"></i>       
+					<i class="fa fa-flickr"></i>         
+					<i class="fa fa-foursquare"></i>     
+					<i class="fa fa-github"></i>                
+					<i class="fa fa-google-plus"></i>    
+					<i class="fa fa-instagram"></i>           
+					<i class="fa fa-linkedin"></i>       
+					<i class="fa fa-pinterest"></i>         
+					<i class="fa fa-tumblr"></i>         
+					<i class="fa fa-twitter"></i>               
+					<i class="fa fa-wordpress"></i>      
+					<i class="fa fa-yahoo"></i>          
+					<i class="fa fa-youtube"></i> 
+				</p>
+				<%= f.label :social, "¿Red social? "%>
+				<%= f.select(:social, [
+					['Dropbox', 1],
+					['Facebook', 2],
+					['Flickr', 3],
+					['Foursquare', 4],
+					['Github', 5],
+					['Google+', 6],
+					['Instagram', 7],
+					['Linkedin', 8],
+					['Pinterest', 9],
+					['Tumblr', 10],
+					['Twitter', 11],
+					['Wordpress', 12],
+					['Yahoo', 13],
+					['Youtube', 14],
+					['Otro tipo de link', 15],
+					], {:include_blank => '— Seleccione una opción —'}, { :class => 'form-control', :required => true }) %>
+			</div>
 			<div class="field">
 				<%= f.label :url, "Dirección web" %>
 				<%= f.text_field :url, :class=>'form-control',:placeholder => 'Página web. Ejemplo: http://www.ejemplo.com' %>
 			</div>
 		</div>	
-</div>		
-		<div class="actions">
-			<%= f.submit 'Aceptar', :class=>'btn btn-default btn-form' %>
-			<%= link_to 'Volver', administration_links_path,:class=>'btn btn-default btn-form' %>
-		</div>
-		<% end %>
+	</div>		
+	<div class="actions">
+		<%= f.submit 'Aceptar', :class=>'btn btn-default btn-form' %>
+		<%= link_to 'Volver', administration_links_path,:class=>'btn btn-default btn-form' %>
+	</div>
+<% end %>
 		
 
 </div>

@@ -42,3 +42,29 @@
 		<p><strong>Fecha y hora de término: </strong><%=l @event.end_time %></p>
 	</div>
 </div>
+
+<%if user_signed_in?%>
+	<div class="panel panel-default panel-aneib">
+		<div class="panel-heading">
+			 Comentarios
+		</div>
+		<div class="panel-body">
+		<%= render "event_comments/form" %>
+			<ul>
+				<% @event.event_comments.order("created_at DESC").each do |event_comment| %>
+					<p>
+						<%if event_comment.user.photo.present?%>
+							<%= image_tag event_comment.user.photo.url(:mini), :class =>"profile-picture" %> 
+						<%else%>
+							<%= link_to '<i class="glyphicon glyphicon-globe"></i>'.html_safe, event_comment.user %> 
+						<%end %>
+						<%= link_to event_comment.user.nickname, event_comment.user%> comentó hace <%= time_ago_in_words(event_comment.created_at)%>: 
+						<%if current_user == event_comment.user or current_user.category == 1 %><%= link_to 'Eliminar', event_event_comment_path(@event,event_comment), method: :delete, data: { confirm: '¿Está seguro de eliminar el comentario?' }, :class => "btn btn-default btn-comment"%>
+						<%end%>	
+					</p>
+					<p><%=event_comment.body%></p>	
+				<%end%>
+			</ul>
+		</div>
+	</div>
+<%end%>

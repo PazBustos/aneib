@@ -5,29 +5,32 @@ class Users::RegistrationsController < Devise::RegistrationsController
 	add_breadcrumb "Hazte socio"
 
 protected
-		def configure_permitted_parameters
-			devise_parameter_sanitizer.for(:sign_up).push(
-				:name, 
-				:nickname, 
-				:information, 
-				:category,
-				:status, 
-				:institution, 
-				:profession)
-			devise_parameter_sanitizer.for(:account_update) { |u| u.permit(
-				:information, 
-				:status, 
-				:institution, 
-				:profession,
-				:nickname, 
-				:name, 
-				:email, 
-				:password, 
-				:password_confirmation, 
-				:current_password,
-				:photo) }
-		end
+	def configure_permitted_parameters
+		devise_parameter_sanitizer.for(:sign_up).push(
+			:name, 
+			:nickname, 
+			:information, 
+			:category,
+			:status, 
+			:institution, 
+			:profession)
+		devise_parameter_sanitizer.for(:account_update) { |u| u.permit(
+			:information, 
+			:status, 
+			:institution, 
+			:profession,
+			:nickname, 
+			:name, 
+			:email, 
+			:password, 
+			:password_confirmation, 
+			:current_password,
+			:photo) }
+	end
 
+	def after_update_path_for(resource)
+		user_path(resource)
+	end
 	# GET /resource/sign_up
 	# def new
 	#	 super

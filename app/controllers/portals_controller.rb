@@ -6,7 +6,6 @@ class PortalsController < ApplicationController
 
 
 	def index
-		add_breadcrumb "Noticias", :root_path
 		@portals = Portal.where("section = ?", 1)
 	end
 
