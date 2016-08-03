@@ -3,11 +3,11 @@
 <% @portals.each do |portal| %>
 	<div	class="panel panel-default panel-aneib">
 		<div class="panel-heading">
-			<%=	portal.title %> 
+			<%=	portal.title %> - <%=l portal.created_at%>
 		</div>
 		<div class="panel-body">
 			<p><%=raw portal.body %></p>
 		</div>
 	</div>
-
 <%end%>
+<%= will_paginate @portals,  :class=>'aneib_pagination' %>

@@ -17,7 +17,6 @@ class User < ActiveRecord::Base
 	has_many :topics
 	has_many :comments
 	has_many :event_comments
-	has_many :organizations
 	
 	has_attached_file :photo, styles: {mini:"80x80", medium: "500x500", thumb:"1000x1000"}, :default_url => ":style/missingPhoto.png"
 	validates_attachment_content_type :photo, content_type: /\Aimage\/.*\Z/

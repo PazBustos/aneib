@@ -2701,3 +2701,235 @@ D, [2016-08-02T14:24:36.658937 #2325] DEBUG -- :   [1m[36mTopic Load (0.2ms)[
 I, [2016-08-02T14:24:36.659413 #2325]  INFO -- :   Rendered layouts/_navigation.html.erb (2.8ms)
 I, [2016-08-02T14:24:36.659785 #2325]  INFO -- :   Rendered layouts/_messages.html.erb (0.1ms)
 I, [2016-08-02T14:24:36.660205 #2325]  INFO -- : Completed 200 OK in 8ms (Views: 5.7ms | ActiveRecord: 0.6ms)
+D, [2016-08-03T03:31:46.199278 #16484] DEBUG -- :   [1m[36m (63.3ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+D, [2016-08-03T03:31:46.378598 #16484] DEBUG -- :   [1m[35m (178.3ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations`  ON `schema_migrations` (`version`) 
+D, [2016-08-03T03:31:46.380141 #16484] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+I, [2016-08-03T03:31:46.382929 #16484]  INFO -- : Migrating to CreateTopics (20160726164629)
+D, [2016-08-03T03:31:46.479699 #16484] DEBUG -- :   [1m[35m (95.3ms)[0m  CREATE TABLE `topics` (`id` int(11) auto_increment PRIMARY KEY, `title` varchar(255), `description` text, `status` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+D, [2016-08-03T03:31:46.482366 #16484] DEBUG -- :   [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+D, [2016-08-03T03:31:46.486969 #16484] DEBUG -- :   [1m[35mSQL (0.2ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20160726164629')
+D, [2016-08-03T03:31:46.581652 #16484] DEBUG -- :   [1m[36m (94.3ms)[0m  [1mCOMMIT[0m
+I, [2016-08-03T03:31:46.581811 #16484]  INFO -- : Migrating to DeviseCreateUsers (20160726171536)
+D, [2016-08-03T03:31:46.785005 #16484] DEBUG -- :   [1m[35m (201.3ms)[0m  CREATE TABLE `users` (`id` int(11) auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `confirmation_token` varchar(255), `confirmed_at` datetime, `confirmation_sent_at` datetime, `unconfirmed_email` varchar(255), `name` varchar(255), `nickname` varchar(255), `category` int(11), `status` int(11) DEFAULT 1, `institution` varchar(255), `profession` varchar(255), `information` text, `photo_file_name` varchar(255), `photo_content_type` varchar(255), `photo_file_size` int(11), `photo_updated_at` datetime, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+D, [2016-08-03T03:31:46.975729 #16484] DEBUG -- :   [1m[36m (189.6ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_email`  ON `users` (`email`) [0m
+D, [2016-08-03T03:31:47.166350 #16484] DEBUG -- :   [1m[35m (189.6ms)[0m  CREATE UNIQUE INDEX `index_users_on_reset_password_token`  ON `users` (`reset_password_token`) 
+D, [2016-08-03T03:31:47.167029 #16484] DEBUG -- :   [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+D, [2016-08-03T03:31:47.167785 #16484] DEBUG -- :   [1m[35mSQL (0.2ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20160726171536')
+D, [2016-08-03T03:31:47.200181 #16484] DEBUG -- :   [1m[36m (32.1ms)[0m  [1mCOMMIT[0m
+I, [2016-08-03T03:31:47.200382 #16484]  INFO -- : Migrating to CreatePortals (20160726174224)
+D, [2016-08-03T03:31:47.289917 #16484] DEBUG -- :   [1m[35m (87.7ms)[0m  CREATE TABLE `portals` (`id` int(11) auto_increment PRIMARY KEY, `user_id` int(11), `title` varchar(255), `body` text, `section` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_portals_on_user_id`  (`user_id`) ) ENGINE=InnoDB
+D, [2016-08-03T03:31:47.458352 #16484] DEBUG -- :   [1m[36m (167.6ms)[0m  [1mALTER TABLE `portals` ADD CONSTRAINT `fk_rails_dbbca7988d`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+[0m
+D, [2016-08-03T03:31:47.459136 #16484] DEBUG -- :   [1m[35m (0.2ms)[0m  BEGIN
+D, [2016-08-03T03:31:47.460023 #16484] DEBUG -- :   [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20160726174224')[0m
+D, [2016-08-03T03:31:47.491810 #16484] DEBUG -- :   [1m[35m (31.5ms)[0m  COMMIT
+I, [2016-08-03T03:31:47.491932 #16484]  INFO -- : Migrating to CreateContacts (20160726174324)
+D, [2016-08-03T03:31:47.592838 #16484] DEBUG -- :   [1m[36m (99.3ms)[0m  [1mCREATE TABLE `contacts` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255), `email` varchar(255), `subject` text, `body` text, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+D, [2016-08-03T03:31:47.593448 #16484] DEBUG -- :   [1m[35m (0.1ms)[0m  BEGIN
+D, [2016-08-03T03:31:47.594176 #16484] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20160726174324')[0m
+D, [2016-08-03T03:31:47.626315 #16484] DEBUG -- :   [1m[35m (31.9ms)[0m  COMMIT
+I, [2016-08-03T03:31:47.626436 #16484]  INFO -- : Migrating to CreateEvents (20160726174421)
+D, [2016-08-03T03:31:47.727514 #16484] DEBUG -- :   [1m[36m (99.1ms)[0m  [1mCREATE TABLE `events` (`id` int(11) auto_increment PRIMARY KEY, `user_id` int(11), `title` varchar(255), `address` varchar(255), `status` int(11) DEFAULT 1, `description` text, `start_time` datetime, `end_time` datetime, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_events_on_user_id`  (`user_id`) ) ENGINE=InnoDB[0m
+D, [2016-08-03T03:31:47.931470 #16484] DEBUG -- :   [1m[35m (203.1ms)[0m  ALTER TABLE `events` ADD CONSTRAINT `fk_rails_0cb5590091`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+
+D, [2016-08-03T03:31:47.932702 #16484] DEBUG -- :   [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+D, [2016-08-03T03:31:47.934048 #16484] DEBUG -- :   [1m[35mSQL (0.4ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20160726174421')
+D, [2016-08-03T03:31:47.976039 #16484] DEBUG -- :   [1m[36m (41.5ms)[0m  [1mCOMMIT[0m
+I, [2016-08-03T03:31:47.976241 #16484]  INFO -- : Migrating to CreateFinances (20160726174507)
+D, [2016-08-03T03:31:48.088132 #16484] DEBUG -- :   [1m[35m (107.7ms)[0m  CREATE TABLE `finances` (`id` int(11) auto_increment PRIMARY KEY, `user_id` int(11), `title` varchar(255), `description` text, `category` int(11), `date` datetime, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_finances_on_user_id`  (`user_id`) ) ENGINE=InnoDB
+D, [2016-08-03T03:31:48.267986 #16484] DEBUG -- :   [1m[36m (178.9ms)[0m  [1mALTER TABLE `finances` ADD CONSTRAINT `fk_rails_9740b85de3`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+[0m
+D, [2016-08-03T03:31:48.269207 #16484] DEBUG -- :   [1m[35m (0.2ms)[0m  BEGIN
+D, [2016-08-03T03:31:48.270394 #16484] DEBUG -- :   [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20160726174507')[0m
+D, [2016-08-03T03:31:48.301376 #16484] DEBUG -- :   [1m[35m (30.5ms)[0m  COMMIT
+I, [2016-08-03T03:31:48.301572 #16484]  INFO -- : Migrating to CreateResources (20160726174607)
+D, [2016-08-03T03:31:48.402333 #16484] DEBUG -- :   [1m[36m (97.3ms)[0m  [1mCREATE TABLE `resources` (`id` int(11) auto_increment PRIMARY KEY, `user_id` int(11), `name` varchar(255), `description` text, `category` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_resources_on_user_id`  (`user_id`) ) ENGINE=InnoDB[0m
+D, [2016-08-03T03:31:48.582251 #16484] DEBUG -- :   [1m[35m (179.2ms)[0m  ALTER TABLE `resources` ADD CONSTRAINT `fk_rails_250ed64e61`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+
+D, [2016-08-03T03:31:48.583412 #16484] DEBUG -- :   [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+D, [2016-08-03T03:31:48.584583 #16484] DEBUG -- :   [1m[35mSQL (0.3ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20160726174607')
+D, [2016-08-03T03:31:48.637872 #16484] DEBUG -- :   [1m[36m (52.8ms)[0m  [1mCOMMIT[0m
+I, [2016-08-03T03:31:48.638045 #16484]  INFO -- : Migrating to AddFileToResources (20160726174714)
+D, [2016-08-03T03:31:48.840460 #16484] DEBUG -- :   [1m[35m (201.3ms)[0m  ALTER TABLE `resources` ADD `archive_file_name` varchar(255)
+D, [2016-08-03T03:31:49.055365 #16484] DEBUG -- :   [1m[36m (214.4ms)[0m  [1mALTER TABLE `resources` ADD `archive_content_type` varchar(255)[0m
+D, [2016-08-03T03:31:49.224137 #16484] DEBUG -- :   [1m[35m (168.4ms)[0m  ALTER TABLE `resources` ADD `archive_file_size` int(11)
+D, [2016-08-03T03:31:49.403776 #16484] DEBUG -- :   [1m[36m (179.2ms)[0m  [1mALTER TABLE `resources` ADD `archive_updated_at` datetime[0m
+D, [2016-08-03T03:31:49.404689 #16484] DEBUG -- :   [1m[35m (0.2ms)[0m  BEGIN
+D, [2016-08-03T03:31:49.405447 #16484] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20160726174714')[0m
+D, [2016-08-03T03:31:49.437189 #16484] DEBUG -- :   [1m[35m (31.5ms)[0m  COMMIT
+I, [2016-08-03T03:31:49.437310 #16484]  INFO -- : Migrating to CreateArticles (20160726174851)
+D, [2016-08-03T03:31:49.538307 #16484] DEBUG -- :   [1m[36m (97.9ms)[0m  [1mCREATE TABLE `articles` (`id` int(11) auto_increment PRIMARY KEY, `user_id` int(11), `topic_id` int(11), `title` varchar(255), `description` text, `status` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_articles_on_user_id`  (`user_id`) ,  INDEX `index_articles_on_topic_id`  (`topic_id`) ) ENGINE=InnoDB[0m
+D, [2016-08-03T03:31:49.706863 #16484] DEBUG -- :   [1m[35m (167.8ms)[0m  ALTER TABLE `articles` ADD CONSTRAINT `fk_rails_3d31dad1cc`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+
+D, [2016-08-03T03:31:49.875468 #16484] DEBUG -- :   [1m[36m (168.2ms)[0m  [1mALTER TABLE `articles` ADD CONSTRAINT `fk_rails_ce7582c81f`
+FOREIGN KEY (`topic_id`)
+  REFERENCES `topics` (`id`)
+[0m
+D, [2016-08-03T03:31:49.876166 #16484] DEBUG -- :   [1m[35m (0.1ms)[0m  BEGIN
+D, [2016-08-03T03:31:49.876926 #16484] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20160726174851')[0m
+D, [2016-08-03T03:31:49.919968 #16484] DEBUG -- :   [1m[35m (42.8ms)[0m  COMMIT
+I, [2016-08-03T03:31:49.920092 #16484]  INFO -- : Migrating to CreateComments (20160726174936)
+D, [2016-08-03T03:31:50.023102 #16484] DEBUG -- :   [1m[36m (100.1ms)[0m  [1mCREATE TABLE `comments` (`id` int(11) auto_increment PRIMARY KEY, `user_id` int(11), `article_id` int(11), `body` text, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_comments_on_user_id`  (`user_id`) ,  INDEX `index_comments_on_article_id`  (`article_id`) ) ENGINE=InnoDB[0m
+D, [2016-08-03T03:31:50.236129 #16484] DEBUG -- :   [1m[35m (212.3ms)[0m  ALTER TABLE `comments` ADD CONSTRAINT `fk_rails_03de2dc08c`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+
+D, [2016-08-03T03:31:50.415808 #16484] DEBUG -- :   [1m[36m (179.2ms)[0m  [1mALTER TABLE `comments` ADD CONSTRAINT `fk_rails_3bf61a60d3`
+FOREIGN KEY (`article_id`)
+  REFERENCES `articles` (`id`)
+[0m
+D, [2016-08-03T03:31:50.416498 #16484] DEBUG -- :   [1m[35m (0.1ms)[0m  BEGIN
+D, [2016-08-03T03:31:50.417248 #16484] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20160726174936')[0m
+D, [2016-08-03T03:31:50.449330 #16484] DEBUG -- :   [1m[35m (31.8ms)[0m  COMMIT
+I, [2016-08-03T03:31:50.449454 #16484]  INFO -- : Migrating to AddUserRefToTopics (20160726181137)
+D, [2016-08-03T03:31:50.651544 #16484] DEBUG -- :   [1m[36m (201.3ms)[0m  [1mALTER TABLE `topics` ADD `user_id` int(11)[0m
+D, [2016-08-03T03:31:50.797389 #16484] DEBUG -- :   [1m[35m (144.8ms)[0m  CREATE  INDEX `index_topics_on_user_id`  ON `topics` (`user_id`) 
+D, [2016-08-03T03:31:50.976810 #16484] DEBUG -- :   [1m[36m (178.9ms)[0m  [1mALTER TABLE `topics` ADD CONSTRAINT `fk_rails_7b812cfb44`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+[0m
+D, [2016-08-03T03:31:50.977432 #16484] DEBUG -- :   [1m[35m (0.1ms)[0m  BEGIN
+D, [2016-08-03T03:31:50.978188 #16484] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20160726181137')[0m
+D, [2016-08-03T03:31:51.021339 #16484] DEBUG -- :   [1m[35m (42.9ms)[0m  COMMIT
+I, [2016-08-03T03:31:51.021461 #16484]  INFO -- : Migrating to CreateInterestLinks (20160727201243)
+D, [2016-08-03T03:31:51.122502 #16484] DEBUG -- :   [1m[36m (99.5ms)[0m  [1mCREATE TABLE `interest_links` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255), `url` varchar(255), `social` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+D, [2016-08-03T03:31:51.123125 #16484] DEBUG -- :   [1m[35m (0.1ms)[0m  BEGIN
+D, [2016-08-03T03:31:51.123883 #16484] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20160727201243')[0m
+D, [2016-08-03T03:31:51.167049 #16484] DEBUG -- :   [1m[35m (42.9ms)[0m  COMMIT
+I, [2016-08-03T03:31:51.167188 #16484]  INFO -- : Migrating to AddArchiveToFinances (20160729200312)
+D, [2016-08-03T03:31:51.360469 #16484] DEBUG -- :   [1m[36m (192.4ms)[0m  [1mALTER TABLE `finances` ADD `archive_file_name` varchar(255)[0m
+D, [2016-08-03T03:31:51.678452 #16484] DEBUG -- :   [1m[35m (317.5ms)[0m  ALTER TABLE `finances` ADD `archive_content_type` varchar(255)
+D, [2016-08-03T03:31:51.854837 #16484] DEBUG -- :   [1m[36m (176.0ms)[0m  [1mALTER TABLE `finances` ADD `archive_file_size` int(11)[0m
+D, [2016-08-03T03:31:52.113449 #16484] DEBUG -- :   [1m[35m (258.3ms)[0m  ALTER TABLE `finances` ADD `archive_updated_at` datetime
+D, [2016-08-03T03:31:52.114574 #16484] DEBUG -- :   [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+D, [2016-08-03T03:31:52.115735 #16484] DEBUG -- :   [1m[35mSQL (0.3ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20160729200312')
+D, [2016-08-03T03:31:52.157774 #16484] DEBUG -- :   [1m[36m (41.6ms)[0m  [1mCOMMIT[0m
+I, [2016-08-03T03:31:52.157932 #16484]  INFO -- : Migrating to CreateEventComments (20160801194720)
+D, [2016-08-03T03:31:52.260930 #16484] DEBUG -- :   [1m[35m (100.3ms)[0m  CREATE TABLE `event_comments` (`id` int(11) auto_increment PRIMARY KEY, `body` text, `user_id` int(11), `event_id` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_event_comments_on_user_id`  (`user_id`) ,  INDEX `index_event_comments_on_event_id`  (`event_id`) ) ENGINE=InnoDB
+D, [2016-08-03T03:31:52.440517 #16484] DEBUG -- :   [1m[36m (178.8ms)[0m  [1mALTER TABLE `event_comments` ADD CONSTRAINT `fk_rails_ecc9a36a75`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+[0m
+D, [2016-08-03T03:31:52.620083 #16484] DEBUG -- :   [1m[35m (179.1ms)[0m  ALTER TABLE `event_comments` ADD CONSTRAINT `fk_rails_8a51827e60`
+FOREIGN KEY (`event_id`)
+  REFERENCES `events` (`id`)
+
+D, [2016-08-03T03:31:52.620783 #16484] DEBUG -- :   [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+D, [2016-08-03T03:31:52.621520 #16484] DEBUG -- :   [1m[35mSQL (0.2ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20160801194720')
+D, [2016-08-03T03:31:52.664628 #16484] DEBUG -- :   [1m[36m (42.8ms)[0m  [1mCOMMIT[0m
+D, [2016-08-03T03:31:52.666739 #16484] DEBUG -- :   [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+D, [2016-08-03T03:31:52.932687 #16484] DEBUG -- :   [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+D, [2016-08-03T03:31:52.942428 #16484] DEBUG -- :   [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'administrador@aneib.cl' LIMIT 1
+D, [2016-08-03T03:31:52.943884 #16484] DEBUG -- :   [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM `users` WHERE `users`.`nickname` = BINARY 'Admin' LIMIT 1[0m
+D, [2016-08-03T03:31:52.945720 #16484] DEBUG -- :   [1m[35mSQL (0.2ms)[0m  INSERT INTO `users` (`email`, `encrypted_password`, `name`, `nickname`, `category`, `status`, `confirmed_at`, `created_at`, `updated_at`) VALUES ('administrador@aneib.cl', '$2a$11$1Bcad1oDUjOVSPyXFv2cmOOiRJAGcmfiT6JX0nI/NiGPxeVEMq03G', 'Administrador', 'Admin', 1, 2, '2016-08-03 07:31:52', '2016-08-03 07:31:52', '2016-08-03 07:31:52')
+D, [2016-08-03T03:31:52.987639 #16484] DEBUG -- :   [1m[36m (41.1ms)[0m  [1mCOMMIT[0m
+D, [2016-08-03T03:31:53.224930 #16484] DEBUG -- :   [1m[35m (0.2ms)[0m  BEGIN
+D, [2016-08-03T03:31:53.226359 #16484] DEBUG -- :   [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'delegado@aneib.cl' LIMIT 1[0m
+D, [2016-08-03T03:31:53.227554 #16484] DEBUG -- :   [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM `users` WHERE `users`.`nickname` = BINARY 'Delegado' LIMIT 1
+D, [2016-08-03T03:31:53.229111 #16484] DEBUG -- :   [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`email`, `encrypted_password`, `name`, `nickname`, `category`, `confirmed_at`, `created_at`, `updated_at`) VALUES ('delegado@aneib.cl', '$2a$11$twh91dgNdJ6.Doj1av7Qq.rwvJDleEeFAALtWRJ569pBrKcrAmZu.', 'Delegado', 'Delegado', 2, '2016-08-03 07:31:52', '2016-08-03 07:31:53', '2016-08-03 07:31:53')[0m
+D, [2016-08-03T03:31:53.265640 #16484] DEBUG -- :   [1m[35m (35.7ms)[0m  COMMIT
+D, [2016-08-03T03:31:53.533931 #16484] DEBUG -- :   [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+D, [2016-08-03T03:31:53.535350 #16484] DEBUG -- :   [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'socio@aneib.cl' LIMIT 1
+D, [2016-08-03T03:31:53.536533 #16484] DEBUG -- :   [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM `users` WHERE `users`.`nickname` = BINARY 'Socio' LIMIT 1[0m
+D, [2016-08-03T03:31:53.538078 #16484] DEBUG -- :   [1m[35mSQL (0.3ms)[0m  INSERT INTO `users` (`email`, `encrypted_password`, `name`, `nickname`, `category`, `confirmed_at`, `created_at`, `updated_at`) VALUES ('socio@aneib.cl', '$2a$11$GnIdiIb4K0ynsp/VhhGKTufi2LEBr1MZ7Xmk3u2MBmNa7RaR5twVW', 'Socio', 'Socio', 3, '2016-08-03 07:31:52', '2016-08-03 07:31:53', '2016-08-03 07:31:53')
+D, [2016-08-03T03:31:53.576982 #16484] DEBUG -- :   [1m[36m (38.1ms)[0m  [1mCOMMIT[0m
+D, [2016-08-03T03:31:53.814256 #16484] DEBUG -- :   [1m[35m (0.1ms)[0m  BEGIN
+D, [2016-08-03T03:31:53.815628 #16484] DEBUG -- :   [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'media@aneib.cl' LIMIT 1[0m
+D, [2016-08-03T03:31:53.816743 #16484] DEBUG -- :   [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM `users` WHERE `users`.`nickname` = BINARY 'Media' LIMIT 1
+D, [2016-08-03T03:31:53.818266 #16484] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`email`, `encrypted_password`, `name`, `nickname`, `category`, `confirmed_at`, `created_at`, `updated_at`) VALUES ('media@aneib.cl', '$2a$11$w2ebscVn8nk9FbDnoj3GluS/CNZCE1AQxRWqx1Wl4cU1snybbzOne', 'Media Partner', 'Media', 4, '2016-08-03 07:31:52', '2016-08-03 07:31:53', '2016-08-03 07:31:53')[0m
+D, [2016-08-03T03:31:53.855332 #16484] DEBUG -- :   [1m[35m (36.3ms)[0m  COMMIT
+I, [2016-08-03T03:32:03.726411 #16489]  INFO -- : Started GET "/users" for 127.0.0.1 at 2016-08-03 03:32:03 -0400
+I, [2016-08-03T03:32:03.761638 #16489]  INFO -- : Processing by UsersController#index as HTML
+I, [2016-08-03T03:32:03.783804 #16489]  INFO -- : Completed 401 Unauthorized in 22ms (ActiveRecord: 0.7ms)
+I, [2016-08-03T03:32:04.267997 #16489]  INFO -- : Started GET "/users/sign_in" for 127.0.0.1 at 2016-08-03 03:32:04 -0400
+I, [2016-08-03T03:32:04.270731 #16489]  INFO -- : Processing by Devise::SessionsController#new as HTML
+I, [2016-08-03T03:32:04.304624 #16489]  INFO -- :   Rendered devise/shared/_links.html.erb (1.7ms)
+I, [2016-08-03T03:32:04.305077 #16489]  INFO -- :   Rendered devise/sessions/new.html.erb within layouts/application (5.0ms)
+D, [2016-08-03T03:32:04.312308 #16489] DEBUG -- :   [1m[36mInterestLink Load (0.4ms)[0m  [1mSELECT `interest_links`.* FROM `interest_links`[0m
+I, [2016-08-03T03:32:04.313438 #16489]  INFO -- :   Rendered layouts/_navigation.html.erb (5.5ms)
+I, [2016-08-03T03:32:04.314728 #16489]  INFO -- :   Rendered layouts/_messages.html.erb (0.5ms)
+I, [2016-08-03T03:32:04.315307 #16489]  INFO -- : Completed 200 OK in 44ms (Views: 19.6ms | ActiveRecord: 2.1ms)
+I, [2016-08-03T03:32:10.661857 #16489]  INFO -- : Started POST "/users/sign_in" for 127.0.0.1 at 2016-08-03 03:32:10 -0400
+I, [2016-08-03T03:32:10.663346 #16489]  INFO -- : Processing by Devise::SessionsController#create as HTML
+I, [2016-08-03T03:32:10.663479 #16489]  INFO -- :   Parameters: {"utf8"=>"✓", "authenticity_token"=>"uU1vsP7523Wj9eCx09Epd4bvmIKngn09+yINJhFJzen3+QOmjNj/PUMg/BzHQpjrEiF1Og1eHSUapMOJTq5ONw==", "user"=>{"email"=>"administrador@aneib.cl", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Ingresar"}
+D, [2016-08-03T03:32:10.671025 #16489] DEBUG -- :   [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`email` = 'administrador@aneib.cl'  ORDER BY `users`.`id` ASC LIMIT 1
+D, [2016-08-03T03:32:10.917322 #16489] DEBUG -- :   [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+D, [2016-08-03T03:32:10.920032 #16489] DEBUG -- :   [1m[35mSQL (0.4ms)[0m  UPDATE `users` SET `last_sign_in_at` = '2016-08-03 07:32:10', `current_sign_in_at` = '2016-08-03 07:32:10', `last_sign_in_ip` = '127.0.0.1', `current_sign_in_ip` = '127.0.0.1', `sign_in_count` = 1, `updated_at` = '2016-08-03 07:32:10' WHERE `users`.`id` = 1
+D, [2016-08-03T03:32:10.980029 #16489] DEBUG -- :   [1m[36m (59.0ms)[0m  [1mCOMMIT[0m
+I, [2016-08-03T03:32:10.983394 #16489]  INFO -- : Redirected to http://localhost:3000/users
+I, [2016-08-03T03:32:10.983602 #16489]  INFO -- : Completed 302 Found in 320ms (ActiveRecord: 59.9ms)
+I, [2016-08-03T03:32:10.991007 #16489]  INFO -- : Started GET "/users" for 127.0.0.1 at 2016-08-03 03:32:10 -0400
+I, [2016-08-03T03:32:10.992022 #16489]  INFO -- : Processing by UsersController#index as HTML
+D, [2016-08-03T03:32:10.993973 #16489] DEBUG -- :   [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1
+I, [2016-08-03T03:32:11.001101 #16489]  INFO -- :   Rendered users/_profile.html.erb (1.5ms)
+I, [2016-08-03T03:32:11.001437 #16489]  INFO -- :   Rendered users/index.html.erb within layouts/application (2.9ms)
+D, [2016-08-03T03:32:11.004271 #16489] DEBUG -- :   [1m[36mTopic Load (0.3ms)[0m  [1mSELECT  `topics`.* FROM `topics` WHERE `topics`.`status` = 1  ORDER BY `topics`.`id` DESC LIMIT 5[0m
+I, [2016-08-03T03:32:11.004802 #16489]  INFO -- :   Rendered layouts/_navigation.html.erb (2.3ms)
+I, [2016-08-03T03:32:11.005259 #16489]  INFO -- :   Rendered layouts/_messages.html.erb (0.1ms)
+I, [2016-08-03T03:32:11.005681 #16489]  INFO -- : Completed 200 OK in 14ms (Views: 10.4ms | ActiveRecord: 0.9ms)
+I, [2016-08-03T03:32:12.515025 #16489]  INFO -- : Started GET "/administration" for 127.0.0.1 at 2016-08-03 03:32:12 -0400
+I, [2016-08-03T03:32:12.519292 #16489]  INFO -- : Processing by AdministrationController#index as HTML
+D, [2016-08-03T03:32:12.525307 #16489] DEBUG -- :   [1m[35mUser Load (0.2ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1
+I, [2016-08-03T03:32:12.533578 #16489]  INFO -- :   Rendered administration/index.html.erb within layouts/application (2.0ms)
+D, [2016-08-03T03:32:12.535799 #16489] DEBUG -- :   [1m[36mTopic Load (0.2ms)[0m  [1mSELECT  `topics`.* FROM `topics` WHERE `topics`.`status` = 1  ORDER BY `topics`.`id` DESC LIMIT 5[0m
+I, [2016-08-03T03:32:12.536430 #16489]  INFO -- :   Rendered layouts/_navigation.html.erb (1.8ms)
+I, [2016-08-03T03:32:12.536945 #16489]  INFO -- :   Rendered layouts/_messages.html.erb (0.1ms)
+I, [2016-08-03T03:32:12.537360 #16489]  INFO -- : Completed 200 OK in 18ms (Views: 10.7ms | ActiveRecord: 0.4ms)
+I, [2016-08-03T03:32:14.425863 #16489]  INFO -- : Started GET "/topics" for 127.0.0.1 at 2016-08-03 03:32:14 -0400
+I, [2016-08-03T03:32:14.429950 #16489]  INFO -- : Processing by TopicsController#index as HTML
+D, [2016-08-03T03:32:14.432255 #16489] DEBUG -- :   [1m[35mUser Load (0.2ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1
+D, [2016-08-03T03:32:14.442042 #16489] DEBUG -- :   [1m[36mTopic Load (0.4ms)[0m  [1mSELECT `topics`.* FROM `topics` WHERE `topics`.`status` = 1[0m
+I, [2016-08-03T03:32:14.443149 #16489]  INFO -- :   Rendered topics/index.html.erb within layouts/application (3.2ms)
+D, [2016-08-03T03:32:14.446542 #16489] DEBUG -- :   [1m[35mTopic Load (0.2ms)[0m  SELECT  `topics`.* FROM `topics` WHERE `topics`.`status` = 1  ORDER BY `topics`.`id` DESC LIMIT 5
+I, [2016-08-03T03:32:14.447074 #16489]  INFO -- :   Rendered layouts/_navigation.html.erb (1.6ms)
+I, [2016-08-03T03:32:14.447535 #16489]  INFO -- :   Rendered layouts/_messages.html.erb (0.1ms)
+I, [2016-08-03T03:32:14.447905 #16489]  INFO -- : Completed 200 OK in 18ms (Views: 13.8ms | ActiveRecord: 0.8ms)
+I, [2016-08-03T03:32:15.702349 #16489]  INFO -- : Started GET "/administration/topicos" for 127.0.0.1 at 2016-08-03 03:32:15 -0400
+I, [2016-08-03T03:32:15.705209 #16489]  INFO -- : Processing by AdministrationController#topicos as HTML
+D, [2016-08-03T03:32:15.708474 #16489] DEBUG -- :   [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1[0m
+D, [2016-08-03T03:32:15.715060 #16489] DEBUG -- :   [1m[35mTopic Load (0.3ms)[0m  SELECT `topics`.* FROM `topics`
+I, [2016-08-03T03:32:15.715632 #16489]  INFO -- :   Rendered administration/topicos.html.erb within layouts/application (3.5ms)
+D, [2016-08-03T03:32:15.719075 #16489] DEBUG -- :   [1m[36mTopic Load (0.4ms)[0m  [1mSELECT  `topics`.* FROM `topics`  ORDER BY `topics`.`id` DESC LIMIT 5[0m
+I, [2016-08-03T03:32:15.719903 #16489]  INFO -- :   Rendered layouts/_navigation.html.erb (2.5ms)
+I, [2016-08-03T03:32:15.720719 #16489]  INFO -- :   Rendered layouts/_messages.html.erb (0.1ms)
+I, [2016-08-03T03:32:15.721503 #16489]  INFO -- : Completed 200 OK in 16ms (Views: 10.5ms | ActiveRecord: 1.0ms)
+I, [2016-08-03T03:32:18.132999 #16489]  INFO -- : Started GET "/topics/new" for 127.0.0.1 at 2016-08-03 03:32:18 -0400
+I, [2016-08-03T03:32:18.135064 #16489]  INFO -- : Processing by TopicsController#new as HTML
+D, [2016-08-03T03:32:18.137977 #16489] DEBUG -- :   [1m[35mUser Load (0.2ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1
+I, [2016-08-03T03:32:18.153180 #16489]  INFO -- :   Rendered topics/_form.html.erb (4.2ms)
+I, [2016-08-03T03:32:18.153324 #16489]  INFO -- :   Rendered topics/new.html.erb within layouts/application (5.8ms)
+D, [2016-08-03T03:32:18.155412 #16489] DEBUG -- :   [1m[36mTopic Load (0.2ms)[0m  [1mSELECT  `topics`.* FROM `topics` WHERE `topics`.`status` = 1  ORDER BY `topics`.`id` DESC LIMIT 5[0m
+I, [2016-08-03T03:32:18.155907 #16489]  INFO -- :   Rendered layouts/_navigation.html.erb (1.6ms)
+I, [2016-08-03T03:32:18.156409 #16489]  INFO -- :   Rendered layouts/_messages.html.erb (0.1ms)
+I, [2016-08-03T03:32:18.156811 #16489]  INFO -- : Completed 200 OK in 21ms (Views: 10.2ms | ActiveRecord: 0.4ms)
+I, [2016-08-03T03:32:24.390694 #16489]  INFO -- : Started POST "/topics" for 127.0.0.1 at 2016-08-03 03:32:24 -0400
+I, [2016-08-03T03:32:24.392941 #16489]  INFO -- : Processing by TopicsController#create as HTML
+I, [2016-08-03T03:32:24.393191 #16489]  INFO -- :   Parameters: {"utf8"=>"✓", "authenticity_token"=>"WDLvhJrE3t9zYENQVuUq/unu04fmCyu1ori/M0sRPe2egdvI4QZGDUoA0wx+0TXhXDTusedAOPkNklYJPGdLdw==", "topic"=>{"title"=>"general", "description"=>"<p>general</p>"}, "commit"=>"Aceptar"}
+D, [2016-08-03T03:32:24.395978 #16489] DEBUG -- :   [1m[35mUser Load (0.2ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1
+D, [2016-08-03T03:32:24.411231 #16489] DEBUG -- :   [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+D, [2016-08-03T03:32:24.418327 #16489] DEBUG -- :   [1m[35mTopic Exists (0.3ms)[0m  SELECT  1 AS one FROM `topics` WHERE `topics`.`title` = BINARY 'general' LIMIT 1
+D, [2016-08-03T03:32:24.420054 #16489] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `topics` (`title`, `description`, `user_id`, `status`, `created_at`, `updated_at`) VALUES ('general', '<p>general</p>', 1, 1, '2016-08-03 07:32:24', '2016-08-03 07:32:24')[0m
+D, [2016-08-03T03:32:24.484188 #16489] DEBUG -- :   [1m[35m (63.6ms)[0m  COMMIT
+I, [2016-08-03T03:32:24.485130 #16489]  INFO -- : Redirected to http://localhost:3000/topics/1
+I, [2016-08-03T03:32:24.485369 #16489]  INFO -- : Completed 302 Found in 92ms (ActiveRecord: 64.5ms)
+I, [2016-08-03T03:32:24.492661 #16489]  INFO -- : Started GET "/topics/1" for 127.0.0.1 at 2016-08-03 03:32:24 -0400
+I, [2016-08-03T03:32:24.493753 #16489]  INFO -- : Processing by TopicsController#show as HTML
+I, [2016-08-03T03:32:24.493829 #16489]  INFO -- :   Parameters: {"id"=>"1"}
+D, [2016-08-03T03:32:24.497203 #16489] DEBUG -- :   [1m[36mTopic Load (0.4ms)[0m  [1mSELECT  `topics`.* FROM `topics` WHERE `topics`.`id` = 1 LIMIT 1[0m
+D, [2016-08-03T03:32:24.498278 #16489] DEBUG -- :   [1m[35mUser Load (0.2ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1
+D, [2016-08-03T03:32:24.504570 #16489] DEBUG -- :   [1m[36mArticle Load (0.3ms)[0m  [1mSELECT `articles`.* FROM `articles` WHERE `articles`.`topic_id` = 1[0m
+I, [2016-08-03T03:32:24.505427 #16489]  INFO -- :   Rendered topics/show.html.erb within layouts/application (2.9ms)
+D, [2016-08-03T03:32:24.507691 #16489] DEBUG -- :   [1m[35mTopic Load (0.3ms)[0m  SELECT  `topics`.* FROM `topics` WHERE `topics`.`status` = 1  ORDER BY `topics`.`id` DESC LIMIT 5
+I, [2016-08-03T03:32:24.508497 #16489]  INFO -- :   Rendered layouts/_navigation.html.erb (2.0ms)
+I, [2016-08-03T03:32:24.509269 #16489]  INFO -- :   Rendered layouts/_messages.html.erb (0.2ms)
+I, [2016-08-03T03:32:24.509838 #16489]  INFO -- : Completed 200 OK in 16ms (Views: 7.4ms | ActiveRecord: 1.8ms)

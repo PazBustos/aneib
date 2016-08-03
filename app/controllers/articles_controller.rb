@@ -4,11 +4,13 @@ class ArticlesController < ApplicationController
 	before_action :authenticate_user!
 	before_action :validate_status
 	before_action :validate_activity
+	before_action :validate_own, only: [:edit, :update, :destroy]
 	add_breadcrumb "Foro", :topics_path
 	def show
 		add_breadcrumb @topic.title, @topic
 		add_breadcrumb @article.title
 		@comment = Comment.new
+		@comments = @article.comments.paginate(:page => params[:page], :per_page => 10).order("created_at DESC")
 	end
 
 	def new
@@ -91,7 +93,11 @@ class ArticlesController < ApplicationController
 				end
 			end
 		end
-
+		def validate_own
+			if current_user.category != 1 and current_user != @article.user
+				redirect_to root_path, alert: "Este post no te pertenece. No puedes operar sobre él."
+			end			
+		end
 		def article_params
 			params.require(:article).permit(
 				:user_id, 

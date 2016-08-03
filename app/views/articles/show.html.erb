@@ -17,23 +17,24 @@
 		<h4>Comentarios</h4>
 		<p class="note">2000 caracteres máximo.</p>
 		<%= render "comments/form" %>
-		<% @article.comments.order("created_at DESC").each do |comment| %>
+		<% @comments.each do |comment| %>
 			<hr class = "hr-comment">
-				<table class="table-comment">
-					<tr>
-						<td>
-							<%= image_tag comment.user.photo.url(:mini), :class =>"comment-picture" %> 
-						</td>
-						<td>
-							<%= link_to comment.user.nickname, comment.user%> comentó hace <%= time_ago_in_words(comment.created_at)%>: 
-							<%if current_user == comment.user or current_user.category == 1 %><%= link_to 'Eliminar', article_comment_path(@article,comment), method: :delete, data: { confirm: '¿Está seguro de eliminar el comentario?' }, :class => "btn btn-default btn-comment"%>
-							<%end%>	
-							<p><%=raw comment.body%></p>
-						</td>
-					</tr>
-				</table>
+			<table class="table-comment">
+				<tr>
+					<td>
+						<%= image_tag comment.user.photo.url(:mini), :class =>"comment-picture" %> 
+					</td>
+					<td>
+						<%= link_to comment.user.nickname, comment.user%> comentó hace <%= time_ago_in_words(comment.created_at)%>: 
+						<%if current_user == comment.user or current_user.category == 1 %><%= link_to 'Eliminar', article_comment_path(@article,comment), method: :delete, data: { confirm: '¿Está seguro de eliminar el comentario?' }, :class => "btn btn-default btn-comment"%>
+						<%end%>	
+						<p><%=raw comment.body%></p>
+					</td>
+				</tr>
+			</table>
 		<%end%>
 		<hr class = "hr-comment">
+		<%= will_paginate @comments,  :class=>'aneib_pagination' %>
 	</div>	
 </div>
 

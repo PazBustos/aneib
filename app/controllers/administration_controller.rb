@@ -1,7 +1,10 @@
 class AdministrationController < ApplicationController
 	before_action :authenticate_user!
 	before_action :validate_status
+	before_action :validate_2, except: [:index, :recursos, :noticias]
 	before_action :validate_3
+	before_action :validate_4, except: [:index, :noticias]
+
  
  	add_breadcrumb "Administración", :administration_index_path
 
@@ -35,10 +38,7 @@ class AdministrationController < ApplicationController
 		@egresos = Finance.where(category: 2).order("created_at DESC")
 		@balances = Finance.where(category: 3).order("created_at DESC")
 	end
-	def organizacion
-		add_breadcrumb "Organización congreso", :administration_organizacion_path
-		@organizations = Organization.all
-	end
+
 	def recursos
 		add_breadcrumb "Recursos", :administration_recursos_path
 		@actas = Resource.where(category: 1).order("created_at DESC")
@@ -75,9 +75,19 @@ class AdministrationController < ApplicationController
 			end
 		end
 		
+		def validate_2
+			if current_user.category == 2
+				redirect_to root_path, alert: "Los delegados no tienen permitidos realizar esta acción."
+			end 
+		end
 		def validate_3
 			if current_user.category == 3
-				redirect_to root_path, alert: "Su categoría no le permite ésta acción."
+				redirect_to root_path, alert: "Los socios no tienen permitidos realizar esta acción."
+			end 
+		end
+		def validate_4
+			if current_user.category == 4
+				redirect_to root_path, alert: "Los media partner no tienen permitidos realizar esta acción."
 			end 
 		end
 

@@ -2,15 +2,14 @@ class PortalsController < ApplicationController
 	before_action :set_portal, only: [:show, :edit, :update, :destroy]
 	before_action :authenticate_user!, only: [:edit, :update, :destroy]
 	before_action :validate_status,  only: [:edit, :update, :destroy]
-	before_action :validate_1,  only: [:edit, :update, :destroy]
-	before_action :validate_2,  only: [:edit, :update, :destroy]
-	before_action :validate_3,  only: [:edit, :update, :destroy]
-	before_action :validate_3,  only: [:edit, :update, :destroy]
+	before_action :validate_2, only:[:newSomos,:newConeib,:newEstatuto,:newSocio]
+	before_action :validate_3, except: [:index, :show, :somos, :coneib, :estatuto, :socio]
+	before_action :validate_4, only:[:newSomos,:newConeib,:newEstatuto,:newSocio]
 	before_action :validate_own, only: [:edit, :update, :destroy]
 
 
 	def index
-		@portals = Portal.where("section = ?", 1)
+		@portals = Portal.paginate(:page => params[:page], :per_page => 5).where("section = ?", 1).order("created_at DESC")
 	end
 
 	def show
@@ -172,9 +171,6 @@ class PortalsController < ApplicationController
 		@portals = Portal.where("section = ?", 5)
 	end
 
-
-
-
 	private
 		
 		def set_portal
@@ -194,14 +190,23 @@ class PortalsController < ApplicationController
 				redirect_to root_path, alert: "Su usuario ha sido bloqueado."
 			end
 		end
-		
+		def validate_2
+			if current_user.category == 2
+				redirect_to root_path, alert: "Los delegados no tienen permitidos realizar esta acción."
+			end 
+		end
 		def validate_3
 			if current_user.category == 3
-				redirect_to root_path, alert: "Su categoría no le permite ésta acción."
+				redirect_to root_path, alert: "Los socios no tienen permitidos realizar esta acción."
+			end 
+		end
+		def validate_4
+			if current_user.category == 4
+				redirect_to root_path, alert: "Los media partner no tienen permitidos realizar esta acción."
 			end 
 		end
 		def validate_own
-			if current_user.category != 1 and current_user != @portal
+			if current_user.category != 1 and current_user != @portal.user
 				redirect_to root_path, alert: "Esta sección no le pertenece"
 			end			
 		end

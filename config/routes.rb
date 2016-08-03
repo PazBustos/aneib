@@ -17,7 +17,6 @@ Rails.application.routes.draw do
 	get 'administration/socio'
 	get 'administration/noticias'
 	get 'administration/cuentas'
-	get 'administration/organizacion'
 	get 'administration/recursos'
 	get 'administration/topicos'
 	get 'administration/eventos'
@@ -25,7 +24,6 @@ Rails.application.routes.draw do
 	get 'events/listado'
 
 	resources :resources
-	resources :organizations
 	resources :finances
 	resources :portals
 	resources :administration, only: [:index]

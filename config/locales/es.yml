@@ -1,9 +1,10 @@
 ---
 es:
   will_paginate:
-    previous_label: "anterior "
-    next_label: " siguiente"
+    previous_label: <i class="glyphicon glyphicon-circle-arrow-left"></i>
+    next_label: <i class="glyphicon glyphicon-circle-arrow-right"></i>
     truncate: "..."
+    page_gap: "..."
   activerecord:
       attributes:
         area:

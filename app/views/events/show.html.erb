@@ -47,25 +47,26 @@
 		<%else%>
 			<%=link_to "Conectate para comentar", user_session_path, :class=>'btn btn-default btn-form'%>
 		<%end%>	
-		<% @event.event_comments.order("created_at DESC").each do |comment| %>
+		<% @comments.each do |comment| %>
 			<hr class = "hr-comment">
-				<table class="table-comment">
-					<tr>
-						<td>
-							<%= image_tag comment.user.photo.url(:mini), :class =>"comment-picture" %> 
-						</td>
-						<td>
-							<%= link_to comment.user.nickname, comment.user%> comentó hace <%= time_ago_in_words(comment.created_at)%>: 
-							<%if user_signed_in?%>
-								<%if current_user == comment.user or current_user.category == 1 %><%= link_to 'Eliminar', event_event_comment_path(@event,comment), method: :delete, data: { confirm: '¿Está seguro de eliminar el comentario?' }, :class => "btn btn-default btn-comment"%>
-								<%end%>	
-							<%end%>
-							<p><%=raw comment.body%></p>
-						</td>
-					</tr>
-				</table>
+			<table class="table-comment">
+				<tr>
+					<td>
+						<%= image_tag comment.user.photo.url(:mini), :class =>"comment-picture" %> 
+					</td>
+					<td>
+						<%= link_to comment.user.nickname, comment.user%> comentó hace <%= time_ago_in_words(comment.created_at)%>: 
+						<%if user_signed_in?%>
+							<%if current_user == comment.user or current_user.category == 1 %><%= link_to 'Eliminar', event_event_comment_path(@event,comment), method: :delete, data: { confirm: '¿Está seguro de eliminar el comentario?' }, :class => "btn btn-default btn-comment"%>
+							<%end%>	
+						<%end%>
+						<p><%=raw comment.body%></p>
+					</td>
+				</tr>
+			</table>
 		<%end%>
 		<hr class = "hr-comment">
+		<%= will_paginate @comments,  :class=>'aneib_pagination' %>
 	</div>
 </div>
 

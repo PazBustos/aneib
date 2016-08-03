@@ -18,7 +18,7 @@
 	</div>
 	<div class="panel-body">
 		<div id="vigente">
-			<table id="vigente_dt">
+			<table id="vigente_dt"  class="table-aneib">
 				<thead>
 					<tr>
 						<td>Título</td>
@@ -68,7 +68,7 @@
 							<td> <%= event.start_time%></td>
 							<td> 
 								<%= link_to '<i class="glyphicon glyphicon-eye-open gevent"></i>'.html_safe, event %>
-								<%if user_signed_in? && (current_user.category == 1 or event.user = current_user)%>				
+								<%if user_signed_in? && (current_user.category == 1 or event.user == current_user)%>			
 									<%= link_to '<i class="glyphicon glyphicon-pencil gevent"></i>'.html_safe, edit_event_path(event)%> 
 									<%= link_to '<i class="glyphicon glyphicon-trash gevent"></i>'.html_safe, event, method: :delete, data: { confirm: '¿Está seguro de este evento?' } %>
 								<%end%>								

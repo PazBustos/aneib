@@ -48,3 +48,54 @@
 	border-color: none;
 	display: block;
 }
+
+/*WILL_PAGINATE*/
+.aneib_pagination {
+	cursor: default;
+	/* self-clearing method: */ }
+.aneib_pagination a, .aneib_pagination span, .aneib_pagination em {
+	padding: 6px 12px;
+    font-size: 14px;
+	display: block;
+	float: left;
+	margin-right: 10px; 
+	background: white;
+	border-radius: 10px;
+	min-width: 30px;
+	text-align: center;
+}
+.aneib_pagination .disabled {
+	color: #999999;
+	border: 1px solid #dddddd; }
+.aneib_pagination .current {
+	font-style: normal;
+	font-weight: bold;
+	background: #83BC20;
+	color: white;
+	border: 1px solid #83BC20; }
+.aneib_pagination a {
+	text-decoration: none;
+	border: 1px solid #9aafe5; }
+.aneib_pagination a:hover, .aneib_pagination a:focus {
+	border-color: #83BC20; }
+.aneib_pagination .page_info {
+	background: #2e6ab1;
+	color: white;
+	padding: 0.4em 0.6em;
+	width: 22em;
+	margin-bottom: 0.3em;
+	text-align: center; }
+.aneib_pagination .page_info b {
+	color: #000033;
+	background: #6aa6ed;
+	padding: 0.1em 0.25em; }
+.aneib_pagination:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden; }
+* html .aneib_pagination {
+	height: 1%; }
+*:first-child + html .aneib_pagination {
+	overflow: hidden; }

@@ -29,27 +29,38 @@
 				</div>
 
 				<%if accion == "Nuevo"%>
-					<% if seccion == 1 %>
-						<%= f.label :section, "Sección: "%>
-						<%= f.select(:section, [['Noticia', 1]], {:include_blank => '— Seleccione una sección —',:selected => seccion }, { :class => 'form-control', :required => true }) %>
-					<% elsif seccion == 2 %>
-						<%= f.label :section, "Sección: "%>
-						<%= f.select(:section, [['¿Quiénes somos?', 2]], {:include_blank => '— Seleccione una sección —',:selected => seccion }, { :class => 'form-control', :required => true }) %>
-					<% elsif seccion == 3 %>
-						<%= f.label :section, "Sección: "%>
-						<%= f.select(:section, [['¿Qué es CONEIB?', 3]], {:include_blank => '— Seleccione una sección —',:selected => seccion }, { :class => 'form-control', :required => true }) %>
-					<%elsif seccion == 4 %>
-						<%= f.label :section, "Sección: "%>
-						<%= f.select(:section, [['Estatuto', 4]], {:include_blank => '— Seleccione una sección —',:selected => seccion }, { :class => 'form-control', :required => true }) %>
-					<%else%>
-						<%= f.label :section, "Sección: "%>
-						<%= f.select(:section, [['Hazte Socio', 5]], {:include_blank => '— Seleccione una sección —',:selected => seccion }, { :class => 'form-control', :required => true }) %>
-					<%end%>
+					<p><strong>Sección: </strong>
+						<%if seccion == 1%>
+							Noticia
+							<%= f.hidden_field :section, :value=>1%>
+						<%elsif seccion == 2%>
+							¿Quiénes somos?
+							<%= f.hidden_field :section, :value=>2%>
+						<%elsif seccion == 3%>
+							¿Qué es CONEIB?
+							<%= f.hidden_field :section, :value=>3%>
+						<%elsif seccion == 4%>
+							Estatuto
+							<%= f.hidden_field :section, :value=>4%>
+						<%elsif seccion == 5%>
+							Hazte socio
+							<%= f.hidden_field :section, :value=>5%>
+						<%end%>
+					</p>
 				<%else%>
-					<div class="field"><p>
-						<%= f.label :section, "Sección: "%>
-						<%= f.select(:section, [['Noticia', 1],['¿Quiénes somos?', 2],['¿Qué es CONEIB?', 3],['Estatuto', 4],['Hazte Socio', 5]], {:include_blank => '— Seleccione una sección —'}, { :class => 'form-control', :required => true }) %>
-					</p></div>
+					<p><strong>Sección: </strong>
+						<%if @portal.section == 1%>
+							Noticia
+						<%elsif @portal.section == 2%>
+							¿Quiénes somos?
+						<%elsif @portal.section == 3%>
+							¿Qué es CONEIB?
+						<%elsif @portal.section == 4%>
+							Estatuto
+						<%elsif @portal.section == 5%>
+							Hazte socio
+						<%end%>
+					</p>
 				<%end%>	
 				<div class="field">
 					<%= f.label :body, "Descripción" %>

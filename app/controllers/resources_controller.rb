@@ -4,6 +4,7 @@ class ResourcesController < ApplicationController
 	before_action :validate_status
 	before_action :validate_3, except: [:show, :index]
 	before_action :validate_4
+	before_action :validate_own, only: [:edit, :update, :destroy]
 	
 	def index
 		add_breadcrumb "Recursos", :resources_path
@@ -90,7 +91,11 @@ class ResourcesController < ApplicationController
 				redirect_to root_path, alert: "Su categoría no le permite ésta acción."
 			end 
 		end
-
+		def validate_own
+			if current_user.category != 1 and current_user != @resource.user
+				redirect_to root_path, alert: "Este recurso no te pertenece. No puedes operar sobre él."
+			end			
+		end
 		def resource_params
 			params.require(:resource).permit(
 				:name, 

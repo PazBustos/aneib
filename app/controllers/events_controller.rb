@@ -3,6 +3,7 @@ class EventsController < ApplicationController
 	before_action :validate_status, except: [:index,:show, :listado]
 	before_action :validate_3, except: [:index, :show, :listado]
 	before_action :set_event, only: [:show, :edit, :update, :destroy]
+	before_action :validate_own, only: [:edit, :update, :destroy]
 	add_breadcrumb "Eventos", :events_path
 
 	def index
@@ -16,6 +17,7 @@ class EventsController < ApplicationController
 			@event.update(status: 2)
 			flash[:success] = "Este evento ya fue realizado"
 		end
+		@comments = @event.event_comments.paginate(:page => params[:page], :per_page => 10).order("created_at DESC")
 	end
 
 	def new
@@ -123,6 +125,11 @@ class EventsController < ApplicationController
 			end 
 		end
 
+		def validate_own
+			if current_user.category != 1 and current_user != @event.user
+				redirect_to root_path, alert: "Este evento no te pertenece. No puedes operar sobre él."
+			end			
+		end
 		def event_params
 			params.require(:event).permit(
 				:user_id, 
