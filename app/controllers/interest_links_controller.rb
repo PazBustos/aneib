@@ -1,12 +1,7 @@
 class InterestLinksController < ApplicationController
 	before_action :set_interest_link, only: [:show, :edit, :update, :destroy]
-
-	def index
-	@interest_links = InterestLink.all
-	end
-
-	def show
-	end
+	before_action :authenticate_user!, only: [:show, :edit, :update, :destroy]
+	before_action :validate_1, except: [:index]
 
 	def new
 		@interest_link = InterestLink.new
@@ -19,7 +14,7 @@ class InterestLinksController < ApplicationController
 		@interest_link = InterestLink.new(interest_link_params)
 		respond_to do |format|
 			if @interest_link.save
-				format.html { redirect_to @interest_link, notice: 'El enlace de interes se ha creado exitosamente. '}
+				format.html { redirect_to administration_links_path, notice: 'El enlace de interes se ha creado exitosamente. '}
 				format.json { render :show, status: :created, location: @interest_link }
 			else
 				format.html { render :new }
@@ -33,7 +28,7 @@ class InterestLinksController < ApplicationController
 	def update
 		respond_to do |format|
 			if @interest_link.update(interest_link_params)
-				format.html { redirect_to @interest_link, notice: 'El enlace de interés se ha actualizado exitosamente.' }
+				format.html { redirect_to administration_links_path, notice: 'El enlace de interés se ha actualizado exitosamente.' }
 				format.json { render :show, status: :ok, location: @interest_link }
 			else
 				format.html { render :edit }
@@ -47,7 +42,7 @@ class InterestLinksController < ApplicationController
 	def destroy
 		@interest_link.destroy
 		respond_to do |format|
-			format.html { redirect_to interest_links_url, notice: 'El enlace de interés ha sido eliminado.' }
+			format.html { redirect_to administration_links_path, notice: 'El enlace de interés ha sido eliminado.' }
 			format.json { head :no_content }
 		end
 	end
@@ -64,5 +59,11 @@ class InterestLinksController < ApplicationController
 				:name, 
 				:url, 
 				:description)
+		end
+		
+		def validate_1
+			if current_user.category != 1
+				redirect_to root_path, alert: "Su categoría no le permite ésta acción."
+			end 
 		end
 end

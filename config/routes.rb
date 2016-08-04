@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-	resources :interest_links
 	get 'users/user_list'
 	get 'portals/somos'
 	get 'portals/coneib'
@@ -22,7 +21,7 @@ Rails.application.routes.draw do
 	get 'administration/organizacion'
 	get 'administration/recursos'
 	get 'administration/topicos'
-
+	get 'administration/links'
 
 	resources :resources
 	resources :organizations
@@ -39,6 +38,9 @@ Rails.application.routes.draw do
 	end
 	devise_for :users, :controllers => { :registrations => "users/registrations"}
 	resources :users, only: [:index, :show, :edit, :update]
+
+	resources :interest_links, except: [:index, :show]
+
 	# The priority is based upon order of creation: first created -> highest priority.
 	# See how all your routes lay out with "rake routes".
 

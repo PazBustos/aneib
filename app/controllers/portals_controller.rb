@@ -1,8 +1,8 @@
 class PortalsController < ApplicationController
 	before_action :set_portal, only: [:show, :edit, :update, :destroy]
-	before_action :authenticate_user!, except: [:show, :index]
-	before_action :validate_status, except: [:show, :index]
-	before_action :validate_3, except: [:show, :index]
+	before_action :authenticate_user!, only: [:edit, :update, :destroy]
+	before_action :validate_status,  only: [:edit, :update, :destroy]
+	before_action :validate_3,  only: [:edit, :update, :destroy]
 
 
 	def index

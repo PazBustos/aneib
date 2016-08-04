@@ -32,18 +32,18 @@
 		</ul>
 	</li>
 <%else%>
-	<li class="<%= 'active' if current_page?(portals_somos_path) %>">
+	<li class="<%= 'active' if current_page?(users_path) %>">
 		<%= link_to '<i class="glyphicon glyphicon-leaf"></i> Mi cuenta'.html_safe, users_path %>
 	</li>
 	<%if current_user.category != 4%>
-		<li class="disabled">
+		<li class="<%= 'active' if current_page?(finances_path) %>">
 			<%= link_to '<i class="glyphicon glyphicon-leaf"></i> Cuentas claras'.html_safe, finances_path %>
 		</li>
 	<%end%>
-	<li class="<%= 'active' if current_page?(new_user_session_path) %>">
+	<li class="<%= 'active' if current_page?(portals_estatuto_path) %>">
 		<%= link_to '<i class="glyphicon glyphicon-leaf"></i> Estatuto'.html_safe, portals_estatuto_path %>
 	</li>
-	<li class="<%= 'active' if current_page?(user_session_path) %>">
+	<li class="<%= 'active' if current_page?(organizations_path) %>">
 		<%= link_to '<i class="glyphicon glyphicon-leaf"></i> Organización CONEIB'.html_safe, organizations_path %>
 	</li>
 	<li class="<%= 'active' if current_page?(resources_path) %>">

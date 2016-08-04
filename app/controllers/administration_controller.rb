@@ -51,6 +51,11 @@ class AdministrationController < ApplicationController
 		@topics = Topic.all
 	end
 
+	def links
+		add_breadcrumb "Redes sociales", :administration_links_path
+		@links = InterestLink.all
+		
+	end
 
 	private #acciones privadas del controlador
 
